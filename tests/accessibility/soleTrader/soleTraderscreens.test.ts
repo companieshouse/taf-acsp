@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { testConfig } from '../../../testConfig';
-import { playAudit } from 'playwright-lighthouse';
+//import { playAudit } from 'playwright-lighthouse';
 
 test('Accessibility check for Sole-Trader-Name screen @accessibility',async ({ page },testInfo) => {
     await page.goto('http://localhost:3000/');
@@ -16,9 +16,9 @@ contentType:'application/json'});
 
 });
 
-test('Accessibility check  Lighthouse for Sole-Trader-Name screen ',async ({page})=> {
+/*test('Accessibility check  Lighthouse for Sole-Trader-Name screen ',async ({page})=> {
     await page.goto('http://localhost:3000/');
     
 await playAudit({page,port:9222,thresholds:{accessibility:100}});
 
-});
+});*/

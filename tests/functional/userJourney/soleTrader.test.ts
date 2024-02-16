@@ -3,6 +3,7 @@ import { namePage } from '../../../pages/soleTrader/namePage';
 import { testConfig } from '../../../testConfig';
 import { userActions } from '../../../common/userActions';
 import { dobPage } from '../../../pages/soleTrader/dobPage';
+import { userInput } from '../../../common/userInput';
 
     test('Verify Sole Trader can register as an ACSP, @smoke', async ({ context,page }) => {
         const namePageContext= new namePage(page);
@@ -11,9 +12,9 @@ import { dobPage } from '../../../pages/soleTrader/dobPage';
         
         await page.goto(testConfig.local.url);
     
-        await namePageContext.firstName.fill('Test-');
-        await namePageContext.middleName.fill('a');
-        await namePageContext.lastName.fill('user');
+        await namePageContext.firstName.fill(userInput.firstName);
+        await namePageContext.middleName.fill(userInput.middleName);
+        await namePageContext.lastName.fill(userInput.lastName);
         await userActionsContext.clickContinue();
         await expect(dobPageContext.dobDay).toBeVisible();
 
