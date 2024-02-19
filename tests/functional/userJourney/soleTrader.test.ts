@@ -9,7 +9,6 @@ import { userInput } from '../../../common/userInput';
         const namePageContext= new namePage(page);
         const userActionsContext = new userActions(page);
         const dobPageContext = new dobPage(page);
-        
         await page.goto(testConfig.local.url);
     
         await namePageContext.firstName.fill(userInput.firstName);

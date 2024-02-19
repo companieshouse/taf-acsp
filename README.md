@@ -3,6 +3,7 @@ ACSP project UI test automation using Playwright-Typescript
 
 Prerequisites:
 node v20
+
 VS code
 
 Set Up:
