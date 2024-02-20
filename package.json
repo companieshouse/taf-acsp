@@ -1,0 +1,28 @@
+{
+  "name": "taf-acsp",
+  "version": "1.0.0",
+  "description": "ACSP project UI test automation using Playwright-Typescript",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/companieshouse/taf-acsp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type":"module",
+  "bugs": {
+    "url": "https://github.com/companieshouse/taf-acsp/issues"
+  },
+  "homepage": "https://github.com/companieshouse/taf-acsp#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.41.2",
+    "@types/node": "^20.11.16",
+    "eslint": "^8.56.0",
+    "playwright-lighthouse": "^4.0.0"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "^4.8.4"
+  }
+}
