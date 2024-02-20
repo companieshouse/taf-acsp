@@ -1,18 +1,15 @@
-import {Locator, Page} from '@playwright/test'
+import { Locator, Page } from "@playwright/test";
 
-export class userActions{
+export class userActions {
+  readonly page: Page;
+  readonly continueButton: Locator;
 
-    readonly page:Page;
-    readonly continueButton:Locator;
+  constructor(page: Page) {
+    this.page = page;
+    this.continueButton = page.getByRole("button", { name: " Continue " });
+  }
 
-    constructor(page:Page){
-     this.page=page;
-     this.continueButton=page.getByRole('button',{name:' Continue '});
-
-    }
-
-    async clickContinue(){
-
-        await this.continueButton.click();
-    }
+  async clickContinue() {
+    await this.continueButton.click();
+  }
 }

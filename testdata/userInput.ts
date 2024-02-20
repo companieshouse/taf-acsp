@@ -1,6 +1,5 @@
-export const userInput ={
-
-    firstName :"Test-",
-    middleName:"automation",
-    lastName:"User"
-}
+export const userInput = {
+  firstName: "Test-",
+  middleName: "automation",
+  lastName: "User",
+};
