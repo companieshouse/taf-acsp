@@ -6,10 +6,9 @@ test("Accessibility check for Sole-Trader-Name screen @accessibility", async ({
   page,
 }, testInfo) => {
   const accessibilityContext = new accessibilityScan();
-
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.local.url,
+    testConfig.baseUrl + testConfig.soletrader.name,
     testInfo
   );
 });

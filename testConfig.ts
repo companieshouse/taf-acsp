@@ -1,7 +1,6 @@
 export const testConfig = {
-  local: {
-    url: "http://localhost:3000/sole-trader/name",
+  baseUrl: process.env.URL,
+  soletrader: {
+    name: "/sole-trader/name",
   },
-
-  phoenix: {},
 };
