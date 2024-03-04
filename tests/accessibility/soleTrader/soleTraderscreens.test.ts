@@ -2,7 +2,6 @@ import { test } from "@playwright/test";
 import { testConfig } from "../../../testConfig";
 import { accessibilityScan } from "../../../utils/accessibilityScan";
 
-const soleTraderURL = testConfig.local.url + "sole-trader/"
 
 test("Accessibility check for Sole-Trader-Name screen @accessibility", async ({
   page,
@@ -11,7 +10,7 @@ test("Accessibility check for Sole-Trader-Name screen @accessibility", async ({
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    soleTraderURL + "what-is-your-name",
+    testConfig.local.soleTrader.name,
     testInfo
   );
 });
@@ -23,7 +22,7 @@ test("Accessibility check for Sole Trader Date of Birth screen @accessibility", 
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    soleTraderURL + "what-is-your-date-of-birth",
+    testConfig.local.soleTrader.dateOfBirth,
     testInfo
   );
 });
@@ -35,7 +34,7 @@ test("Accessibility check for Sole Trader Nationality screen @accessibility", as
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    soleTraderURL + "what-is-your-nationality",
+    testConfig.local.soleTrader.nationality,
     testInfo
   );
 });
@@ -47,7 +46,7 @@ test("Accessibility check for Sole Trader Where do you Live screen @accessibilit
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    soleTraderURL + "where-do-you-live",
+    testConfig.local.soleTrader.whereDoYouLive,
     testInfo
   );
 });
@@ -59,7 +58,7 @@ test("Accessibility check for Sole Trader Correspondence Address Auto-lookup scr
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    soleTraderURL + "correspondence-address-lookup",
+    testConfig.local.soleTrader.addressAutoLookUp,
     testInfo
   );
 });
@@ -71,7 +70,7 @@ test("Accessibility check for Sole Trader Correspondence Address Select Address 
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    soleTraderURL + "select-your-correspondence-address",
+    testConfig.local.soleTrader.addressSelect,
     testInfo
   );
 });
@@ -83,7 +82,7 @@ test("Accessibility check for Sole Trader Correspondence Address Manual Entry sc
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    soleTraderURL + "correspondence-address-manual-entry",
+    testConfig.local.soleTrader.addressManualEntry,
     testInfo
   );
 });
@@ -95,7 +94,7 @@ test("Accessibility check for Sole Trader Confirm Correspondence Address screen 
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    soleTraderURL + "confirm-your-correspondence-address",
+    testConfig.local.soleTrader.addressConfirm,
     testInfo
   );
 });
