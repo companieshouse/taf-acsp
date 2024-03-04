@@ -1,6 +1,6 @@
 export const testConfig = {
   local: {
-    url: "http://localhost:3000/sole-trader/name",
+    url: "http://chs.local/register-acsp/",
   },
 
   phoenix: {},
