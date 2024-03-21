@@ -3,7 +3,6 @@ export const testConfig = {
   empty_credentials: "Please provide USERNAME and PASSWORD",
   empty_url: "Please provide the BASE_URL",
 
-  homePage: "/home",
   soleTrader: {
     name: "/sole-trader/what-is-your-name",
     dateOfBirth: "/sole-trader/what-is-your-date-of-birth",

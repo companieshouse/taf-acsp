@@ -22,7 +22,7 @@ export class globalSetUp {
 
     const startPageContext = new startPage(this.page);
 
-    await this.page.goto(homePage + testConfig.homePage);
+    await this.page.goto(homePage);
     await startPageContext.startnow.click();
 
     await this.page.getByLabel("Email address").fill(username);
