@@ -1,17 +1,17 @@
 export const testConfig = {
-  local: {
-    homePage: "http://chs.local/register-acsp/home",
-    soleTrader: {
-      name: "http://chs.local/register-acsp/sole-trader/what-is-your-name",
-      dateOfBirth: "http://chs.local/register-acsp/sole-trader/what-is-your-date-of-birth",
-      nationality: "http://chs.local/register-acsp/sole-trader/what-is-your-nationality",
-      whereDoYouLive: "http://chs.local/register-acsp/sole-trader/where-do-you-live",
-      addressAutoLookUp: "http://chs.local/register-acsp/sole-trader/correspondence-address-lookup",
-      addressSelect: "http://chs.local/register-acsp/sole-trader/select-your-correspondence-address",
-      addressManualEntry: "http://chs.local/register-acsp/sole-trader/correspondence-address-manual-entry",
-      addressConfirm: "http://chs.local/register-acsp/sole-trader/confirm-your-correspondence-address",
-    }
-  },
+  env: process.env.BASE_URL,
+  empty_credentials: "Please provide USERNAME and PASSWORD",
+  empty_url: "Please provide the BASE_URL",
 
-  phoenix: {},
+  homePage: "/home",
+  soleTrader: {
+    name: "/sole-trader/what-is-your-name",
+    dateOfBirth: "/sole-trader/what-is-your-date-of-birth",
+    nationality: "/sole-trader/what-is-your-nationality",
+    whereDoYouLive: "/sole-trader/where-do-you-live",
+    addressAutoLookUp: "/sole-trader/correspondence-address-lookup",
+    addressSelect: "/sole-trader/select-your-correspondence-address",
+    addressManualEntry: "/sole-trader/correspondence-address-manual-entry",
+    //addressConfirm: "http://cidev.aws.chdev.org/register-as-companies-house-authorised-agent/sole-trader/confirm-your-correspondence-address",
+  },
 };

@@ -4,12 +4,19 @@ import { namePage } from "../../../pages/soleTrader/namePage";
 import { testConfig } from "../../../testConfig";
 import { userInput } from "../../../testdata/userInput";
 import { userActions } from "../../../utils/userActions";
+import { globalSetUp } from "../../../setUp/globalSetup";
+
+test.beforeEach(async ({ page }) => {
+  const setUp = new globalSetUp(page);
+
+  await setUp.ACSPUserLogin();
+});
 
 test("Verify Sole Trader can register as an ACSP, @smoke", async ({ page }) => {
   const namePageContext = new namePage(page);
   const userActionsContext = new userActions(page);
   const dobPageContext = new dobPage(page);
-  await page.goto(testConfig.local.soleTrader.name);
+  await page.goto(testConfig.env + testConfig.soleTrader.name);
 
   await namePageContext.firstName.fill(userInput.firstName);
   await namePageContext.middleName.fill(userInput.middleName);
