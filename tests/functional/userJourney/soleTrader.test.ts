@@ -16,7 +16,7 @@ test("Verify Sole Trader can register as an ACSP, @smoke", async ({ page }) => {
   const namePageContext = new namePage(page);
   const userActionsContext = new userActions(page);
   const dobPageContext = new dobPage(page);
-  await page.goto(testConfig.env + testConfig.soleTrader.name);
+  await page.goto(testConfig.baseUrl + testConfig.soleTrader.name);
   await expect(page).toHaveTitle(testConfig.nameTitle);
   await expect(namePageContext.firstName).toBeVisible();
   await namePageContext.firstName.fill(userInput.firstName);

@@ -1,5 +1,5 @@
 export const testConfig = {
-  env: process.env.BASE_URL,
+  baseUrl: process.env.BASE_URL,
   userName: process.env.USERNAME,
   password: process.env.PASSWORD,
   empty_credentials: "Please provide USERNAME and PASSWORD",

@@ -13,13 +13,13 @@ export class globalSetUp {
     if (!testConfig.userName || !testConfig.password) {
       throw new Error(testConfig.empty_credentials);
     }
-    if (!testConfig.env) {
+    if (!testConfig.baseUrl) {
       throw new Error(testConfig.empty_url);
     }
 
     const username = testConfig.userName as string;
     const password = testConfig.password as string;
-    const startPageUrl = testConfig.env as string;
+    const startPageUrl = testConfig.baseUrl as string;
 
     const startPageContext = new startPage(this.page);
 
