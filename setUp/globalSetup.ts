@@ -1,5 +1,7 @@
 import { Page, expect, test } from "@playwright/test";
-import { testConfig } from "../testConfig";
+import { testConfig } from "../config/testConfig";
+import { pageURL } from "../config/pageURL";
+
 import { startPage } from "../pages/common/startPage";
 
 export class globalSetUp {
@@ -33,6 +35,6 @@ export class globalSetUp {
     await this.page.getByLabel("Email address").fill(username);
     await this.page.getByLabel("Password").fill(password);
     await this.page.getByRole("button", { name: "Sign in" }).click();
-    await expect(this.page.url()).toContain(testConfig.typeOfBusiness);
+    await expect(this.page.url()).toContain(pageURL.typeOfBusiness);
   }
 }
