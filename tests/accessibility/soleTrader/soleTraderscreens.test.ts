@@ -106,3 +106,29 @@ test("Accessibility check for Sole Trader Correspondence Address Manual Entry sc
     testInfo
   );
 });*/
+
+test("Accessibility check for Sole Trader Which sector screen @accessibility", async ({
+  page,
+}, testInfo) => {
+  const accessibilityContext = new accessibilityScan();
+
+  await accessibilityContext.checkWcagCompliance(
+    page,
+    testConfig.env + testConfig.soleTrader.whichSector,
+    testInfo
+  );
+
+  });
+
+  test("Accessibility check for Sole Trader Which sector-Other screen @accessibility", async ({
+    page,
+  }, testInfo) => {
+    const accessibilityContext = new accessibilityScan();
+  
+    await accessibilityContext.checkWcagCompliance(
+      page,
+      testConfig.env + testConfig.soleTrader.whichSectorOther,
+      testInfo
+    );
+});
+

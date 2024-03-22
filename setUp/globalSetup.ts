@@ -16,6 +16,7 @@ export class globalSetUp {
     if (!process.env.BASE_URL) {
       throw new Error(testConfig.empty_url);
     }
+
     const username = process.env.USERNAME as string;
     const password = process.env.PASSWORD as string;
     const startPageUrl = process.env.BASE_URL as string;
