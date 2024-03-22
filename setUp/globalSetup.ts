@@ -1,6 +1,7 @@
 import { Page, expect, test } from "@playwright/test";
 import { testConfig } from "../config/testConfig";
 import { pageURL } from "../config/pageURL";
+import { pageTitle } from "../config/pageTitle";
 
 import { startPage } from "../pages/common/startPage";
 
@@ -26,7 +27,7 @@ export class globalSetUp {
     const startPageContext = new startPage(this.page);
 
     await this.page.goto(startPageUrl);
-    await expect(this.page).toHaveTitle(testConfig.startPageTitle);
+    await expect(this.page).toHaveTitle(pageTitle.startPageTitle);
 
     await expect(startPageContext.startnow).toBeVisible();
 
