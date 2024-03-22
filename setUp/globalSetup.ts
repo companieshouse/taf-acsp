@@ -10,16 +10,16 @@ export class globalSetUp {
   }
 
   async ACSPUserLogin() {
-    if (!process.env.USERNAME || !process.env.PASSWORD) {
+    if (!testConfig.userName || !testConfig.password) {
       throw new Error(testConfig.empty_credentials);
     }
-    if (!process.env.BASE_URL) {
+    if (!testConfig.env) {
       throw new Error(testConfig.empty_url);
     }
 
-    const username = process.env.USERNAME as string;
-    const password = process.env.PASSWORD as string;
-    const startPageUrl = process.env.BASE_URL as string;
+    const username = testConfig.userName as string;
+    const password = testConfig.password as string;
+    const startPageUrl = testConfig.env as string;
 
     const startPageContext = new startPage(this.page);
 
