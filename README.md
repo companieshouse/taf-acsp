@@ -18,11 +18,11 @@ npx playwright test
 
 To run the test with 'smoke' tag:
 
-npx playwright test --grep @smoke
+USERNAME='$username' PASSWORD='$password' BASE_URL='$url' npx playwright test --grep @smoke
 
 To run the test with 'accessibility' tag:
 
-npx playwright test --grep @accessibility
+USERNAME='$username' PASSWORD='$password' BASE_URL='$url' npx playwright test --grep @accessibility
 
 To view the test report:
 
