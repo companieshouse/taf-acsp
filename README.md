@@ -14,7 +14,7 @@ npm install
 
 To run all tests:
 
-npx playwright test
+USERNAME='$username' PASSWORD='$password' BASE_URL='$url' npx playwright test
 
 To run the test with 'smoke' tag:
 

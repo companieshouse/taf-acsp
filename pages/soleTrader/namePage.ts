@@ -13,4 +13,6 @@ export class namePage {
     this.middleName = page.locator("#middle-names");
     this.lastName = page.locator("#last-name");
   }
+
+  
 }
