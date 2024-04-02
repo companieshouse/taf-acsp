@@ -12,7 +12,22 @@ import { whatIsYourRolePage } from "../../../pages/common/whatIsYourRolePage";
 import { assertions } from "../../../utils/assertions";
 import { nationalityPage } from "../../../pages/soleTrader/nationalityPage";
 
-test.beforeEach(async ({ page }) => {
+let namePageContext;
+let userActionsContext;
+let dobPageContext;
+let typeOfbusinessContext;
+let selectRoleContext;
+let assetionsContext;
+let nationalityPageContext;
+
+test.beforeEach("Log in to use ACSP Service",async ({ page }) => {
+  namePageContext = new namePage(page);
+  userActionsContext = new userActions(page);
+  dobPageContext = new dobPage(page);
+  typeOfbusinessContext = new typeOfBusinessPage(page);
+  selectRoleContext = new whatIsYourRolePage(page);
+  assetionsContext = new assertions(page);
+  nationalityPageContext = new nationalityPage(page);
   const setUp = new globalSetUp(page);
 
   await setUp.ACSPUserLogin();
@@ -21,13 +36,6 @@ test.beforeEach(async ({ page }) => {
 test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
   page,
 }) => {
-  const namePageContext = new namePage(page);
-  const userActionsContext = new userActions(page);
-  const dobPageContext = new dobPage(page);
-  const typeOfbusinessContext = new typeOfBusinessPage(page);
-  const selectRoleContext = new whatIsYourRolePage(page);
-  const assetionsContext = new assertions(page);
-  const nationalityPageContext = new nationalityPage(page);
   await typeOfbusinessContext.selectTypeOfBusiness(testConfig.soleTrader);
   await userActionsContext.clickContinue();
   await assetionsContext.checkPageTitle(pageTitle.soleTraderRole);

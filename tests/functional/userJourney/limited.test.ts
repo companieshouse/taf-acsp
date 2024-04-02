@@ -7,7 +7,16 @@ import { userInput } from "../../../testdata/userInput";
 import { userActions } from "../../../utils/userActions";
 import { assertions } from "../../../utils/assertions";
 
-test.beforeEach(async ({ page }) => {
+let typeOfbusinessContext;
+let companyNumberPageContext;
+let userActionsContext;
+let assetionsContext;
+
+test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
+  typeOfbusinessContext = new typeOfBusinessPage(page);
+  companyNumberPageContext = new companyNumberPage(page);
+  userActionsContext = new userActions(page);
+  assetionsContext = new assertions(page);
   const setUp = new globalSetUp(page);
 
   await setUp.ACSPUserLogin();
@@ -16,11 +25,6 @@ test.beforeEach(async ({ page }) => {
 test("Verify error shown when company id not found for Limited journey @smoke @limited", async ({
   page,
 }) => {
-  const typeOfbusinessContext = new typeOfBusinessPage(page);
-  const companyNumberPageContext = new companyNumberPage(page);
-  const userActionsContext = new userActions(page);
-  const assetionsContext = new assertions(page);
-
   await typeOfbusinessContext.selectTypeOfBusiness(testConfig.limitedCompany);
   await userActionsContext.clickContinue();
 
