@@ -18,7 +18,9 @@ test.beforeEach(async ({ page }) => {
   await setUp.ACSPUserLogin();
 });
 
-test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({ page }) => {
+test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
+  page,
+}) => {
   const namePageContext = new namePage(page);
   const userActionsContext = new userActions(page);
   const dobPageContext = new dobPage(page);
@@ -49,11 +51,15 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({ 
   await dobPageContext.enterDOB(userInput.day, userInput.month, userInput.year);
   await userActionsContext.clickContinue();
   await assetionsContext.checkPageTitle(pageTitle.soleTraderNationality);
-  await nationalityPageContext.enterFirstNationality(userInput.firstNationality);
-  await nationalityPageContext.enterSecondNationality(userInput.secondNationality);
-  await nationalityPageContext.enterThirdNationality(userInput.thirdNationality);
+  await nationalityPageContext.enterFirstNationality(
+    userInput.firstNationality
+  );
+  await nationalityPageContext.enterSecondNationality(
+    userInput.secondNationality
+  );
+  await nationalityPageContext.enterThirdNationality(
+    userInput.thirdNationality
+  );
   await userActionsContext.clickContinue();
   await assetionsContext.checkPageTitle(pageTitle.soleTraderWhereDoYouLive);
- 
-
 });

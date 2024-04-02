@@ -1,4 +1,5 @@
 # taf-acsp
+
 ACSP project UI test automation using Playwright-Typescript
 
 Prerequisites:
@@ -27,5 +28,3 @@ USERNAME='$username' PASSWORD='$password' BASE_URL='$url' npx playwright test --
 To view the test report:
 
 npx playwright show-report
-
-

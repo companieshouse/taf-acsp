@@ -15,17 +15,25 @@ export class nationalityPage {
     this.thirdNationality = page.locator("#nationality_input_2");
   }
 
-  async enterFirstNationality(firstNationality:string){
+  async enterFirstNationality(firstNationality: string) {
     const userActionsContext = new userActions(this.page);
-    await userActionsContext.enterUserInput(this.firstNationality, firstNationality);
+    await userActionsContext.enterUserInput(
+      this.firstNationality,
+      firstNationality
+    );
   }
-  async enterSecondNationality(secondNationality:string){
+  async enterSecondNationality(secondNationality: string) {
     const userActionsContext = new userActions(this.page);
-    await userActionsContext.enterUserInput(this.secondNationality, secondNationality);
+    await userActionsContext.enterUserInput(
+      this.secondNationality,
+      secondNationality
+    );
   }
-  async enterThirdNationality(thirdNationality:string){
+  async enterThirdNationality(thirdNationality: string) {
     const userActionsContext = new userActions(this.page);
-    await userActionsContext.enterUserInput(this.thirdNationality, thirdNationality);
+    await userActionsContext.enterUserInput(
+      this.thirdNationality,
+      thirdNationality
+    );
   }
-
 }

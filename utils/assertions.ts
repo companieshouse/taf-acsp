@@ -15,10 +15,9 @@ export class assertions {
     await expect(element).toBeVisible();
   }
 
-  async checkErrorHeadingPresent(){
-    await this.checkElementvisible(this.page.getByRole('heading', { name: 'There is a problem' }));
-
+  async checkErrorHeadingPresent() {
+    await this.checkElementvisible(
+      this.page.getByRole("heading", { name: "There is a problem" })
+    );
   }
-
- 
 }

@@ -8,64 +8,30 @@ import { userActions } from "../../../utils/userActions";
 import { assertions } from "../../../utils/assertions";
 
 test.beforeEach(async ({ page }) => {
-    const setUp = new globalSetUp(page);
-  
-    await setUp.ACSPUserLogin();
-  });
+  const setUp = new globalSetUp(page);
 
-  test("Verify error shown when company id not found for Limited Company @smoke @limited", async ({ page }) => {
-    const typeOfbusinessContext = new typeOfBusinessPage(page);
-    const companyNumberPageContext = new companyNumberPage(page);
-    const userActionsContext = new userActions(page);
-    const assetionsContext = new assertions(page);
+  await setUp.ACSPUserLogin();
+});
 
-    await typeOfbusinessContext.selectTypeOfBusiness(testConfig.limitedCompany);
-    await userActionsContext.clickContinue();
+test("Verify error shown when company id not found for Limited journey @smoke @limited", async ({
+  page,
+}) => {
+  const typeOfbusinessContext = new typeOfBusinessPage(page);
+  const companyNumberPageContext = new companyNumberPage(page);
+  const userActionsContext = new userActions(page);
+  const assetionsContext = new assertions(page);
 
-    await companyNumberPageContext.enterCompanyNumber(userInput.companyNumber);
-    await userActionsContext.clickContinue();
-    await assetionsContext.checkErrorHeadingPresent();
-   
-    await assetionsContext.checkElementvisible(page.getByRole('link', { name: 'Enter a valid company number'  }));
-    await assetionsContext.checkElementvisible(page.getByText('Error: Enter a valid company'));
+  await typeOfbusinessContext.selectTypeOfBusiness(testConfig.limitedCompany);
+  await userActionsContext.clickContinue();
 
+  await companyNumberPageContext.enterCompanyNumber(userInput.companyNumber);
+  await userActionsContext.clickContinue();
+  await assetionsContext.checkErrorHeadingPresent();
 
-  });
-
-  test("Verify error shown when company id not found for Limited Partnership @smoke @limited", async ({ page }) => {
-    const typeOfbusinessContext = new typeOfBusinessPage(page);
-    const companyNumberPageContext = new companyNumberPage(page);
-    const userActionsContext = new userActions(page);
-    const assetionsContext = new assertions(page);
-
-    await typeOfbusinessContext.selectTypeOfBusiness(testConfig.limitedCompany);
-    await userActionsContext.clickContinue();
-
-    await companyNumberPageContext.enterCompanyNumber(userInput.companyNumber);
-    await userActionsContext.clickContinue();
-    await assetionsContext.checkErrorHeadingPresent();
-   
-    await assetionsContext.checkElementvisible(page.getByRole('link', { name: 'Enter a valid company number'  }));
-    await assetionsContext.checkElementvisible(page.getByText('Error: Enter a valid company'));
-
-
-  });
-
-  test("Verify error shown when company id not found for Limited Liability Partnership @smoke @limited", async ({ page }) => {
-    const typeOfbusinessContext = new typeOfBusinessPage(page);
-    const companyNumberPageContext = new companyNumberPage(page);
-    const userActionsContext = new userActions(page);
-    const assetionsContext = new assertions(page);
-
-    await typeOfbusinessContext.selectTypeOfBusiness(testConfig.limitedCompany);
-    await userActionsContext.clickContinue();
-
-    await companyNumberPageContext.enterCompanyNumber(userInput.companyNumber);
-    await userActionsContext.clickContinue();
-    await assetionsContext.checkErrorHeadingPresent();
-   
-    await assetionsContext.checkElementvisible(page.getByRole('link', { name: 'Enter a valid company number'  }));
-    await assetionsContext.checkElementvisible(page.getByText('Error: Enter a valid company'));
-
-
-  });
+  await assetionsContext.checkElementvisible(
+    page.getByRole("link", { name: "Enter a valid company number" })
+  );
+  await assetionsContext.checkElementvisible(
+    page.getByText("Error: Enter a valid company")
+  );
+});
