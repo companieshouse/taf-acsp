@@ -16,9 +16,9 @@ To run all tests:
 
 USERNAME='$username' PASSWORD='$password' BASE_URL='$url' npx playwright test
 
-To run the test with 'smoke' tag:
+To run the test with tag:
 
-USERNAME='$username' PASSWORD='$password' BASE_URL='$url' npx playwright test --grep @smoke
+USERNAME='$username' PASSWORD='$password' BASE_URL='$url' npx playwright test --grep @tag
 
 To run the test with 'accessibility' tag:
 
