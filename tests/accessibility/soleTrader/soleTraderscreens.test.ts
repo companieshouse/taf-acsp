@@ -4,12 +4,18 @@ import { pageURL } from "../../../config/pageURL";
 
 import { accessibilityScan } from "../../../utils/accessibilityScan";
 import { globalSetUp } from "../../../setUp/globalSetup";
+import { typeOfBusinessPage } from "../../../pages/soleTrader/typeOfBusinessPage";
 
-test.beforeEach(async ({ page }) => {
-  const setUp = new globalSetUp(page);
+test.beforeEach(
+  "Log in to ACSP Service to register as Sole Trader",
+  async ({ page }) => {
+    const setUp = new globalSetUp(page);
+    const typeOfbusinessContext = new typeOfBusinessPage(page);
 
-  await setUp.ACSPUserLogin();
-});
+    await setUp.ACSPUserLogin();
+    await typeOfbusinessContext.selectTypeOfBusiness(testConfig.soleTrader);
+  }
+);
 
 test("Accessibility check for Sole-Trader-Name screen @accessibility", async ({
   page,
@@ -97,17 +103,17 @@ test("Accessibility check for Sole Trader Correspondence Address Manual Entry sc
   );
 });
 
-/*test("Accessibility check for Sole Trader Confirm Correspondence Address screen @accessibility", async ({
+test("Accessibility check for Sole Trader Confirm Correspondence Address screen @accessibility", async ({
   page,
 }, testInfo) => {
   const accessibilityContext = new accessibilityScan();
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.cidev.soleTrader.addressConfirm,
+    testConfig.baseUrl + pageURL.soleTrader.confirmAddress,
     testInfo
   );
-});*/
+});
 
 test("Accessibility check for Sole Trader Which sector screen @accessibility", async ({
   page,
