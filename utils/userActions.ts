@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+import { Locator, Page, expect } from "@playwright/test";
 
 export class userActions {
   readonly page: Page;
@@ -11,5 +11,13 @@ export class userActions {
 
   async clickContinue() {
     await this.continueButton.click();
+  }
+
+  async navigateToScreen(url: string) {
+    await this.page.goto(url);
+  }
+
+  async enterUserInput(field: Locator, inputText: string) {
+    await field.fill(inputText);
   }
 }

@@ -10,5 +10,6 @@ export const pageURL = {
     addressManualEntry: "/sole-trader/correspondence-address-manual-entry",
     whichSector: "/sole-trader/which-sector",
     whichSectorOther: "/sole-trader/which-sector-other",
+    confirmAddress: "/sole-trader/confirm-your-correspondence-address",
   },
 };

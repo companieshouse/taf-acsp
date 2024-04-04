@@ -1,4 +1,5 @@
 # taf-acsp
+
 ACSP project UI test automation using Playwright-Typescript
 
 Prerequisites:
@@ -14,11 +15,11 @@ npm install
 
 To run all tests:
 
-npx playwright test
+USERNAME='$username' PASSWORD='$password' BASE_URL='$url' npx playwright test
 
-To run the test with 'smoke' tag:
+To run the test with tag:
 
-USERNAME='$username' PASSWORD='$password' BASE_URL='$url' npx playwright test --grep @smoke
+USERNAME='$username' PASSWORD='$password' BASE_URL='$url' npx playwright test --grep @tag
 
 To run the test with 'accessibility' tag:
 
@@ -27,5 +28,3 @@ USERNAME='$username' PASSWORD='$password' BASE_URL='$url' npx playwright test --
 To view the test report:
 
 npx playwright show-report
-
-
