@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { test } from "@playwright/test";
 import { dobPage } from "../../../pages/soleTrader/dobPage";
 import { namePage } from "../../../pages/soleTrader/namePage";
 import { testConfig } from "../../../config/testConfig";
@@ -7,7 +7,7 @@ import { userInput } from "../../../testdata/userInput";
 import { userActions } from "../../../utils/userActions";
 import { globalSetUp } from "../../../setUp/globalSetup";
 import { pageTitle } from "../../../config/pageTitle";
-import { typeOfBusinessPage } from "../../../pages/soleTrader/typeOfBusinessPage";
+import { typeOfBusinessPage } from "../../../pages/common/typeOfBusinessPage";
 import { whatIsYourRolePage } from "../../../pages/common/whatIsYourRolePage";
 import { assertions } from "../../../utils/assertions";
 import { nationalityPage } from "../../../pages/soleTrader/nationalityPage";

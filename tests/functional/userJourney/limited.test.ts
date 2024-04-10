@@ -1,6 +1,6 @@
-import { expect, test } from "@playwright/test";
+import { test } from "@playwright/test";
 import { globalSetUp } from "../../../setUp/globalSetup";
-import { typeOfBusinessPage } from "../../../pages/soleTrader/typeOfBusinessPage";
+import { typeOfBusinessPage } from "../../../pages/common/typeOfBusinessPage";
 import { testConfig } from "../../../config/testConfig";
 import { companyNumberPage } from "../../../pages/limited/companyNumberPage";
 import { userInput } from "../../../testdata/userInput";
@@ -28,7 +28,7 @@ test("Verify error shown when company id not found for Limited journey @smoke @l
   await typeOfbusinessContext.selectTypeOfBusiness(testConfig.limitedCompany);
   await userActionsContext.clickContinue();
 
-  await companyNumberPageContext.enterCompanyNumber(userInput.companyNumber);
+  await companyNumberPageContext.enterCompanyNumber(userInput.invalidCompanyNumber);
   await userActionsContext.clickContinue();
   await assetionsContext.checkErrorHeadingPresent();
 

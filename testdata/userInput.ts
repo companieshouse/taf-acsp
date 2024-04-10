@@ -8,5 +8,7 @@ export const userInput = {
   firstNationality: "Indian",
   secondNationality: "British",
   thirdNationality: "Emirati",
-  companyNumber: "00002066",
+  invalidCompanyNumber: "12345678",
+  companyNumber: "00002065",
+  companyAuthCode: "222222"
 };
