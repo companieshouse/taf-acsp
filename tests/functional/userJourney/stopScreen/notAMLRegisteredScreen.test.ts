@@ -10,6 +10,7 @@ import { companyNumberPage } from "../../../../pages/limited/companyNumberPage";
 import { userInput } from "../../../../testdata/userInput";
 import { CompanyAuthPage } from "../../../../pages/limited/companyAuthCodePage";
 import { NameRegisteredWithAMLPage } from "../../../../pages/common/nameRegisteredWithAML";
+import { BusinessMustBeAMLRegistered } from "../../../../pages/limited/businessMustBeAMLRegisteredPage";
 
 let whatIsYourRoleContext;
 let userActionsContext;
@@ -18,6 +19,7 @@ let typeOfbusinessContext;
 let companyNumberPageContext;
 let companyAuthNumberPageContext;
 let amlNameRegisteredPageContext;
+let businessMustBeAMLRegisteredPageContext;
 
 test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
     const setUp = new globalSetUp(page);
@@ -28,6 +30,7 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
     assertionsContext = new Assertions(page);
     companyAuthNumberPageContext = new CompanyAuthPage(page);
     amlNameRegisteredPageContext = new NameRegisteredWithAMLPage(page);
+    businessMustBeAMLRegisteredPageContext = new BusinessMustBeAMLRegistered(page);
     await setUp.ACSPUserLogin();
 });
 
@@ -46,4 +49,6 @@ test("Verify only business' AML registered with the business name can register a
     await amlNameRegisteredPageContext.selectAMLName(testConfig.yourNameRadio)
     await userActionsContext.clickContinue();
     await assertionsContext.checkPageTitle(pageTitle.businessMustBeAMLRegistered);
+    // await assertionsContext.checkElementNotVisible(businessMustBeAMLRegisteredPageContext.page.getByRole("link", {name: "Back", exact: true}));
+    await assertionsContext.checkElementNotVisible(businessMustBeAMLRegisteredPageContext.page.getByRole("button", {name: "continue"}));
 })
