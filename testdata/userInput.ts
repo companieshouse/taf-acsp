@@ -11,5 +11,6 @@ export const userInput = {
   invalidCompanyNumber: "12345678",
   companyNumber: "00002065",
   inactiveCompanyNumber: "00000587",
-  companyAuthCode: "222222"
+  companyAuthCode: "222222",
+  businessName: "Test Business Name"
 };
