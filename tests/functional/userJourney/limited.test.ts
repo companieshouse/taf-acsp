@@ -5,18 +5,18 @@ import { testConfig } from "../../../config/testConfig";
 import { companyNumberPage } from "../../../pages/limited/companyNumberPage";
 import { userInput } from "../../../testdata/userInput";
 import { userActions } from "../../../utils/userActions";
-import { assertions } from "../../../utils/assertions";
+import { Assertions } from "../../../utils/assertions";
 
 let typeOfbusinessContext;
 let companyNumberPageContext;
 let userActionsContext;
-let assetionsContext;
+let assertionsContext;
 
 test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   typeOfbusinessContext = new typeOfBusinessPage(page);
   companyNumberPageContext = new companyNumberPage(page);
   userActionsContext = new userActions(page);
-  assetionsContext = new assertions(page);
+  assertionsContext = new Assertions(page);
   const setUp = new globalSetUp(page);
 
   await setUp.ACSPUserLogin();
@@ -30,12 +30,12 @@ test("Verify error shown when company id not found for Limited journey @smoke @l
 
   await companyNumberPageContext.enterCompanyNumber(userInput.invalidCompanyNumber);
   await userActionsContext.clickContinue();
-  await assetionsContext.checkErrorHeadingPresent();
+  await assertionsContext.checkErrorHeadingPresent();
 
-  await assetionsContext.checkElementvisible(
+  await assertionsContext.checkElementvisible(
     page.getByRole("link", { name: "Enter a valid company number" })
   );
-  await assetionsContext.checkElementvisible(
+  await assertionsContext.checkElementvisible(
     page.getByText("Error: Enter a valid company")
   );
 });

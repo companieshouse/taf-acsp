@@ -1,6 +1,6 @@
 import { Locator, Page, expect } from "@playwright/test";
 
-export class assertions {
+export class Assertions {
   readonly page: Page;
 
   constructor(page: Page) {
@@ -13,6 +13,10 @@ export class assertions {
 
   async checkElementvisible(element: Locator) {
     await expect(element).toBeVisible();
+  }
+
+  async checkElementNotVisible(element: Locator) {
+    await expect(element).toHaveCount(0);
   }
 
   async checkErrorHeadingPresent() {

@@ -1,7 +1,7 @@
 import test from "@playwright/test";
 import { globalSetUp } from "../../../../setUp/globalSetup";
 import { userActions } from "../../../../utils/userActions";
-import { assertions } from "../../../../utils/assertions";
+import { Assertions } from "../../../../utils/assertions";
 import { pageTitle } from "../../../../config/pageTitle";
 import { whatIsYourRolePage } from "../../../../pages/common/whatIsYourRolePage";
 import { testConfig } from "../../../../config/testConfig";
@@ -13,7 +13,7 @@ import { NameRegisteredWithAMLPage } from "../../../../pages/common/nameRegister
 
 let whatIsYourRoleContext;
 let userActionsContext;
-let assetionsContext;
+let assertionsContext;
 let typeOfbusinessContext;
 let companyNumberPageContext;
 let companyAuthNumberPageContext;
@@ -25,7 +25,7 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
     companyNumberPageContext = new companyNumberPage(page);
     userActionsContext = new userActions(page);
     whatIsYourRoleContext = new whatIsYourRolePage(page);
-    assetionsContext = new assertions(page);
+    assertionsContext = new Assertions(page);
     companyAuthNumberPageContext = new CompanyAuthPage(page);
     amlNameRegisteredPageContext = new NameRegisteredWithAMLPage(page);
     await setUp.ACSPUserLogin();
@@ -34,10 +34,10 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
 test("Verify only business' AML registered with the business name can register as ACSPs, @Smoke @StopScreen", async () => {
     await typeOfbusinessContext.selectTypeOfBusiness(testConfig.limitedCompany);
     await userActionsContext.clickContinue();
-    await assetionsContext.checkPageTitle(pageTitle.limitedCompanyNumber);
+    await assertionsContext.checkPageTitle(pageTitle.limitedCompanyNumber);
     await companyNumberPageContext.enterCompanyNumber(userInput.companyNumber);
     await userActionsContext.clickContinue();
-    await assetionsContext.checkPageTitle(pageTitle.limitedIsThisYourCompany);
+    await assertionsContext.checkPageTitle(pageTitle.limitedIsThisYourCompany);
     await userActionsContext.clickConfirmAndContinue();
     await companyAuthNumberPageContext.enterCompanyAuthNumber(userInput.companyAuthCode);
     await userActionsContext.clickAuthenticate();
@@ -45,5 +45,5 @@ test("Verify only business' AML registered with the business name can register a
     await userActionsContext.clickContinue();
     await amlNameRegisteredPageContext.selectAMLName(testConfig.yourNameRadio)
     await userActionsContext.clickContinue();
-    await assetionsContext.checkPageTitle(pageTitle.businessMustBeAMLRegistered);
+    await assertionsContext.checkPageTitle(pageTitle.businessMustBeAMLRegistered);
 })

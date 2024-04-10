@@ -1,7 +1,7 @@
 import test from "@playwright/test";
 import { globalSetUp } from "../../../../setUp/globalSetup";
 import { userActions } from "../../../../utils/userActions";
-import { assertions } from "../../../../utils/assertions";
+import { Assertions } from "../../../../utils/assertions";
 import { pageTitle } from "../../../../config/pageTitle";
 import { whatIsYourRolePage } from "../../../../pages/common/whatIsYourRolePage";
 import { testConfig } from "../../../../config/testConfig";
@@ -14,7 +14,7 @@ import { BusinessNamePage } from "../../../../pages/unincorportated/businessName
 
 let whatIsYourRoleContext;
 let userActionsContext;
-let assetionsContext;
+let assertionsContext;
 let typeOfbusinessContext;
 let companyNumberPageContext;
 let companyAuthNumberPageContext;
@@ -27,7 +27,7 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
     companyNumberPageContext = new companyNumberPage(page);
     userActionsContext = new userActions(page);
     whatIsYourRoleContext = new whatIsYourRolePage(page);
-    assetionsContext = new assertions(page);
+    assertionsContext = new Assertions(page);
     companyAuthNumberPageContext = new CompanyAuthPage(page);
     amlNameRegisteredPageContext = new NameRegisteredWithAMLPage(page);
     businessNamePageContext = new BusinessNamePage(page);
@@ -37,23 +37,23 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
 test("Verify only directors of limted companies can register as ACSPs, @Smoke @StopScreen", async () => {
     await typeOfbusinessContext.selectTypeOfBusiness(testConfig.limitedCompany);
     await userActionsContext.clickContinue();
-    await assetionsContext.checkPageTitle(pageTitle.limitedCompanyNumber);
+    await assertionsContext.checkPageTitle(pageTitle.limitedCompanyNumber);
     await companyNumberPageContext.enterCompanyNumber(userInput.companyNumber);
     await userActionsContext.clickContinue();
-    await assetionsContext.checkPageTitle(pageTitle.limitedIsThisYourCompany);
+    await assertionsContext.checkPageTitle(pageTitle.limitedIsThisYourCompany);
     await userActionsContext.clickConfirmAndContinue();
     await companyAuthNumberPageContext.enterCompanyAuthNumber(userInput.companyAuthCode);
     await userActionsContext.clickAuthenticate();
     await whatIsYourRoleContext.selectRole(testConfig.notRelevantRole);
     await userActionsContext.clickContinue();
-    await assetionsContext.checkPageTitle(pageTitle.notRelevantOfficer);
+    await assertionsContext.checkPageTitle(pageTitle.notRelevantOfficer);
 })
 test("Verify only the sole trader can register as ACSP, @Smoke @StopScreen", async () => {
     await typeOfbusinessContext.selectTypeOfBusiness(testConfig.soleTrader);
     await userActionsContext.clickContinue();
     await whatIsYourRoleContext.selectRole(testConfig.notRelevantRole);
     await userActionsContext.clickContinue();
-    await assetionsContext.checkPageTitle(pageTitle.notRelevantOfficer);
+    await assertionsContext.checkPageTitle(pageTitle.notRelevantOfficer);
 })
 test("Verify only a member of the partnership can register as ACSP, @Smoke @StopScreen", async () => {
     await typeOfbusinessContext.selectTypeOfBusiness(testConfig.partnership);
@@ -64,5 +64,6 @@ test("Verify only a member of the partnership can register as ACSP, @Smoke @Stop
     await userActionsContext.clickContinue();
     await whatIsYourRoleContext.selectRole(testConfig.notRelevantRole);
     await userActionsContext.clickContinue();
-    await assetionsContext.checkPageTitle(pageTitle.notRelevantOfficer);
+    await assertionsContext.checkPageTitle(pageTitle.notRelevantOfficer);
+    await assertionsContext.checkElementNotVisible();
 })
