@@ -15,6 +15,8 @@ export const pageTitle = {
     "What is the company number? - Apply to register as a Companies House authorised agent - GOV.UK",
     limitedIsThisYourCompany:
       "Is this your company? - Apply to register as a Companies House authorised agent - GOV.UK",
+  limitedCompanyInactive:
+    "Company is not active - Apply to register as a Companies House authorised agent - GOV.UK",
   limtedCompanyRole:
     "What is your role in the business? - Apply to register as a Companies House authorised agent - GOV.UK",
   notRelevantOfficer:

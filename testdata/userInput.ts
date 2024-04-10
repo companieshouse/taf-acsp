@@ -10,5 +10,6 @@ export const userInput = {
   thirdNationality: "Emirati",
   invalidCompanyNumber: "12345678",
   companyNumber: "00002065",
+  inactiveCompanyNumber: "00000587",
   companyAuthCode: "222222"
 };
