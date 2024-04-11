@@ -11,4 +11,8 @@ export const testConfig = {
   soleTrader: "Sole trader",
   otherType: "Other",
   notRelevantRole: "Someone Else",
+  director: "DIRECTOR",
+  nameOfBusinessRadio: "Name of the business",
+  yourNameRadio: "Your name",
+  bothRadio: "Both"
 };

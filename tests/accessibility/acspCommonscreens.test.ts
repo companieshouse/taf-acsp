@@ -1,9 +1,7 @@
-import { Page, expect, test } from "@playwright/test";
+import { test } from "@playwright/test";
 import { globalSetUp } from "../../setUp/globalSetup";
-import { typeOfBusinessPage } from "../../pages/soleTrader/typeOfBusinessPage";
 import { testConfig } from "../../config/testConfig";
 import { accessibilityScan } from "../../utils/accessibilityScan";
-import { pageURL } from "../../config/pageURL";
 
 let startPageUrl;
 

@@ -1,15 +1,16 @@
 import { Locator, Page } from "@playwright/test";
-import { userActions } from "../../utils/userActions";
 import { testConfig } from "../../config/testConfig";
 
 export class whatIsYourRolePage {
   readonly page: Page;
   readonly soleTraderRole: Locator;
+  readonly directorRole: Locator;
   readonly notRelevantRole: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.soleTraderRole = page.getByLabel("Sole trader");
+    this.directorRole = page.getByLabel("I am a director of", {exact: false})
     this.notRelevantRole = page.getByLabel("I am someone else");
   }
 
@@ -18,6 +19,10 @@ export class whatIsYourRolePage {
       case testConfig.soleTrader:
         await this.soleTraderRole.check();
         break;
+
+      case testConfig.director:
+          await this.directorRole.check();
+          break;
 
       case testConfig.notRelevantRole:
         await this.notRelevantRole.check();

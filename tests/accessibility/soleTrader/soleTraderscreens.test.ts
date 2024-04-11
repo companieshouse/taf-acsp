@@ -1,10 +1,9 @@
-import { Page, expect, test } from "@playwright/test";
+import { test } from "@playwright/test";
 import { testConfig } from "../../../config/testConfig";
 import { pageURL } from "../../../config/pageURL";
-
 import { accessibilityScan } from "../../../utils/accessibilityScan";
 import { globalSetUp } from "../../../setUp/globalSetup";
-import { typeOfBusinessPage } from "../../../pages/soleTrader/typeOfBusinessPage";
+import { typeOfBusinessPage } from "../../../pages/common/typeOfBusinessPage";
 
 test.beforeEach(
   "Log in to ACSP Service to register as Sole Trader",

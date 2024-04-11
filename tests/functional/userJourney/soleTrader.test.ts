@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { test } from "@playwright/test";
 import { dobPage } from "../../../pages/soleTrader/dobPage";
 import { namePage } from "../../../pages/soleTrader/namePage";
 import { testConfig } from "../../../config/testConfig";
@@ -7,9 +7,9 @@ import { userInput } from "../../../testdata/userInput";
 import { userActions } from "../../../utils/userActions";
 import { globalSetUp } from "../../../setUp/globalSetup";
 import { pageTitle } from "../../../config/pageTitle";
-import { typeOfBusinessPage } from "../../../pages/soleTrader/typeOfBusinessPage";
+import { typeOfBusinessPage } from "../../../pages/common/typeOfBusinessPage";
 import { whatIsYourRolePage } from "../../../pages/common/whatIsYourRolePage";
-import { assertions } from "../../../utils/assertions";
+import { Assertions } from "../../../utils/assertions";
 import { nationalityPage } from "../../../pages/soleTrader/nationalityPage";
 
 let namePageContext;
@@ -17,7 +17,7 @@ let userActionsContext;
 let dobPageContext;
 let typeOfbusinessContext;
 let selectRoleContext;
-let assetionsContext;
+let assertionsContext;
 let nationalityPageContext;
 
 test.beforeEach("Log in to use ACSP Service",async ({ page }) => {
@@ -26,7 +26,7 @@ test.beforeEach("Log in to use ACSP Service",async ({ page }) => {
   dobPageContext = new dobPage(page);
   typeOfbusinessContext = new typeOfBusinessPage(page);
   selectRoleContext = new whatIsYourRolePage(page);
-  assetionsContext = new assertions(page);
+  assertionsContext = new Assertions(page);
   nationalityPageContext = new nationalityPage(page);
   const setUp = new globalSetUp(page);
 
@@ -38,14 +38,14 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
 }) => {
   await typeOfbusinessContext.selectTypeOfBusiness(testConfig.soleTrader);
   await userActionsContext.clickContinue();
-  await assetionsContext.checkPageTitle(pageTitle.soleTraderRole);
+  await assertionsContext.checkPageTitle(pageTitle.soleTraderRole);
   await selectRoleContext.selectRole(testConfig.soleTrader);
   await userActionsContext.clickContinue();
   await userActionsContext.navigateToScreen(
     testConfig.baseUrl + pageURL.soleTrader.name
   );
-  await assetionsContext.checkPageTitle(pageTitle.nameTitle);
-  await assetionsContext.checkElementvisible(namePageContext.firstName);
+  await assertionsContext.checkPageTitle(pageTitle.nameTitle);
+  await assertionsContext.checkElementvisible(namePageContext.firstName);
 
   await namePageContext.enterName(
     userInput.firstName,
@@ -53,12 +53,12 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
     userInput.lastName
   );
   await userActionsContext.clickContinue();
-  await assetionsContext.checkPageTitle(pageTitle.dobTitle);
+  await assertionsContext.checkPageTitle(pageTitle.dobTitle);
 
-  await assetionsContext.checkElementvisible(dobPageContext.dobDay);
+  await assertionsContext.checkElementvisible(dobPageContext.dobDay);
   await dobPageContext.enterDOB(userInput.day, userInput.month, userInput.year);
   await userActionsContext.clickContinue();
-  await assetionsContext.checkPageTitle(pageTitle.soleTraderNationality);
+  await assertionsContext.checkPageTitle(pageTitle.soleTraderNationality);
   await nationalityPageContext.enterFirstNationality(
     userInput.firstNationality
   );
@@ -69,5 +69,5 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
     userInput.thirdNationality
   );
   await userActionsContext.clickContinue();
-  await assetionsContext.checkPageTitle(pageTitle.soleTraderWhereDoYouLive);
+  await assertionsContext.checkPageTitle(pageTitle.soleTraderWhereDoYouLive);
 });

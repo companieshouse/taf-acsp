@@ -1,5 +1,4 @@
 import { Locator, Page } from "@playwright/test";
-import { userActions } from "../../utils/userActions";
 import { testConfig } from "../../config/testConfig";
 
 export class typeOfBusinessPage {
@@ -16,9 +15,7 @@ export class typeOfBusinessPage {
 
     this.limitedCompany = page.getByLabel("Limited company");
     this.limitedPartnership = page.locator("Limited partnership (LP)");
-    this.limitedLiabilityPartnership = page.locator(
-      "Limited liability partnership"
-    );
+    this.limitedLiabilityPartnership = page.getByLabel("Limited liability partnership");
     this.partnership = page.getByLabel("Partnership (not registered");
     this.soleTrader = page.getByLabel("Sole trader");
     this.otherType = page.getByLabel("Other");
