@@ -6,7 +6,7 @@ import { accessibilityScan } from "../../utils/accessibilityScan";
 import { pageURL } from "../../config/pageURL";
 
 test.beforeEach(
-    "Log in to ACSP Service to register as Sole Trader",
+    "Log in to ACSP Service to register as Limited company",
     async ({ page }) => {
       const setUp = new globalSetUp(page);
       const typeOfbusinessContext = new typeOfBusinessPage(page);
@@ -48,6 +48,14 @@ test("Accessibility check for limited what is your role screen @accessibility", 
       testInfo
     );
 });
+test("Accessibility check for limited name registered with AML screen @accessibility", async ({page}, testInfo) => {
+  const accessibilityContext = new accessibilityScan();
+  await accessibilityContext.checkWcagCompliance(
+    page,
+    testConfig.baseUrl + pageURL.limited.nameRegisteredWithAML,
+    testInfo
+  );
+});
 test("Accessibility check for limited business must be AML registered screen @accessibility", async ({page}, testInfo) => {
     const accessibilityContext = new accessibilityScan();
     await accessibilityContext.checkWcagCompliance(
@@ -55,4 +63,20 @@ test("Accessibility check for limited business must be AML registered screen @ac
       testConfig.baseUrl + pageURL.limited.businessMustBeAMLRegistered,
       testInfo
     );
+});
+test("Accessibility check for limited which sector screen @accessibility", async ({page}, testInfo) => {
+  const accessibilityContext = new accessibilityScan();
+  await accessibilityContext.checkWcagCompliance(
+    page,
+    testConfig.baseUrl + pageURL.limited.whichSector,
+    testInfo
+  );
+});
+test("Accessibility check for limited which sector other screen @accessibility", async ({page}, testInfo) => {
+  const accessibilityContext = new accessibilityScan();
+  await accessibilityContext.checkWcagCompliance(
+    page,
+    testConfig.baseUrl + pageURL.limited.whichSectorOther,
+    testInfo
+  );
 });
