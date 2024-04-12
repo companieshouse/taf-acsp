@@ -12,4 +12,11 @@ export const pageURL = {
     whichSectorOther: "/sole-trader/which-sector-other",
     confirmAddress: "/sole-trader/confirm-your-correspondence-address",
   },
+  limited: {
+    companyNumber: "/limited/what-is-the-company-number",
+    isThisYourCompany: "/limited/is-this-your-company",
+    companyInactive: "/limited/company-inactive",
+    whatIsYourRole: "/limited/what-is-your-role",
+    businessMustBeAMLRegistered: "/limited/your-business-must-be-aml-registered"
+  }
 };
