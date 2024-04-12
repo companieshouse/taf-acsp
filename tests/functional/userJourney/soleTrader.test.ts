@@ -1,5 +1,6 @@
 import { test } from "@playwright/test";
 import { dobPage } from "../../../pages/soleTrader/dobPage";
+
 import { namePage } from "../../../pages/soleTrader/namePage";
 import { testConfig } from "../../../config/testConfig";
 import { pageURL } from "../../../config/pageURL";
@@ -20,7 +21,7 @@ let selectRoleContext;
 let assertionsContext;
 let nationalityPageContext;
 
-test.beforeEach("Log in to use ACSP Service",async ({ page }) => {
+test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   namePageContext = new namePage(page);
   userActionsContext = new userActions(page);
   dobPageContext = new dobPage(page);
@@ -62,12 +63,16 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
   await nationalityPageContext.enterFirstNationality(
     userInput.firstNationality
   );
+
   await nationalityPageContext.enterSecondNationality(
     userInput.secondNationality
   );
+
   await nationalityPageContext.enterThirdNationality(
     userInput.thirdNationality
   );
+
   await userActionsContext.clickContinue();
+
   await assertionsContext.checkPageTitle(pageTitle.soleTraderWhereDoYouLive);
 });

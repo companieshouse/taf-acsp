@@ -17,21 +17,21 @@ export class nationalityPage {
 
   async enterFirstNationality(firstNationality: string) {
     const userActionsContext = new userActions(this.page);
-    await userActionsContext.enterUserInput(
+    await userActionsContext.selectValue(
       this.firstNationality,
       firstNationality
     );
   }
   async enterSecondNationality(secondNationality: string) {
     const userActionsContext = new userActions(this.page);
-    await userActionsContext.enterUserInput(
+    await userActionsContext.selectValue(
       this.secondNationality,
       secondNationality
     );
   }
   async enterThirdNationality(thirdNationality: string) {
     const userActionsContext = new userActions(this.page);
-    await userActionsContext.enterUserInput(
+    await userActionsContext.selectValue(
       this.thirdNationality,
       thirdNationality
     );

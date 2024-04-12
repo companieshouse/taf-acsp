@@ -9,8 +9,12 @@ export class userActions {
   constructor(page: Page) {
     this.page = page;
     this.continueButton = page.getByRole("button", { name: " Continue " });
-    this.confirmAndContinueButton = page.getByRole("button", {name: "Confirm and continue"});
-    this.authenticateButton = page.getByRole("button", {name: "Authenticate"});
+    this.confirmAndContinueButton = page.getByRole("button", {
+      name: "Confirm and continue",
+    });
+    this.authenticateButton = page.getByRole("button", {
+      name: "Authenticate",
+    });
   }
 
   async clickContinue() {
@@ -31,5 +35,9 @@ export class userActions {
 
   async enterUserInput(field: Locator, inputText: string) {
     await field.fill(inputText);
+  }
+  async selectValue(field: Locator, inputText: string) {
+    await field.fill(inputText);
+    await this.page.getByText(inputText).first().click();
   }
 }
