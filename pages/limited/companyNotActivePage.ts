@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+/*import { Page } from "@playwright/test";
 
 export class CompanyNotActive {
     readonly page: Page;
@@ -6,4 +6,4 @@ export class CompanyNotActive {
     constructor(page: Page) {
         this.page = page;
       }
-}
+}*/

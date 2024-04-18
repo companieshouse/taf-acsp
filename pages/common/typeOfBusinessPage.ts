@@ -14,8 +14,10 @@ export class typeOfBusinessPage {
     this.page = page;
 
     this.limitedCompany = page.getByLabel("Limited company");
-    this.limitedPartnership = page.locator("Limited partnership (LP)");
-    this.limitedLiabilityPartnership = page.getByLabel("Limited liability partnership");
+    this.limitedPartnership = page.getByLabel("Limited partnership (LP)");
+    this.limitedLiabilityPartnership = page.getByLabel(
+      "Limited liability partnership"
+    );
     this.partnership = page.getByLabel("Partnership (not registered");
     this.soleTrader = page.getByLabel("Sole trader");
     this.otherType = page.getByLabel("Other");

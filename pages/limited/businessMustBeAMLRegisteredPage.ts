@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+/*import { Page } from "@playwright/test";
 
 export class BusinessMustBeAMLRegistered {
     readonly page: Page;
@@ -6,4 +6,4 @@ export class BusinessMustBeAMLRegistered {
     constructor(page: Page) {
         this.page = page;
       }
-}
+}*/

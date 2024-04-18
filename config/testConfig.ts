@@ -14,5 +14,7 @@ export const testConfig = {
   director: "DIRECTOR",
   nameOfBusinessRadio: "Name of the business",
   yourNameRadio: "Your name",
-  bothRadio: "Both"
+  bothRadio: "Both",
+  generalPartner: "General Partner",
+  member: "Member",
 };

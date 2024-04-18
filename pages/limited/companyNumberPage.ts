@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+/*import { Locator, Page } from "@playwright/test";
 import { userActions } from "../../utils/userActions";
 
 export class companyNumberPage {
@@ -15,3 +15,4 @@ export class companyNumberPage {
     userActionsContext.enterUserInput(this.companyNumber, companyNumber);
   }
 }
+*/

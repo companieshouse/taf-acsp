@@ -1,4 +1,4 @@
-import { Locator, Page } from "@playwright/test";
+/*import { Locator, Page } from "@playwright/test";
 import { userActions } from "../../utils/userActions";
 
 export class CompanyAuthPage {
@@ -14,4 +14,4 @@ export class CompanyAuthPage {
     const userActionsContext = new userActions(this.page);
     userActionsContext.enterUserInput(this.companyAuthNumber, companyAuthNumber);
   }
-}
+}*/
