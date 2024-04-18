@@ -10,6 +10,7 @@ import { userInput } from "../../../../testdata/userInput";
 import { NameRegisteredWithAMLPage } from "../../../../pages/common/nameRegisteredWithAML";
 import { BusinessNamePage } from "../../../../pages/unincorportated/businessNamePage";
 import { NotRelevantOfficerPage } from "../../../../pages/common/notRelevantOfficerPage";
+import { limitedJourney } from "../../../../pages/common/limitedJourney";
 
 let whatIsYourRoleContext;
 let userActionsContext;
@@ -20,6 +21,7 @@ let companyAuthNumberPageContext;
 let amlNameRegisteredPageContext;
 let businessNamePageContext;
 let notRelevantOfficerContext;
+let limitedJourneyContext;
 
 test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   const setUp = new globalSetUp(page);
@@ -30,20 +32,17 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   amlNameRegisteredPageContext = new NameRegisteredWithAMLPage(page);
   businessNamePageContext = new BusinessNamePage(page);
   notRelevantOfficerContext = new NotRelevantOfficerPage(page);
+  limitedJourneyContext = new limitedJourney(page);
+
   await setUp.ACSPUserLogin();
 });
 
 test("Verify only directors of limted companies can register as ACSPs, @smoke @limited @StopScreen", async () => {
-  await typeOfbusinessContext.selectTypeOfBusiness(testConfig.limitedCompany);
-  await userActionsContext.clickContinue();
-  await assertionsContext.checkPageTitle(pageTitle.limitedCompanyNumber);
-  await companyNumberPageContext.enterCompanyNumber(userInput.companyNumber);
-  await userActionsContext.clickContinue();
-  await assertionsContext.checkPageTitle(pageTitle.limitedIsThisYourCompany);
-  await userActionsContext.clickConfirmAndContinue();
-  await companyAuthNumberPageContext.enterCompanyAuthNumber(
-    userInput.companyAuthCode
+  await limitedJourneyContext.limitedJourneyCommonScreens(
+    testConfig.limitedCompany,
+    userInput.companyNumber
   );
+  await limitedJourneyContext.enterCompanyAuthNumber(userInput.companyAuthCode);
   await userActionsContext.clickAuthenticate();
   await whatIsYourRoleContext.selectRole(testConfig.notRelevantRole);
   await userActionsContext.clickContinue();
