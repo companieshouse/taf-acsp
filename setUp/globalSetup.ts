@@ -30,6 +30,8 @@ export class globalSetUp {
     await expect(this.page).toHaveTitle(pageTitle.startPageTitle);
 
     await expect(startPageContext.startnow).toBeVisible();
+    await this.page.getByRole('button', { name: 'Accept analytics cookies' }).click();
+    await this.page.getByRole('button', { name: 'Hide this message' }).click();
 
     await startPageContext.startnow.click();
     await expect(this.page.getByLabel("Email address")).toBeVisible();

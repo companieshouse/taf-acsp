@@ -14,7 +14,6 @@ let whatIsYourRoleContext;
 let userActionsContext;
 let assertionsContext;
 let typeOfbusinessContext;
-let companyNumberPageContext;
 let amlNameRegisteredPageContext;
 let limitedJourneyContext;
 
@@ -27,7 +26,6 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   amlNameRegisteredPageContext = new NameRegisteredWithAMLPage(page);
   limitedJourneyContext = new limitedJourney(page);
 
-  //businessMustBeAMLRegisteredPageContext = new BusinessMustBeAMLRegistered( page);
   await setUp.ACSPUserLogin();
 });
 
@@ -46,7 +44,9 @@ test("Verify only business' AML registered with the business name can register a
   await amlNameRegisteredPageContext.selectAMLName(testConfig.yourNameRadio);
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.businessMustBeAMLRegistered);
-  // await assertionsContext.checkElementNotVisible(businessMustBeAMLRegisteredPageContext.page.getByRole("link", {name: "Back", exact: true}));
+  await assertionsContext.checkElementNotVisible(
+    page.getByRole("link", { name: "Back", exact: true })
+  );
   await assertionsContext.checkElementNotVisible(
     page.getByRole("button", {
       name: "continue",
@@ -69,7 +69,9 @@ test("Verify only business' AML registered with the business name can register a
   await amlNameRegisteredPageContext.selectAMLName(testConfig.yourNameRadio);
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.businessMustBeAMLRegistered);
-  // await assertionsContext.checkElementNotVisible(businessMustBeAMLRegisteredPageContext.page.getByRole("link", {name: "Back", exact: true}));
+  await assertionsContext.checkElementNotVisible(
+    page.getByRole("link", { name: "Back", exact: true })
+  );
   await assertionsContext.checkElementNotVisible(
     page.getByRole("button", {
       name: "continue",
@@ -92,7 +94,9 @@ test("Verify only business' AML registered with the business name can register a
   await amlNameRegisteredPageContext.selectAMLName(testConfig.yourNameRadio);
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.businessMustBeAMLRegistered);
-  // await assertionsContext.checkElementNotVisible(businessMustBeAMLRegisteredPageContext.page.getByRole("link", {name: "Back", exact: true}));
+  await assertionsContext.checkElementNotVisible(
+    page.getByRole("link", { name: "Back", exact: true })
+  );
   await assertionsContext.checkElementNotVisible(
     page.getByRole("button", {
       name: "continue",

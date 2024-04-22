@@ -16,8 +16,6 @@ let whatIsYourRoleContext;
 let userActionsContext;
 let assertionsContext;
 let typeOfbusinessContext;
-let companyNumberPageContext;
-let companyAuthNumberPageContext;
 let amlNameRegisteredPageContext;
 let businessNamePageContext;
 let notRelevantOfficerContext;
