@@ -13,8 +13,8 @@ export const pageTitle = {
     "Where do you live? - Apply to register as a Companies House authorised agent - GOV.UK",
   limitedCompanyNumber:
     "What is the company number? - Apply to register as a Companies House authorised agent - GOV.UK",
-    limitedIsThisYourCompany:
-      "Is this your company? - Apply to register as a Companies House authorised agent - GOV.UK",
+  limitedIsThisYourCompany:
+    "Is this your company? - Apply to register as a Companies House authorised agent - GOV.UK",
   limitedCompanyInactive:
     "Company is not active - Apply to register as a Companies House authorised agent - GOV.UK",
   limtedCompanyRole:
@@ -22,5 +22,7 @@ export const pageTitle = {
   notRelevantOfficer:
     "You cannot use this service - Apply to register as a Companies House authorised agent - GOV.UK",
   businessMustBeAMLRegistered:
-    "Your business must be registered with an AML supervisory body - Apply to register as a Companies House authorised agent - GOV.UK"
+    "Your business must be registered with an AML supervisory body - Apply to register as a Companies House authorised agent - GOV.UK",
+  whichSector:
+    "Which sector do you work in? - Apply to register as a Companies House authorised agent - GOV.UK",
 };

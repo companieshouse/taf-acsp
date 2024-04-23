@@ -6,48 +6,41 @@ import { pageTitle } from "../../../../config/pageTitle";
 import { whatIsYourRolePage } from "../../../../pages/common/whatIsYourRolePage";
 import { testConfig } from "../../../../config/testConfig";
 import { typeOfBusinessPage } from "../../../../pages/common/typeOfBusinessPage";
-import { companyNumberPage } from "../../../../pages/limited/companyNumberPage";
 import { userInput } from "../../../../testdata/userInput";
-import { CompanyAuthPage } from "../../../../pages/limited/companyAuthCodePage";
 import { NameRegisteredWithAMLPage } from "../../../../pages/common/nameRegisteredWithAML";
 import { BusinessNamePage } from "../../../../pages/unincorportated/businessNamePage";
 import { NotRelevantOfficerPage } from "../../../../pages/common/notRelevantOfficerPage";
+import { limitedJourney } from "../../../../pages/common/limitedJourney";
 
 let whatIsYourRoleContext;
 let userActionsContext;
 let assertionsContext;
 let typeOfbusinessContext;
-let companyNumberPageContext;
-let companyAuthNumberPageContext;
 let amlNameRegisteredPageContext;
 let businessNamePageContext;
 let notRelevantOfficerContext;
+let limitedJourneyContext;
 
 test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   const setUp = new globalSetUp(page);
   typeOfbusinessContext = new typeOfBusinessPage(page);
-  companyNumberPageContext = new companyNumberPage(page);
   userActionsContext = new userActions(page);
   whatIsYourRoleContext = new whatIsYourRolePage(page);
   assertionsContext = new Assertions(page);
-  companyAuthNumberPageContext = new CompanyAuthPage(page);
   amlNameRegisteredPageContext = new NameRegisteredWithAMLPage(page);
   businessNamePageContext = new BusinessNamePage(page);
   notRelevantOfficerContext = new NotRelevantOfficerPage(page);
+  limitedJourneyContext = new limitedJourney(page);
+
   await setUp.ACSPUserLogin();
 });
 
 test("Verify only directors of limted companies can register as ACSPs, @smoke @limited @StopScreen", async () => {
-  await typeOfbusinessContext.selectTypeOfBusiness(testConfig.limitedCompany);
-  await userActionsContext.clickContinue();
-  await assertionsContext.checkPageTitle(pageTitle.limitedCompanyNumber);
-  await companyNumberPageContext.enterCompanyNumber(userInput.companyNumber);
-  await userActionsContext.clickContinue();
-  await assertionsContext.checkPageTitle(pageTitle.limitedIsThisYourCompany);
-  await userActionsContext.clickConfirmAndContinue();
-  await companyAuthNumberPageContext.enterCompanyAuthNumber(
-    userInput.companyAuthCode
+  await limitedJourneyContext.limitedJourneyCommonScreens(
+    testConfig.limitedCompany,
+    userInput.companyNumber
   );
+  await limitedJourneyContext.enterCompanyAuthNumber(userInput.companyAuthCode);
   await userActionsContext.clickAuthenticate();
   await whatIsYourRoleContext.selectRole(testConfig.notRelevantRole);
   await userActionsContext.clickContinue();
