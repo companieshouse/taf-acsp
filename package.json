@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "ACSP project UI test automation using Playwright-Typescript",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prettier": "prettier . --check",
+    "prettier:fix": "prettier . --write"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/companieshouse/taf-acsp.git"
@@ -20,7 +25,9 @@
     "@playwright/test": "^1.41.2",
     "@types/node": "^20.11.16",
     "eslint": "^8.56.0",
-    "playwright-lighthouse": "^4.0.0"
+    "playwright-lighthouse": "^4.0.0",
+    "taf-playwright-common": "github:companieshouse/taf-playwright-common#0.0.22"
+
   },
   "dependencies": {
     "@axe-core/playwright": "^4.8.4"

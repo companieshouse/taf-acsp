@@ -64,7 +64,7 @@ test("Verify Limited company can register as an ACSP @smoke @limited", async ({
 
   await amlNameRegisteredPageContext.selectAMLName(testConfig.bothRadio);
   await userActionsContext.clickContinue();
-  await assertionsContext.checkPageTitle(pageTitle.whichSector);
+  await assertionsContext.checkPageTitle(pageTitle.correspondenceAddress);
 });
 
 test("Verify Limited Partnership can register as an ACSP @smoke @limited", async ({
@@ -81,7 +81,7 @@ test("Verify Limited Partnership can register as an ACSP @smoke @limited", async
 
   await amlNameRegisteredPageContext.selectAMLName(testConfig.nameOfBusinessRadio);
   await userActionsContext.clickContinue();
-  await assertionsContext.checkPageTitle(pageTitle.whichSector);
+  await assertionsContext.checkPageTitle(pageTitle.correspondenceAddress);
 });
 
 test("Verify Limited Liability Partnership can register as an ACSP @smoke @limited", async ({
@@ -98,5 +98,5 @@ test("Verify Limited Liability Partnership can register as an ACSP @smoke @limit
 
   await amlNameRegisteredPageContext.selectAMLName(testConfig.nameOfBusinessRadio);
   await userActionsContext.clickContinue();
-  await assertionsContext.checkPageTitle(pageTitle.whichSector);
+  await assertionsContext.checkPageTitle(pageTitle.correspondenceAddress);
 });
