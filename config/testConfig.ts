@@ -17,4 +17,13 @@ export const testConfig = {
   bothRadio: "Both",
   generalPartner: "General Partner",
   member: "Member",
+  auditors:
+    "Auditors, insolvency practitioners, external accountants and tax advisers",
+  legalProfessionals: "Independent legal professionals",
+  companyServiceProviders: "Trust or company service providers",
+  creditInstitutions: "Credit institutions",
+  other: "Other",
+  estateAgents: "Estate agents",
+  highValueDealers: "High value dealers",
+  casinos: "Casinos",
 };

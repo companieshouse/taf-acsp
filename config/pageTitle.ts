@@ -27,5 +27,13 @@ export const pageTitle = {
     "Which sector do you work in? - Apply to register as a Companies House authorised agent - GOV.UK",
   correspondenceAddress:
     "What is the correspondence address? - Apply to register as a Companies House authorised agent - GOV.UK",
-    soleTraderbusinessName:"What is the name of the business? - Apply to register as a Companies House authorised agent - GOV.UK"
+  soleTraderbusinessName:
+    "What is the name of the business? - Apply to register as a Companies House authorised agent - GOV.UK",
+  whichSectorOther:
+    "Which other sector do you work in? - Apply to register as a Companies House authorised agent - GOV.UK",
+
+  confirmAddress:
+    "Confirm the correspondence address - Apply to register as a Companies House authorised agent - GOV.UK",
+  amlBodies:
+    "Which Anti-Money Laundering (AML) supervisory bodies are you registered with? - Apply to register as a Companies House authorised agent - GOV.UK",
 };

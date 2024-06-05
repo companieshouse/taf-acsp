@@ -13,6 +13,9 @@ import { whatIsYourRolePage } from "../../../pages/common/whatIsYourRolePage";
 import { Assertions } from "../../../utils/assertions";
 import { nationalityPage } from "../../../pages/soleTrader/nationalityPage";
 import { BusinessNamePage } from "../../../pages/unincorportated/businessNamePage";
+import { whichSector } from "../../../pages/common/whichSector";
+import { address } from "../../../pages/common/address";
+import { amlScreens } from "../../../pages/common/amlScreens";
 
 let namePageContext;
 let userActionsContext;
@@ -22,6 +25,9 @@ let selectRoleContext;
 let assertionsContext;
 let nationalityPageContext;
 let businessNamePageContext;
+let whichSectorcontext;
+let addressContext;
+let amlScreensContext;
 
 test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   namePageContext = new namePage(page);
@@ -32,6 +38,9 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   assertionsContext = new Assertions(page);
   nationalityPageContext = new nationalityPage(page);
   businessNamePageContext = new BusinessNamePage(page);
+  whichSectorcontext = new whichSector(page);
+  addressContext = new address(page);
+  amlScreensContext = new amlScreens(page);
   const setUp = new globalSetUp(page);
 
   await setUp.ACSPUserLogin();
@@ -83,9 +92,30 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.soleTraderbusinessName);
 
-  await businessNamePageContext.enterDifferentBusinessNameforSoleTrader(userInput.soleTraderBusinessName);
+  await businessNamePageContext.enterDifferentBusinessNameforSoleTrader(
+    userInput.soleTraderBusinessName
+  );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.whichSector);
-  await expect(page.locator("//*[@id='main-page-content']/form/span")).toContainText(userInput.firstName);
+  await expect(
+    page.locator("//*[@id='main-page-content']/form/span")
+  ).toContainText(userInput.firstName);
+  await whichSectorcontext.selectSector(testConfig.other);
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.whichSectorOther);
+  await whichSectorcontext.selectOtherSector(testConfig.casinos);
+  await expect(
+    page.locator("//*[@id='main-page-content']/form/div[2]/a")
+  ).toBeVisible();
 
+  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await assertionsContext.checkPageTitle(pageTitle.correspondenceAddress);
+  await addressContext.addressLookUp(userInput.postcode);
+  await addressContext.selectAddressFromList();
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.confirmAddress);
+  await addressContext.confirmAddressEntered();
+  await userActionsContext.clickConfirmAndContinue();
+  await assertionsContext.checkPageTitle(pageTitle.amlBodies);
+  await amlScreensContext.selectAMLBodiesRegistered("HMRC,IAB");
 });

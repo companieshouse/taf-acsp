@@ -14,5 +14,6 @@ export const userInput = {
   companyAuthCode: "222222",
   businessName: "Test Business Name",
   country: "United Kingdom",
-  soleTraderBusinessName:"Automated Sole Trader"
+  soleTraderBusinessName: "Automated Sole Trader",
+  postcode: "ST63JL",
 };
