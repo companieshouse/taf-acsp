@@ -1,4 +1,4 @@
-import { test } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 import { dobPage } from "../../../pages/soleTrader/dobPage";
 
 import { namePage } from "../../../pages/soleTrader/namePage";
@@ -12,6 +12,7 @@ import { typeOfBusinessPage } from "../../../pages/common/typeOfBusinessPage";
 import { whatIsYourRolePage } from "../../../pages/common/whatIsYourRolePage";
 import { Assertions } from "../../../utils/assertions";
 import { nationalityPage } from "../../../pages/soleTrader/nationalityPage";
+import { BusinessNamePage } from "../../../pages/unincorportated/businessNamePage";
 
 let namePageContext;
 let userActionsContext;
@@ -20,6 +21,7 @@ let typeOfbusinessContext;
 let selectRoleContext;
 let assertionsContext;
 let nationalityPageContext;
+let businessNamePageContext;
 
 test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   namePageContext = new namePage(page);
@@ -29,9 +31,11 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   selectRoleContext = new whatIsYourRolePage(page);
   assertionsContext = new Assertions(page);
   nationalityPageContext = new nationalityPage(page);
+  businessNamePageContext = new BusinessNamePage(page);
   const setUp = new globalSetUp(page);
 
   await setUp.ACSPUserLogin();
+  await setUp.createNewApplication();
 });
 
 test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
@@ -75,4 +79,13 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
   await userActionsContext.clickContinue();
 
   await assertionsContext.checkPageTitle(pageTitle.soleTraderWhereDoYouLive);
+  await nationalityPageContext.whereDoYouLive(userInput.country);
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.soleTraderbusinessName);
+
+  await businessNamePageContext.enterDifferentBusinessNameforSoleTrader(userInput.soleTraderBusinessName);
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.whichSector);
+  await expect(page.locator("//*[@id='main-page-content']/form/span")).toContainText(userInput.firstName);
+
 });

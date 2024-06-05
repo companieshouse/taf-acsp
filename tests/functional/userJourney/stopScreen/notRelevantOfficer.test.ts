@@ -33,6 +33,7 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   limitedJourneyContext = new limitedJourney(page);
 
   await setUp.ACSPUserLogin();
+  await setUp.createNewApplication();
 });
 
 test("Verify only directors of limted companies can register as ACSPs, @smoke @limited @StopScreen", async () => {

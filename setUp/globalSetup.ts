@@ -38,6 +38,15 @@ export class globalSetUp {
     await this.page.getByLabel("Email address").fill(username);
     await this.page.getByLabel("Password").fill(password);
     await this.page.getByRole("button", { name: "Sign in" }).click();
-    expect(this.page.url()).toContain(pageURL.typeOfBusiness);
+    //expect(this.page.url()).toContain(pageURL.typeOfBusiness);
+    await expect(this.page.url()).toContain(pageURL.savedApplication);
+
+  }
+
+  async createNewApplication(){
+    await this.page.locator("#savedApplication-2").click();
+    await this.page.getByRole("button", { name: "  Save and continue " }).click();
+    await expect(this.page.url()).toContain(pageURL.typeOfBusiness);
+
   }
 }

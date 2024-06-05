@@ -27,4 +27,5 @@ export const pageTitle = {
     "Which sector do you work in? - Apply to register as a Companies House authorised agent - GOV.UK",
   correspondenceAddress:
     "What is the correspondence address? - Apply to register as a Companies House authorised agent - GOV.UK",
+    soleTraderbusinessName:"What is the name of the business? - Apply to register as a Companies House authorised agent - GOV.UK"
 };

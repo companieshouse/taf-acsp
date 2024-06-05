@@ -1,5 +1,6 @@
-import { Locator, Page } from "@playwright/test";
+import { Locator, Page, expect } from "@playwright/test";
 import { userActions } from "../../utils/userActions";
+import { userInput } from "../../testdata/userInput";
 
 export class namePage {
   readonly page: Page;
@@ -21,6 +22,9 @@ export class namePage {
     await userActionsContext.enterUserInput(this.middleName, middleName);
 
     await userActionsContext.enterUserInput(this.lastName, lastName);
+    await expect(this.firstName).toHaveValue(userInput.firstName);
+    await expect(this.lastName).toHaveValue(userInput.lastName);
+
   }
   
 }

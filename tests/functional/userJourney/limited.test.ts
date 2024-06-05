@@ -28,6 +28,7 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   const setUp = new globalSetUp(page);
 
   await setUp.ACSPUserLogin();
+  await setUp.createNewApplication();
 });
 
 test("Verify error shown when company id not found for Limited journey @smoke @limited", async ({
