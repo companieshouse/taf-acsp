@@ -16,6 +16,7 @@ import { BusinessNamePage } from "../../../pages/unincorportated/businessNamePag
 import { whichSector } from "../../../pages/common/whichSector";
 import { address } from "../../../pages/common/address";
 import { amlScreens } from "../../../pages/common/amlScreens";
+import { checkAnswers } from "../../../pages/common/checkAnswers";
 
 let namePageContext;
 let userActionsContext;
@@ -28,6 +29,7 @@ let businessNamePageContext;
 let whichSectorcontext;
 let addressContext;
 let amlScreensContext;
+let checkAnswersContext;
 
 test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   namePageContext = new namePage(page);
@@ -41,6 +43,7 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   whichSectorcontext = new whichSector(page);
   addressContext = new address(page);
   amlScreensContext = new amlScreens(page);
+  checkAnswersContext = new checkAnswers(page);
   const setUp = new globalSetUp(page);
 
   await setUp.ACSPUserLogin();
@@ -97,9 +100,7 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.whichSector);
-  await expect(
-    page.locator("//*[@id='main-page-content']/form/span")
-  ).toContainText(userInput.firstName);
+  await assertionsContext.checkIfNameDisplayedAboveh1(userInput.firstName);
   await whichSectorcontext.selectSector(testConfig.other);
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.whichSectorOther);
@@ -110,12 +111,40 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
 
   await page.getByRole("button", { name: "  Save and continue " }).click();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceAddress);
+  await assertionsContext.checkIfNameDisplayedAboveh1(userInput.firstName);
+
   await addressContext.addressLookUp(userInput.postcode);
   await addressContext.selectAddressFromList();
+  await assertionsContext.checkIfNameDisplayedAboveh1(userInput.firstName);
+
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.confirmAddress);
+  await assertionsContext.checkIfNameDisplayedAboveh1(userInput.firstName);
+
   await addressContext.confirmAddressEntered();
   await userActionsContext.clickConfirmAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);
-  await amlScreensContext.selectAMLBodiesRegistered("HMRC,IAB");
+  await assertionsContext.checkIfNameDisplayedAboveh1(userInput.firstName);
+
+  await amlScreensContext.selectAMLBodiesRegistered(
+    userInput.amlBody1,
+    userInput.amlBody2
+  );
+  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await assertionsContext.checkPageTitle(pageTitle.amlNumber);
+  await amlScreensContext.enterAMLMembNumber(
+    userInput.amlMembId1,
+    userInput.amlMembId2
+  );
+  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await assertionsContext.checkPageTitle(pageTitle.checkAMLDetails);
+  await assertionsContext.checkIfNameDisplayedAboveh1(userInput.firstName);
+  await amlScreensContext.checkAMLDetails();
+  await userActionsContext.clickConfirmAndContinue();
+  await assertionsContext.checkPageTitle(pageTitle.yourResponsibilities);
+  await assertionsContext.checkIfNameDisplayedAboveh1(userInput.firstName);
+  await userActionsContext.clickAcceptandContinue();
+  await assertionsContext.checkPageTitle(pageTitle.checkYourAnswers);
+
+  await checkAnswersContext.verifySoleTraderCheckAnswersScreen();
 });

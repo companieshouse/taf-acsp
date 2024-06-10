@@ -12,6 +12,8 @@ test.beforeEach(
     const typeOfbusinessContext = new typeOfBusinessPage(page);
 
     await setUp.ACSPUserLogin();
+    await setUp.createNewApplication();
+
     await typeOfbusinessContext.selectTypeOfBusiness(testConfig.soleTrader);
   }
 );

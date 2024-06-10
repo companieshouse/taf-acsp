@@ -4,7 +4,7 @@ export const pageTitle = {
   nameTitle:
     "What is your name? - Apply to register as a Companies House authorised agent - GOV.UK",
   dobTitle:
-    "What is your date of Birth? - Apply to register as a Companies House authorised agent - GOV.UK",
+    "What is your date of birth? - Apply to register as a Companies House authorised agent - GOV.UK",
   soleTraderRole:
     "What is your role in the business? - Apply to register as a Companies House authorised agent - GOV.UK",
   soleTraderNationality:
@@ -36,4 +36,12 @@ export const pageTitle = {
     "Confirm the correspondence address - Apply to register as a Companies House authorised agent - GOV.UK",
   amlBodies:
     "Which Anti-Money Laundering (AML) supervisory bodies are you registered with? - Apply to register as a Companies House authorised agent - GOV.UK",
+  checkAMLDetails:
+    "Check the AML details - Apply to register as a Companies House authorised agent - GOV.UK",
+  yourResponsibilities:
+    "Your responsibilities as an authorised agent - Apply to register as a Companies House authorised agent - GOV.UK",
+  checkYourAnswers:
+    "Check your answers before sending your application - Apply to register as a Companies House authorised agent - GOV.UK",
+  amlNumber:
+    "What is the Anti-Money Laundering (AML) membership number? - Apply to register as a Companies House authorised agent - GOV.UK",
 };

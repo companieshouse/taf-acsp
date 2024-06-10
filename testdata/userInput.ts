@@ -14,6 +14,10 @@ export const userInput = {
   companyAuthCode: "222222",
   businessName: "Test Business Name",
   country: "United Kingdom",
-  soleTraderBusinessName: "Automated Sole Trader",
+  soleTraderBusinessName: "Automated SoleTrader Business",
   postcode: "ST63JL",
+  amlBody1: "HMRC",
+  amlBody2: "Law Society of Scotland",
+  amlMembId1: "1234-5678-4789",
+  amlMembId2: "1111-6666-8888-9999",
 };

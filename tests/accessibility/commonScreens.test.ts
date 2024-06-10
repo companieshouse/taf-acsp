@@ -26,6 +26,7 @@ test("Accessibility check for Type of business screen @accessibility", async ({
   const setUp = new globalSetUp(page);
 
   await setUp.ACSPUserLogin();
+  await setUp.createNewApplication();
 
   await accessibilityContext.checkWcagCompliance(
     page,

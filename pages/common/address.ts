@@ -26,9 +26,6 @@ export class address {
   }
 
   async addressLookUp(postCode: string) {
-    await expect(
-      this.page.locator("//*[@id='main-page-content']/form/span")
-    ).toContainText(userInput.firstName);
     await this.postcodeLookUp.fill(postCode);
     await expect(this.manualAddressLink).toBeVisible();
     await expect(this.propertyNumberfield).toBeVisible();
@@ -36,17 +33,11 @@ export class address {
   }
 
   async selectAddressFromList() {
-    await expect(
-      this.page.locator("//*[@id='main-page-content']/form/span")
-    ).toContainText(userInput.firstName);
     await expect(this.manualAddressLink).toBeVisible();
     await this.selectAddress.check();
   }
 
   async confirmAddressEntered() {
-    await expect(
-      this.page.locator("//*[@id='main-page-content']/form/span")
-    ).toContainText(userInput.firstName);
     await expect(this.editAddressLink).toBeVisible();
 
     /* await expect(
