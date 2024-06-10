@@ -17,6 +17,7 @@ import { whichSector } from "../../../pages/common/whichSector";
 import { address } from "../../../pages/common/address";
 import { amlScreens } from "../../../pages/common/amlScreens";
 import { checkAnswers } from "../../../pages/common/checkAnswers";
+import { payment } from "../../../pages/common/payment";
 
 let namePageContext;
 let userActionsContext;
@@ -30,6 +31,7 @@ let whichSectorcontext;
 let addressContext;
 let amlScreensContext;
 let checkAnswersContext;
+let paymentContext;
 
 test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   namePageContext = new namePage(page);
@@ -44,6 +46,7 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   addressContext = new address(page);
   amlScreensContext = new amlScreens(page);
   checkAnswersContext = new checkAnswers(page);
+  paymentContext = new payment(page);
   const setUp = new globalSetUp(page);
 
   await setUp.ACSPUserLogin();
@@ -147,4 +150,14 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
   await assertionsContext.checkPageTitle(pageTitle.checkYourAnswers);
 
   await checkAnswersContext.verifySoleTraderCheckAnswersScreen();
+  await userActionsContext.clickContinueToPayment();
+  await assertionsContext.checkPageTitle(pageTitle.reviewPayment);
+  await paymentContext.reviewPayment();
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.cardDetails);
+  await paymentContext.enterCardDetails();
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.confirmPayment);
+  await userActionsContext.clickConfirmPayment();
+  await assertionsContext.checkPageTitle(pageTitle.applicationSubmit);
 });

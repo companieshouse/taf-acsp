@@ -44,4 +44,9 @@ export const pageTitle = {
     "Check your answers before sending your application - Apply to register as a Companies House authorised agent - GOV.UK",
   amlNumber:
     "What is the Anti-Money Laundering (AML) membership number? - Apply to register as a Companies House authorised agent - GOV.UK",
+  reviewPayment: "Make Payment",
+  cardDetails: "Enter card details",
+  confirmPayment: "Confirm your payment",
+  applicationSubmit:
+    "Application submitted - Apply to register as a Companies House authorised agent - GOV.UK",
 };

@@ -26,4 +26,13 @@ export const testConfig = {
   estateAgents: "Estate agents",
   highValueDealers: "High value dealers",
   casinos: "Casinos",
+  fees:"£100.00",
+  cardNumber:"4444333322221111",
+  expiryMonth:"12",
+  expiryYear:"2027",
+  nameOnCard:"TestCardName",
+  cvc:"123",
+  addressLine1:"testaddress",
+  city:"testcity",
+  postcode:"ST63JL"
 };
