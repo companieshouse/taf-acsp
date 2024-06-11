@@ -4,17 +4,21 @@ import { pageURL } from "../../config/pageURL";
 import { accessibilityScan } from "../../utils/accessibilityScan";
 import { globalSetUp } from "../../setUp/globalSetup";
 import { typeOfBusinessPage } from "../../pages/common/typeOfBusinessPage";
+import { Console } from "console";
+import { userActions } from "../../utils/userActions";
 
 test.beforeEach(
   "Log in to ACSP Service to register as Sole Trader",
   async ({ page }) => {
     const setUp = new globalSetUp(page);
     const typeOfbusinessContext = new typeOfBusinessPage(page);
+    const userActionsContext = new userActions(page);
 
     await setUp.ACSPUserLogin();
     await setUp.createNewApplication();
 
     await typeOfbusinessContext.selectTypeOfBusiness(testConfig.soleTrader);
+    await userActionsContext.clickContinue();
   }
 );
 

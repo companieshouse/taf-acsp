@@ -14,4 +14,10 @@ export class checkAnswers {
       "Verify-Sole-Trader-can-register-as-an-ACSP-smoke-soleTrader-1.png"
     );
   }
+
+  async verifyLimitedCheckAnswersScreen() {
+    await expect(this.page).toHaveScreenshot(
+      "Verify-Limited-company-can-register-as-an-ACSP-smoke-limitedCompany-1.png"
+    );
+  }
 }

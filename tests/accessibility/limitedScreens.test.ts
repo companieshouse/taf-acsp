@@ -4,17 +4,20 @@ import { typeOfBusinessPage } from "../../pages/common/typeOfBusinessPage";
 import { testConfig } from "../../config/testConfig";
 import { accessibilityScan } from "../../utils/accessibilityScan";
 import { pageURL } from "../../config/pageURL";
+import { userActions } from "../../utils/userActions";
 
 test.beforeEach(
   "Log in to ACSP Service to register as Limited company",
   async ({ page }) => {
     const setUp = new globalSetUp(page);
     const typeOfbusinessContext = new typeOfBusinessPage(page);
+    const userActionsContext = new userActions(page);
 
     await setUp.ACSPUserLogin();
     await setUp.createNewApplication();
 
     await typeOfbusinessContext.selectTypeOfBusiness(testConfig.limitedCompany);
+    await userActionsContext.clickContinue();
   }
 );
 

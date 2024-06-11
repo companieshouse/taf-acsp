@@ -11,6 +11,8 @@ export class address {
   readonly findAddressButton: Locator;
   readonly propertyNumberfield: Locator;
   readonly confirmAddress: Locator;
+  readonly sameAddress: Locator;
+  readonly differentAddress: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -23,6 +25,8 @@ export class address {
     this.findAddressButton = page.getByRole("button", { name: "Find address" });
     this.propertyNumberfield = page.locator("#premise");
     this.confirmAddress = page.locator('//*[@id="main-page-content"]/form/ul');
+    this.sameAddress = page.locator("value=CORRESPONDANCE_ADDRESS");
+    this.differentAddress = page.getByLabel("A different address");
   }
 
   async addressLookUp(postCode: string) {
@@ -39,9 +43,13 @@ export class address {
 
   async confirmAddressEntered() {
     await expect(this.editAddressLink).toBeVisible();
+  }
 
-    /* await expect(
-        this.confirmAddress
-      ).toContainText(userInput.postcode);*/
+  async whatIsTheaddress(option: string) {
+    if (option == "same") {
+      await this.sameAddress.check();
+    } else {
+      await this.differentAddress.check();
+    }
   }
 }
