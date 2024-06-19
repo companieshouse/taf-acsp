@@ -66,7 +66,7 @@ test("Verify error shown when company id not found for Limited journey @smoke @l
   );
 });
 
-test("Verify Limited company can register as an ACSP @smoke @limitedCompany", async ({
+test("Verify Limited company can register as an ACSP @smoke @limited", async ({
   page,
 }) => {
   test.slow();
@@ -139,7 +139,7 @@ test("Verify Limited company can register as an ACSP @smoke @limitedCompany", as
   await assertionsContext.checkPageTitle(pageTitle.applicationSubmit);
 });
 
-test("Verify Limited Partnership can register as an ACSP @smoke @limited", async ({
+test("Verify Limited Partnership can register as an ACSP @smoke @limited @LP", async ({
   page,
 }) => {
   await limitedJourneyContext.limitedJourneyCommonScreens(
@@ -156,6 +156,61 @@ test("Verify Limited Partnership can register as an ACSP @smoke @limited", async
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceAddress);
+  await addressContext.whatIsTheaddress("different");
+  await userActionsContext.clickContinue();
+
+  await addressContext.addressLookUp(userInput.postcode);
+  await addressContext.selectAddressFromList();
+  await assertionsContext.checkIfNameDisplayedAboveh1(testConfig.companyName);
+
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.confirmAddress);
+  await assertionsContext.checkIfNameDisplayedAboveh1(testConfig.companyName);
+
+  await addressContext.confirmAddressEntered();
+  await userActionsContext.clickConfirmAndContinue();
+  await assertionsContext.checkPageTitle(pageTitle.whichSector);
+  await whichSectorcontext.selectSector(testConfig.other);
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.whichSectorOther);
+  await whichSectorcontext.selectOtherSector(testConfig.casinos);
+  await expect(
+    page.locator("//*[@id='main-page-content']/form/div[2]/a")
+  ).toBeVisible();
+
+  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await assertionsContext.checkPageTitle(pageTitle.amlBodies);
+
+  await amlScreensContext.selectAMLBodiesRegistered(
+    userInput.amlBody1,
+    userInput.amlBody2
+  );
+  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await assertionsContext.checkPageTitle(pageTitle.amlNumber);
+  await amlScreensContext.enterAMLMembNumber(
+    userInput.amlMembId1,
+    userInput.amlMembId2
+  );
+  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await assertionsContext.checkPageTitle(pageTitle.checkAMLDetails);
+  await assertionsContext.checkIfNameDisplayedAboveh1(testConfig.companyName);
+  await amlScreensContext.checkAMLDetails();
+  await userActionsContext.clickConfirmAndContinue();
+  await assertionsContext.checkPageTitle(pageTitle.yourResponsibilities);
+  await assertionsContext.checkIfNameDisplayedAboveh1(testConfig.companyName);
+  await userActionsContext.clickAcceptandContinue();
+  await assertionsContext.checkPageTitle(pageTitle.checkYourAnswers);
+  await checkAnswersContext.verifyLimitedCheckAnswersScreen();
+  await userActionsContext.clickContinueToPayment();
+  await assertionsContext.checkPageTitle(pageTitle.reviewPayment);
+  await paymentContext.reviewPayment();
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.cardDetails);
+  await paymentContext.enterCardDetails();
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.confirmPayment);
+  await userActionsContext.clickConfirmPayment();
+  await assertionsContext.checkPageTitle(pageTitle.applicationSubmit);
 });
 
 test("Verify Limited Liability Partnership can register as an ACSP @smoke @limited", async ({
@@ -175,4 +230,59 @@ test("Verify Limited Liability Partnership can register as an ACSP @smoke @limit
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceAddress);
+  await addressContext.whatIsTheaddress("different");
+  await userActionsContext.clickContinue();
+
+  await addressContext.addressLookUp(userInput.postcode);
+  await addressContext.selectAddressFromList();
+  await assertionsContext.checkIfNameDisplayedAboveh1(testConfig.companyName);
+
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.confirmAddress);
+  await assertionsContext.checkIfNameDisplayedAboveh1(testConfig.companyName);
+
+  await addressContext.confirmAddressEntered();
+  await userActionsContext.clickConfirmAndContinue();
+  await assertionsContext.checkPageTitle(pageTitle.whichSector);
+  await whichSectorcontext.selectSector(testConfig.other);
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.whichSectorOther);
+  await whichSectorcontext.selectOtherSector(testConfig.casinos);
+  await expect(
+    page.locator("//*[@id='main-page-content']/form/div[2]/a")
+  ).toBeVisible();
+
+  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await assertionsContext.checkPageTitle(pageTitle.amlBodies);
+
+  await amlScreensContext.selectAMLBodiesRegistered(
+    userInput.amlBody1,
+    userInput.amlBody2
+  );
+  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await assertionsContext.checkPageTitle(pageTitle.amlNumber);
+  await amlScreensContext.enterAMLMembNumber(
+    userInput.amlMembId1,
+    userInput.amlMembId2
+  );
+  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await assertionsContext.checkPageTitle(pageTitle.checkAMLDetails);
+  await assertionsContext.checkIfNameDisplayedAboveh1(testConfig.companyName);
+  await amlScreensContext.checkAMLDetails();
+  await userActionsContext.clickConfirmAndContinue();
+  await assertionsContext.checkPageTitle(pageTitle.yourResponsibilities);
+  await assertionsContext.checkIfNameDisplayedAboveh1(testConfig.companyName);
+  await userActionsContext.clickAcceptandContinue();
+  await assertionsContext.checkPageTitle(pageTitle.checkYourAnswers);
+  await checkAnswersContext.verifyLimitedCheckAnswersScreen();
+  await userActionsContext.clickContinueToPayment();
+  await assertionsContext.checkPageTitle(pageTitle.reviewPayment);
+  await paymentContext.reviewPayment();
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.cardDetails);
+  await paymentContext.enterCardDetails();
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.confirmPayment);
+  await userActionsContext.clickConfirmPayment();
+  await assertionsContext.checkPageTitle(pageTitle.applicationSubmit);
 });

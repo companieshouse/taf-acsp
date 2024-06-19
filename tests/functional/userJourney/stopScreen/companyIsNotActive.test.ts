@@ -34,7 +34,9 @@ test("Verify only active companies can register as ACSPs for Limited Company, @s
   );
 
   await assertionsContext.checkPageTitle(pageTitle.limitedCompanyInactive);
-  await assertionsContext.checkElementNotVisible(page.getByRole("link", {name: "Back", exact: true}));
+  await assertionsContext.checkElementNotVisible(
+    page.getByRole("link", { name: "Back", exact: true })
+  );
 
   await assertionsContext.checkElementNotVisible(
     page.getByRole("button", { name: "continue" })
@@ -50,7 +52,9 @@ test("Verify only active companies can register as ACSPs for Limited Partnership
   );
 
   await assertionsContext.checkPageTitle(pageTitle.limitedCompanyInactive);
-  await assertionsContext.checkElementNotVisible(page.getByRole("link", {name: "Back", exact: true}));
+  await assertionsContext.checkElementNotVisible(
+    page.getByRole("link", { name: "Back", exact: true })
+  );
 
   await assertionsContext.checkElementNotVisible(
     page.getByRole("button", { name: "continue" })
@@ -66,7 +70,9 @@ test("Verify only active companies can register as ACSPs for Limited liability p
   );
 
   await assertionsContext.checkPageTitle(pageTitle.limitedCompanyInactive);
-  await assertionsContext.checkElementNotVisible(page.getByRole("link", {name: "Back", exact: true}));
+  await assertionsContext.checkElementNotVisible(
+    page.getByRole("link", { name: "Back", exact: true })
+  );
 
   await assertionsContext.checkElementNotVisible(
     page.getByRole("button", { name: "continue" })

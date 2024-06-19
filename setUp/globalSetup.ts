@@ -30,23 +30,24 @@ export class globalSetUp {
     await expect(this.page).toHaveTitle(pageTitle.startPageTitle);
 
     await expect(startPageContext.startnow).toBeVisible();
-    await this.page.getByRole('button', { name: 'Accept analytics cookies' }).click();
-    await this.page.getByRole('button', { name: 'Hide this message' }).click();
+    await this.page
+      .getByRole("button", { name: "Accept analytics cookies" })
+      .click();
+    await this.page.getByRole("button", { name: "Hide this message" }).click();
 
     await startPageContext.startnow.click();
     await expect(this.page.getByLabel("Email address")).toBeVisible();
     await this.page.getByLabel("Email address").fill(username);
     await this.page.getByLabel("Password").fill(password);
     await this.page.getByRole("button", { name: "Sign in" }).click();
-    //expect(this.page.url()).toContain(pageURL.typeOfBusiness);
     await expect(this.page.url()).toContain(pageURL.savedApplication);
-
   }
 
-  async createNewApplication(){
+  async createNewApplication() {
     await this.page.locator("#savedApplication-2").click();
-    await this.page.getByRole("button", { name: "  Save and continue " }).click();
+    await this.page
+      .getByRole("button", { name: "  Save and continue " })
+      .click();
     await expect(this.page.url()).toContain(pageURL.typeOfBusiness);
-
   }
 }

@@ -16,6 +16,13 @@ export class checkAnswers {
   }
 
   async verifyLimitedCheckAnswersScreen() {
+    await expect(
+      this.page.getByRole("link", { name: "Change Correspondence address" })
+    ).toBeVisible();
+    await expect(
+      this.page.getByRole("link", { name: "Change Business sector" })
+    ).toBeVisible();
+
     await expect(this.page).toHaveScreenshot(
       "Verify-Limited-company-can-register-as-an-ACSP-smoke-limitedCompany-1.png"
     );
