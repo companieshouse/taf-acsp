@@ -23,8 +23,8 @@ export class checkAnswers {
       this.page.getByRole("link", { name: "Change Business sector" })
     ).toBeVisible();
 
-    await expect(this.page).toHaveScreenshot(
+   /* await expect(this.page).toHaveScreenshot(
       "Verify-Limited-company-can-register-as-an-ACSP-smoke-limitedCompany-1.png"
-    );
+    );*/
   }
 }

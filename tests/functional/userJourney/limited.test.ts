@@ -69,7 +69,8 @@ test("Verify error shown when company id not found for Limited journey @smoke @l
 test("Verify Limited company can register as an ACSP @smoke @limited", async ({
   page,
 }) => {
-  test.slow();
+  // test.slow();
+
   await limitedJourneyContext.limitedJourneyCommonScreens(
     testConfig.limitedCompany,
     userInput.companyNumber
@@ -139,7 +140,7 @@ test("Verify Limited company can register as an ACSP @smoke @limited", async ({
   await assertionsContext.checkPageTitle(pageTitle.applicationSubmit);
 });
 
-test("Verify Limited Partnership can register as an ACSP @smoke @limited @LP", async ({
+test("Verify Limited Partnership can register as an ACSP @smoke @limited", async ({
   page,
 }) => {
   await limitedJourneyContext.limitedJourneyCommonScreens(
