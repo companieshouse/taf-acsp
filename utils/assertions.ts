@@ -24,4 +24,10 @@ export class Assertions {
       this.page.getByRole("heading", { name: "There is a problem" })
     );
   }
+
+  async checkIfNameDisplayedAboveh1(name: string) {
+    await expect(
+      this.page.locator("//*[@id='main-page-content']/form/span")
+    ).toContainText(name);
+  }
 }

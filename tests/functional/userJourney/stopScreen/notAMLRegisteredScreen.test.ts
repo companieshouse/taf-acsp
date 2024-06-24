@@ -27,6 +27,7 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   limitedJourneyContext = new limitedJourney(page);
 
   await setUp.ACSPUserLogin();
+  await setUp.createNewApplication();
 });
 
 test("Verify only business' AML registered with the business name can register as ACSPs for Limited Company, @smoke @limited @StopScreen", async ({

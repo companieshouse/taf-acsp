@@ -25,6 +25,9 @@ To run the test with 'accessibility' tag:
 
 USERNAME='$username' PASSWORD='$password' BASE_URL='$url' npx playwright test --grep @accessibility
 
+To run test in UI mode
+USERNAME='$username' PASSWORD='$password' BASE_URL='$url' npx playwright test --grep @tag --ui
+
 To view the test report:
 
 npx playwright show-report

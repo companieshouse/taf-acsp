@@ -5,6 +5,9 @@ export class userActions {
   readonly continueButton: Locator;
   readonly confirmAndContinueButton: Locator;
   readonly authenticateButton: Locator;
+  readonly acceptAndContinue: Locator;
+  readonly continueToPayment: Locator;
+  readonly confirmPayment: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -14,6 +17,15 @@ export class userActions {
     });
     this.authenticateButton = page.getByRole("button", {
       name: "Authenticate",
+    });
+    this.acceptAndContinue = page.getByRole("button", {
+      name: "Accept and continue",
+    });
+    this.continueToPayment = page.getByRole("button", {
+      name: "Continue to payment",
+    });
+    this.confirmPayment = page.getByRole("button", {
+      name: "Confirm payment",
     });
   }
 
@@ -39,5 +51,17 @@ export class userActions {
   async selectValue(field: Locator, inputText: string) {
     await field.fill(inputText);
     await this.page.getByText(inputText).first().click();
+  }
+
+  async clickAcceptandContinue() {
+    await this.acceptAndContinue.click();
+  }
+
+  async clickContinueToPayment() {
+    await this.continueToPayment.click();
+  }
+
+  async clickConfirmPayment() {
+    await this.confirmPayment.click();
   }
 }
