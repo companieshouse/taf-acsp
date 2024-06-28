@@ -25,7 +25,7 @@ export class address {
     this.findAddressButton = page.getByRole("button", { name: "Find address" });
     this.propertyNumberfield = page.locator("#premise");
     this.confirmAddress = page.locator('//*[@id="main-page-content"]/form/ul');
-    this.sameAddress = page.locator("value=CORRESPONDANCE_ADDRESS");
+    this.sameAddress = page.locator("#addressSelectorRadio");
     this.differentAddress = page.getByLabel("A different address");
   }
 

@@ -1,6 +1,5 @@
-import { Locator, Page, expect } from "@playwright/test";
-import { testConfig } from "../../config/testConfig";
-import { userInput } from "../../testdata/userInput";
+import { Page, expect } from "@playwright/test";
+
 
 export class checkAnswers {
   readonly page: Page;
@@ -26,5 +25,11 @@ export class checkAnswers {
    /* await expect(this.page).toHaveScreenshot(
       "Verify-Limited-company-can-register-as-an-ACSP-smoke-limitedCompany-1.png"
     );*/
+  }
+
+  async verifyUnincorporatedCheckAnswersScreen() {
+    await expect(
+      this.page.getByRole("link", { name: "Change Your name" })
+    ).toBeVisible();
   }
 }

@@ -10,6 +10,8 @@ export const testConfig = {
   partnership: "Partnership",
   soleTrader: "Sole trader",
   otherType: "Other",
+  unincorporatedEntity: "Unincorporated Entity",
+  corporateBody: "Corporate Body",
   notRelevantRole: "Someone Else",
   director: "DIRECTOR",
   nameOfBusinessRadio: "Name of the business",
