@@ -60,5 +60,7 @@ export const pageTitle = {
   unincorporatedBusinessAddressSearch:
     "What is the business address? - Apply to register as a Companies House authorised agent - GOV.UK",
   chooseAddress:
-    "Choose an address - Apply to register as a Companies House authorised agent - GOV.UK"
+    "Choose an address - Apply to register as a Companies House authorised agent - GOV.UK",
+  otherTypeOfBusiness:
+    "What other type of business are you registering? - Apply to register as a Companies House authorised agent - GOV.UK"
 };
