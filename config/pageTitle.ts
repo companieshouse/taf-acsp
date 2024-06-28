@@ -34,6 +34,8 @@ export const pageTitle = {
 
   confirmAddress:
     "Confirm the correspondence address - Apply to register as a Companies House authorised agent - GOV.UK",
+  confirmBusinessAddress:
+    "Confirm the business address - Apply to register as a Companies House authorised agent - GOV.UK",
   amlBodies:
     "Which Anti-Money Laundering (AML) supervisory bodies are you registered with? - Apply to register as a Companies House authorised agent - GOV.UK",
   checkAMLDetails:
@@ -49,4 +51,14 @@ export const pageTitle = {
   confirmPayment: "Confirm your payment",
   applicationSubmit:
     "Application submitted - Apply to register as a Companies House authorised agent - GOV.UK",
+  whichNameRegisteredWithAML:
+    "Which name is registered with your Anti-Money Laundering (AML) supervisory body? - Apply to register as a Companies House authorised agent - GOV.UK",
+  unincorporatedBusinessName:
+    "What is the name of the business? - Apply to register as a Companies House authorised agent - GOV.UK",
+  unincorporatedRole:
+    "What is your role in the business? - Apply to register as a Companies House authorised agent - GOV.UK",
+  unincorporatedBusinessAddressSearch:
+    "What is the business address? - Apply to register as a Companies House authorised agent - GOV.UK",
+  chooseAddress:
+    "Choose an address - Apply to register as a Companies House authorised agent - GOV.UK"
 };
