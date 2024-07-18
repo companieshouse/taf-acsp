@@ -5,6 +5,7 @@ import { globalSetUp } from "../../setUp/globalSetup";
 import { accessibilityScan } from "../../utils/accessibilityScan";
 import { pageURL } from "../../config/pageURL";
 import { getEnvVar } from "taf-playwright-common/dist/src/utils/env/environment-var.js";
+import { globalTearDown } from "../../setUp/globalTearDown";
 
 let randomUser;
 
@@ -15,9 +16,9 @@ test.beforeEach(
     const typeOfbusinessContext = new typeOfBusinessPage(page);
 
     const unhashedPassword = getEnvVar("CHS_PASSWORD");
+    randomUser = await setUp.createACSPUser();
 
     await setUp.ACSPUserLogin(randomUser, unhashedPassword);
-    await setUp.createNewApplication();
 
     await typeOfbusinessContext.selectTypeOfBusiness(testConfig.partnership);
   }
@@ -171,4 +172,9 @@ test("Accessibility check for unincorporated correspondence address confirm entr
     process.env.URL + pageURL.unincorporated.correspondenceAddressConfirm,
     testInfo
   );
+});
+
+test.afterEach("Delete the ACSP User from DB", async ({ page }) => {
+  const tearDown = new globalTearDown(page);
+  tearDown.deleteACSPUser(randomUser);
 });

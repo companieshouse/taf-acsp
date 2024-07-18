@@ -6,6 +6,7 @@ import { accessibilityScan } from "../../utils/accessibilityScan";
 import { pageURL } from "../../config/pageURL";
 import { userActions } from "../../utils/userActions";
 import { getEnvVar } from "taf-playwright-common/dist/src/utils/env/environment-var.js";
+import { globalTearDown } from "../../setUp/globalTearDown";
 
 let randomUser;
 test.beforeEach(
@@ -16,9 +17,9 @@ test.beforeEach(
     const userActionsContext = new userActions(page);
 
     const unhashedPassword = getEnvVar("CHS_PASSWORD");
+    randomUser = await setUp.createACSPUser();
 
     await setUp.ACSPUserLogin(randomUser, unhashedPassword);
-    await setUp.createNewApplication();
 
     await typeOfbusinessContext.selectTypeOfBusiness(testConfig.limitedCompany);
     await userActionsContext.clickContinue();
@@ -105,3 +106,9 @@ test("Accessibility check for limited which sector other screen @accessibility",
     testInfo
   );
 });
+
+test.afterEach("Delete the ACSP User from DB", async ({ page }) => {
+  const tearDown = new globalTearDown(page);
+  tearDown.deleteACSPUser(randomUser);
+});
+
