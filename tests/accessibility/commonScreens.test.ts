@@ -18,9 +18,6 @@ test.beforeEach(
     const unhashedPassword = getEnvVar("CHS_PASSWORD");
     randomUser = await setUp.createACSPUser();
 
-    await setUp.ACSPUserLogin(randomUser, unhashedPassword);
-
-    await typeOfbusinessContext.selectTypeOfBusiness(testConfig.partnership);
   }
 );
 
@@ -47,7 +44,6 @@ test("Accessibility check for Type of business screen @accessibility", async ({
   const unhashedPassword = getEnvVar("CHS_PASSWORD");
 
   await setUp.ACSPUserLogin(randomUser, unhashedPassword);
-  await setUp.createNewApplication();
 
   await accessibilityContext.checkWcagCompliance(
     page,
