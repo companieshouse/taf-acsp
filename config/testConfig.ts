@@ -1,7 +1,4 @@
 export const testConfig = {
-  baseUrl: process.env.BASE_URL,
-  userName: process.env.USERNAME,
-  password: process.env.PASSWORD,
   empty_credentials: "Please provide USERNAME and PASSWORD",
   empty_url: "Please provide the BASE_URL",
   limitedCompany: "Limited Company",
@@ -19,6 +16,7 @@ export const testConfig = {
   bothRadio: "Both",
   generalPartner: "General Partner",
   member: "Member",
+  memberGoverningBody: "Member of governing body",
   auditors:
     "Auditors, insolvency practitioners, external accountants and tax advisers",
   legalProfessionals: "Independent legal professionals",

@@ -1,4 +1,16 @@
 import { defineConfig, devices } from "@playwright/test";
+import { config } from "dotenv";
+import { getEnvVar } from "taf-playwright-common/dist/src/utils/env/environment-var.js";
+
+const environment = getEnvVar("ENVIRONMENT");
+
+if (environment) {
+  console.log("ENVIRONMENT: " + environment);
+  config({
+    path: [`./env/.env`, `./env/.env.${environment}`],
+    override: true,
+  });
+}
 
 /**
  * Read environment variables from file.
@@ -10,7 +22,7 @@ import { defineConfig, devices } from "@playwright/test";
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  timeout:  5 * 60 * 1000,
+  timeout: 5 * 60 * 1000,
   testDir: "./tests",
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -20,11 +32,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 2,
   /* Opt out of parallel tests on CI. */
 
-  //workers: process.env.CI ? 1 : undefined,
-  workers: process.env.CI ? 1 : 1,
-  
-
-
+  workers: process.env.CI ? 1 : undefined,
 
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: "html",
@@ -40,15 +48,14 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-   /* {
+    /* {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },*/
 
-   {
+    {
       name: "firefox",
       use: { ...devices["Desktop Firefox"] },
-    
     },
 
     {
@@ -57,7 +64,7 @@ export default defineConfig({
     },
 
     /* Test against mobile viewports. */
-  {
+    {
       name: "Mobile Chrome",
       use: { ...devices["Pixel 5"] },
     },
@@ -74,7 +81,7 @@ export default defineConfig({
     {
       name: "Google Chrome",
       use: { ...devices["Desktop Chrome"], channel: "chrome" },
-    }
+    },
   ],
 
   /* Run your local dev server before starting the tests */

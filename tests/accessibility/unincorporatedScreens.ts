@@ -4,6 +4,9 @@ import { typeOfBusinessPage } from "../../pages/common/typeOfBusinessPage";
 import { globalSetUp } from "../../setUp/globalSetup";
 import { accessibilityScan } from "../../utils/accessibilityScan";
 import { pageURL } from "../../config/pageURL";
+import { getEnvVar } from "taf-playwright-common/dist/src/utils/env/environment-var.js";
+
+let randomUser;
 
 test.beforeEach(
   "Log in to ACSP Service to register as Unincorporated company",
@@ -11,7 +14,9 @@ test.beforeEach(
     const setUp = new globalSetUp(page);
     const typeOfbusinessContext = new typeOfBusinessPage(page);
 
-    await setUp.ACSPUserLogin();
+    const unhashedPassword = getEnvVar("CHS_PASSWORD");
+
+    await setUp.ACSPUserLogin(randomUser, unhashedPassword);
     await setUp.createNewApplication();
 
     await typeOfbusinessContext.selectTypeOfBusiness(testConfig.partnership);
@@ -23,7 +28,7 @@ test("Accessibility check for unincorporated name registered with AML screen @ac
   const accessibilityContext = new accessibilityScan();
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.unincorporated.nameRegisteredWithAML,
+    process.env.URL + pageURL.unincorporated.nameRegisteredWithAML,
     testInfo
   );
 });
@@ -33,7 +38,7 @@ test("Accessibility check for unincorporated what is your name screen @accessibi
   const accessibilityContext = new accessibilityScan();
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.unincorporated.name,
+    process.env.URL + pageURL.unincorporated.name,
     testInfo
   );
 });
@@ -43,7 +48,7 @@ test("Accessibility check for unincorporated what the business name screen @acce
   const accessibilityContext = new accessibilityScan();
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.unincorporated.businessName,
+    process.env.URL + pageURL.unincorporated.businessName,
     testInfo
   );
 });
@@ -53,7 +58,7 @@ test("Accessibility check for unincorporated what is your role screen @accessibi
   const accessibilityContext = new accessibilityScan();
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.unincorporated.role,
+    process.env.URL + pageURL.unincorporated.role,
     testInfo
   );
 });
@@ -63,7 +68,7 @@ test("Accessibility check for unincorporated which sector screen @accessibility"
   const accessibilityContext = new accessibilityScan();
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.unincorporated.whichSector,
+    process.env.URL + pageURL.unincorporated.whichSector,
     testInfo
   );
 });
@@ -73,7 +78,7 @@ test("Accessibility check for unincorporated which sector other screen @accessib
   const accessibilityContext = new accessibilityScan();
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.unincorporated.whichSectorOther,
+    process.env.URL + pageURL.unincorporated.whichSectorOther,
     testInfo
   );
 });
@@ -83,7 +88,7 @@ test("Accessibility check for unincorporated business address lookup screen @acc
   const accessibilityContext = new accessibilityScan();
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.unincorporated.businessAddressLookup,
+    process.env.URL + pageURL.unincorporated.businessAddressLookup,
     testInfo
   );
 });
@@ -93,7 +98,7 @@ test("Accessibility check for unincorporated business address list screen @acces
   const accessibilityContext = new accessibilityScan();
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.unincorporated.businessAddressList,
+    process.env.URL + pageURL.unincorporated.businessAddressList,
     testInfo
   );
 });
@@ -103,7 +108,7 @@ test("Accessibility check for unincorporated business address manual entry scree
   const accessibilityContext = new accessibilityScan();
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.unincorporated.businessAddressManual,
+    process.env.URL + pageURL.unincorporated.businessAddressManual,
     testInfo
   );
 });
@@ -113,7 +118,7 @@ test("Accessibility check for unincorporated business address confirm entry scre
   const accessibilityContext = new accessibilityScan();
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.unincorporated.businessAddressConfirm,
+    process.env.URL + pageURL.unincorporated.businessAddressConfirm,
     testInfo
   );
 });
@@ -123,7 +128,7 @@ test("Accessibility check for unincorporated what is the correspondence address 
   const accessibilityContext = new accessibilityScan();
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.unincorporated.whatIsTheCorrespondenceAddress,
+    process.env.URL + pageURL.unincorporated.whatIsTheCorrespondenceAddress,
     testInfo
   );
 });
@@ -133,7 +138,7 @@ test("Accessibility check for unincorporated correspondence address lookup scree
   const accessibilityContext = new accessibilityScan();
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.unincorporated.correspondenceAddressLookup,
+    process.env.URL + pageURL.unincorporated.correspondenceAddressLookup,
     testInfo
   );
 });
@@ -143,7 +148,7 @@ test("Accessibility check for unincorporated correspondence address list screen 
   const accessibilityContext = new accessibilityScan();
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.unincorporated.correspondenceAddressList,
+    process.env.URL + pageURL.unincorporated.correspondenceAddressList,
     testInfo
   );
 });
@@ -153,7 +158,7 @@ test("Accessibility check for unincorporated correspondence address manual entry
   const accessibilityContext = new accessibilityScan();
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.unincorporated.correspondenceAddressManual,
+    process.env.URL + pageURL.unincorporated.correspondenceAddressManual,
     testInfo
   );
 });
@@ -163,7 +168,7 @@ test("Accessibility check for unincorporated correspondence address confirm entr
   const accessibilityContext = new accessibilityScan();
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.unincorporated.correspondenceAddressConfirm,
+    process.env.URL + pageURL.unincorporated.correspondenceAddressConfirm,
     testInfo
   );
 });

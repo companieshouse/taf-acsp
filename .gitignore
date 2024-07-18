@@ -3,6 +3,13 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+# Log file
+*.log
+
+#Env Files #
+env/.env
+env/.env.*
 
 *.DS_Store
 *.png
+

@@ -6,7 +6,9 @@ import { globalSetUp } from "../../setUp/globalSetup";
 import { typeOfBusinessPage } from "../../pages/common/typeOfBusinessPage";
 import { Console } from "console";
 import { userActions } from "../../utils/userActions";
+import { getEnvVar } from "taf-playwright-common/dist/src/utils/env/environment-var.js";
 
+let randomUser;
 test.beforeEach(
   "Log in to ACSP Service to register as Sole Trader",
   async ({ page }) => {
@@ -14,7 +16,9 @@ test.beforeEach(
     const typeOfbusinessContext = new typeOfBusinessPage(page);
     const userActionsContext = new userActions(page);
 
-    await setUp.ACSPUserLogin();
+    const unhashedPassword = getEnvVar("CHS_PASSWORD");
+
+    await setUp.ACSPUserLogin(randomUser, unhashedPassword);
     await setUp.createNewApplication();
 
     await typeOfbusinessContext.selectTypeOfBusiness(testConfig.soleTrader);
@@ -30,7 +34,7 @@ test("Accessibility check for Sole-Trader-Name screen @accessibility", async ({
   await accessibilityContext.checkWcagCompliance(
     page,
 
-    testConfig.baseUrl + pageURL.soleTrader.name,
+    process.env.URL + pageURL.soleTrader.name,
 
     testInfo
   );
@@ -43,7 +47,7 @@ test("Accessibility check for Sole Trader Date of Birth screen @accessibility", 
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.soleTrader.dateOfBirth,
+    process.env.URL + pageURL.soleTrader.dateOfBirth,
     testInfo
   );
 });
@@ -55,7 +59,7 @@ test("Accessibility check for Sole Trader Nationality screen @accessibility", as
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.soleTrader.nationality,
+    process.env.URL + pageURL.soleTrader.nationality,
     testInfo
   );
 });
@@ -67,7 +71,7 @@ test("Accessibility check for Sole Trader Where do you Live screen @accessibilit
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.soleTrader.whereDoYouLive,
+    process.env.URL + pageURL.soleTrader.whereDoYouLive,
     testInfo
   );
 });
@@ -79,7 +83,7 @@ test("Accessibility check for Sole Trader Correspondence Address Auto-lookup scr
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.soleTrader.addressAutoLookUp,
+    process.env.URL + pageURL.soleTrader.addressAutoLookUp,
     testInfo
   );
 });
@@ -91,7 +95,7 @@ test("Accessibility check for Sole Trader Correspondence Address Select Address 
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.soleTrader.addressSelect,
+    process.env.URL + pageURL.soleTrader.addressSelect,
     testInfo
   );
 });
@@ -103,7 +107,7 @@ test("Accessibility check for Sole Trader Correspondence Address Manual Entry sc
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.soleTrader.addressManualEntry,
+    process.env.URL + pageURL.soleTrader.addressManualEntry,
     testInfo
   );
 });
@@ -115,7 +119,7 @@ test("Accessibility check for Sole Trader Confirm Correspondence Address screen 
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.soleTrader.confirmAddress,
+    process.env.URL + pageURL.soleTrader.confirmAddress,
     testInfo
   );
 });
@@ -127,7 +131,7 @@ test("Accessibility check for Sole Trader Which sector screen @accessibility", a
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.soleTrader.whichSector,
+    process.env.URL + pageURL.soleTrader.whichSector,
     testInfo
   );
 });
@@ -139,7 +143,7 @@ test("Accessibility check for Sole Trader Which sector-Other screen @accessibili
 
   await accessibilityContext.checkWcagCompliance(
     page,
-    testConfig.baseUrl + pageURL.soleTrader.whichSectorOther,
+    process.env.URL + pageURL.soleTrader.whichSectorOther,
     testInfo
   );
 });

@@ -18,6 +18,8 @@ import { address } from "../../../pages/common/address";
 import { amlScreens } from "../../../pages/common/amlScreens";
 import { checkAnswers } from "../../../pages/common/checkAnswers";
 import { payment } from "../../../pages/common/payment";
+import { globalTearDown } from "../../../setUp/globalTearDown";
+import { getEnvVar } from "taf-playwright-common/dist/src/utils/env/environment-var.js";
 
 let namePageContext;
 let userActionsContext;
@@ -32,6 +34,7 @@ let addressContext;
 let amlScreensContext;
 let checkAnswersContext;
 let paymentContext;
+let randomUser;
 
 test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   namePageContext = new namePage(page);
@@ -49,8 +52,10 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   paymentContext = new payment(page);
   const setUp = new globalSetUp(page);
 
-  await setUp.ACSPUserLogin();
-  await setUp.createNewApplication();
+  randomUser = await setUp.createACSPUser();
+  const unhashedPassword = getEnvVar("CHS_PASSWORD");
+
+  await setUp.ACSPUserLogin(randomUser, unhashedPassword);
 });
 
 test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
@@ -61,9 +66,7 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
   await assertionsContext.checkPageTitle(pageTitle.soleTraderRole);
   await selectRoleContext.selectRole(testConfig.soleTrader);
   await userActionsContext.clickContinue();
-  await userActionsContext.navigateToScreen(
-    testConfig.baseUrl + pageURL.soleTrader.name
-  );
+
   await assertionsContext.checkPageTitle(pageTitle.nameTitle);
   await assertionsContext.checkElementvisible(namePageContext.firstName);
 
@@ -160,4 +163,8 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
   await assertionsContext.checkPageTitle(pageTitle.confirmPayment);
   await userActionsContext.clickConfirmPayment();
   await assertionsContext.checkPageTitle(pageTitle.applicationSubmit);
+});
+test.afterEach("Delete the ACSP User from DB", async ({ page }) => {
+  const tearDown = new globalTearDown(page);
+  tearDown.deleteACSPUser(randomUser);
 });

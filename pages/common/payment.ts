@@ -1,5 +1,6 @@
 import { Locator, Page, expect } from "@playwright/test";
 import { testConfig } from "../../config/testConfig";
+import { userActions } from "../../utils/userActions";
 
 export class payment {
   readonly page: Page;
@@ -31,13 +32,37 @@ export class payment {
   }
 
   async enterCardDetails() {
-    await this.cardNumber.fill(testConfig.cardNumber);
-    await this.expiryMonth.fill(testConfig.expiryMonth);
-    await this.expiryYear.fill(testConfig.expiryYear);
-    await this.nameOnCard.fill(testConfig.nameOnCard);
-    await this.cvc.fill(testConfig.cvc);
-    await this.addressline1.fill(testConfig.addressLine1);
-    await this.city.fill(testConfig.city);
-    await this.postCode.fill(testConfig.postcode);
+    const userActionsContext = new userActions(this.page);
+
+    await userActionsContext.enterUserInput(
+      this.cardNumber,
+      testConfig.cardNumber
+    );
+
+    await userActionsContext.enterUserInput(
+      this.expiryMonth,
+      testConfig.expiryMonth
+    );
+
+    await userActionsContext.enterUserInput(
+      this.expiryYear,
+      testConfig.expiryYear
+    );
+
+    await userActionsContext.enterUserInput(
+      this.nameOnCard,
+      testConfig.nameOnCard
+    );
+
+    await userActionsContext.enterUserInput(this.cvc, testConfig.cvc);
+
+    await userActionsContext.enterUserInput(
+      this.addressline1,
+      testConfig.addressLine1
+    );
+
+    await userActionsContext.enterUserInput(this.city, testConfig.city);
+
+    await userActionsContext.enterUserInput(this.postCode, testConfig.postcode);
   }
 }
