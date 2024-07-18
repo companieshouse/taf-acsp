@@ -14,6 +14,8 @@ import { whichSector } from "../../../pages/common/whichSector";
 import { amlScreens } from "../../../pages/common/amlScreens";
 import { checkAnswers } from "../../../pages/common/checkAnswers";
 import { payment } from "../../../pages/common/payment";
+import { globalTearDown } from "../../../setUp/globalTearDown";
+import { getEnvVar } from "taf-playwright-common/dist/src/utils/env/environment-var.js";
 
 let typeOfbusinessContext;
 let userActionsContext;
@@ -26,6 +28,7 @@ let whichSectorcontext;
 let amlScreensContext;
 let checkAnswersContext;
 let paymentContext;
+let randomUser;
 
 test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   typeOfbusinessContext = new typeOfBusinessPage(page);
@@ -42,8 +45,10 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
 
   const setUp = new globalSetUp(page);
 
-  await setUp.ACSPUserLogin();
-  await setUp.createNewApplication();
+  randomUser = await setUp.createACSPUser();
+  const unhashedPassword = getEnvVar("CHS_PASSWORD");
+
+  await setUp.ACSPUserLogin(randomUser, unhashedPassword);
 });
 
 test("Verify error shown when company id not found for Limited journey @smoke @limited", async ({
@@ -286,4 +291,9 @@ test("Verify Limited Liability Partnership can register as an ACSP @smoke @limit
   await assertionsContext.checkPageTitle(pageTitle.confirmPayment);
   await userActionsContext.clickConfirmPayment();
   await assertionsContext.checkPageTitle(pageTitle.applicationSubmit);
+});
+
+test.afterEach("Delete the ACSP User from DB", async ({ page }) => {
+  const tearDown = new globalTearDown(page);
+  tearDown.deleteACSPUser(randomUser);
 });

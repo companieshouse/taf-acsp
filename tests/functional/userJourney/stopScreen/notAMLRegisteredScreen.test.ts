@@ -9,6 +9,8 @@ import { typeOfBusinessPage } from "../../../../pages/common/typeOfBusinessPage"
 import { userInput } from "../../../../testdata/userInput";
 import { NameRegisteredWithAMLPage } from "../../../../pages/common/nameRegisteredWithAML";
 import { limitedJourney } from "../../../../pages/common/limitedJourney";
+import { globalTearDown } from "../../../../setUp/globalTearDown";
+import { getEnvVar } from "taf-playwright-common/dist/src/utils/env/environment-var.js";
 
 let whatIsYourRoleContext;
 let userActionsContext;
@@ -16,6 +18,7 @@ let assertionsContext;
 let typeOfbusinessContext;
 let amlNameRegisteredPageContext;
 let limitedJourneyContext;
+let randomUser;
 
 test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   const setUp = new globalSetUp(page);
@@ -26,8 +29,10 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   amlNameRegisteredPageContext = new NameRegisteredWithAMLPage(page);
   limitedJourneyContext = new limitedJourney(page);
 
-  await setUp.ACSPUserLogin();
-  await setUp.createNewApplication();
+  randomUser = await setUp.createACSPUser();
+  const unhashedPassword = getEnvVar("CHS_PASSWORD");
+
+  await setUp.ACSPUserLogin(randomUser, unhashedPassword);
 });
 
 test("Verify only business' AML registered with the business name can register as ACSPs for Limited Company, @smoke @limited @StopScreen", async ({
@@ -103,4 +108,9 @@ test("Verify only business' AML registered with the business name can register a
       name: "continue",
     })
   );
+});
+
+test.afterEach("Delete the ACSP User from DB", async ({ page }) => {
+  const tearDown = new globalTearDown(page);
+  tearDown.deleteACSPUser(randomUser);
 });

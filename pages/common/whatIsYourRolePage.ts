@@ -8,6 +8,7 @@ export class whatIsYourRolePage {
   readonly notRelevantRole: Locator;
   readonly generalPartner: Locator;
   readonly member: Locator;
+  readonly memberGoverningBody: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -18,6 +19,10 @@ export class whatIsYourRolePage {
     });
     this.member = page.getByLabel("I am a member of", { exact: false });
     this.notRelevantRole = page.getByLabel("I am someone else");
+    this.memberGoverningBody = page.getByLabel(
+      "I am a member of the governing body",
+      { exact: false }
+    );
   }
 
   async selectRole(role: string) {
@@ -38,6 +43,8 @@ export class whatIsYourRolePage {
       case testConfig.notRelevantRole:
         await this.notRelevantRole.check();
         break;
+      case testConfig.memberGoverningBody:
+        await this.memberGoverningBody.check();
     }
   }
 }

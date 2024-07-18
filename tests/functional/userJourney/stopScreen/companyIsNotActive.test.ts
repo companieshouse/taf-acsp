@@ -7,6 +7,8 @@ import { testConfig } from "../../../../config/testConfig";
 import { typeOfBusinessPage } from "../../../../pages/common/typeOfBusinessPage";
 import { userInput } from "../../../../testdata/userInput";
 import { limitedJourney } from "../../../../pages/common/limitedJourney";
+import { globalTearDown } from "../../../../setUp/globalTearDown";
+import { getEnvVar } from "taf-playwright-common/dist/src/utils/env/environment-var.js";
 
 let userActionsContext;
 let assertionsContext;
@@ -14,6 +16,7 @@ let typeOfbusinessContext;
 let companyNumberPageContext;
 let companyNotActivePageContext;
 let limitedJourneyContext;
+let randomUser;
 
 test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   const setUp = new globalSetUp(page);
@@ -21,8 +24,10 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   userActionsContext = new userActions(page);
   assertionsContext = new Assertions(page);
   limitedJourneyContext = new limitedJourney(page);
-  await setUp.ACSPUserLogin();
-  await setUp.createNewApplication();
+  randomUser = await setUp.createACSPUser();
+  const unhashedPassword = getEnvVar("CHS_PASSWORD");
+
+  await setUp.ACSPUserLogin(randomUser, unhashedPassword);
 });
 
 test("Verify only active companies can register as ACSPs for Limited Company, @smoke @limited @StopScreen", async ({
@@ -77,4 +82,9 @@ test("Verify only active companies can register as ACSPs for Limited liability p
   await assertionsContext.checkElementNotVisible(
     page.getByRole("button", { name: "continue" })
   );
+});
+
+test.afterEach("Delete the ACSP User from DB", async ({ page }) => {
+  const tearDown = new globalTearDown(page);
+  tearDown.deleteACSPUser(randomUser);
 });

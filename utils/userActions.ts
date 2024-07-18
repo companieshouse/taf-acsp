@@ -30,7 +30,8 @@ export class userActions {
   }
 
   async clickContinue() {
-    await this.continueButton.click();
+    await this.continueButton.scrollIntoViewIfNeeded();
+    await this.continueButton.click({ force: true });
   }
 
   async clickConfirmAndContinue() {
