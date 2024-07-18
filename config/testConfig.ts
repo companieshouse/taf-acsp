@@ -1,6 +1,4 @@
 export const testConfig = {
-  empty_credentials: "Please provide USERNAME and PASSWORD",
-  empty_url: "Please provide the BASE_URL",
   limitedCompany: "Limited Company",
   limitedPartnership: "Limited partnership",
   limitedLiabilityPartnership: "Limited liability partnership",
