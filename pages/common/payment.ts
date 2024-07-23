@@ -64,5 +64,8 @@ export class payment {
     await userActionsContext.enterUserInput(this.city, testConfig.city);
 
     await userActionsContext.enterUserInput(this.postCode, testConfig.postcode);
+    this.page.setDefaultTimeout(6000);
+
+
   }
 }
