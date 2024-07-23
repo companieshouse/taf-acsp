@@ -15,8 +15,9 @@ test.beforeEach(
     const setUp = new globalSetUp(page);
     const typeOfbusinessContext = new typeOfBusinessPage(page);
 
-    const unhashedPassword = getEnvVar("CHS_PASSWORD");
     randomUser = await setUp.createACSPUser();
+    const unhashedPassword = getEnvVar("CHS_PASSWORD");
+
 
     await setUp.ACSPUserLogin(randomUser, unhashedPassword);
 
