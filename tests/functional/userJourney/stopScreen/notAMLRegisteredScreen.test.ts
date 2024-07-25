@@ -29,7 +29,7 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   amlNameRegisteredPageContext = new NameRegisteredWithAMLPage(page);
   limitedJourneyContext = new limitedJourney(page);
 
-  randomUser = await setUp.createACSPUser();
+  //randomUser = await setUp.createACSPUser();
   const unhashedPassword = getEnvVar("CHS_PASSWORD");
 
   await setUp.ACSPUserLogin(randomUser, unhashedPassword);

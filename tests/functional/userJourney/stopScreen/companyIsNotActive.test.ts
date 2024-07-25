@@ -24,7 +24,7 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   userActionsContext = new userActions(page);
   assertionsContext = new Assertions(page);
   limitedJourneyContext = new limitedJourney(page);
-  randomUser = await setUp.createACSPUser();
+ // randomUser = await setUp.createACSPUser();
   const unhashedPassword = getEnvVar("CHS_PASSWORD");
 
   await setUp.ACSPUserLogin(randomUser, unhashedPassword);
