@@ -16,7 +16,7 @@ test.beforeEach(
     const typeOfbusinessContext = new typeOfBusinessPage(page);
     const userActionsContext = new userActions(page);
 
-    randomUser = await setUp.createACSPUser();
+    // randomUser = await setUp.createACSPUser();
     const unhashedPassword = getEnvVar("CHS_PASSWORD");
 
     await setUp.ACSPUserLogin(randomUser, unhashedPassword);
@@ -111,4 +111,3 @@ test.afterEach("Delete the ACSP User from DB", async ({ page }) => {
   const tearDown = new globalTearDown(page);
   tearDown.deleteACSPUser(randomUser);
 });
-

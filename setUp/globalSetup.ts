@@ -60,7 +60,7 @@ export class globalSetUp {
     await expect(this.page.url()).toContain(pageURL.typeOfBusiness);
   }
 
-  async createACSPUser(): Promise<string> {
+  /*async createACSPUser(): Promise<string> {
     await this.getDetailsFromVault();
 
     const db = getEnvVar("ACCOUNT_DATABASE_URL");
@@ -113,7 +113,7 @@ export class globalSetUp {
       roles
     );
     return randomUser;
-  }
+  }*/
 
   async getDetailsFromVault() {
     console.info("Getting environment specific config");
