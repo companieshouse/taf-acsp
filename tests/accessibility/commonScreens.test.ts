@@ -15,8 +15,7 @@ test.beforeEach(
     const setUp = new globalSetUp(page);
     const typeOfbusinessContext = new typeOfBusinessPage(page);
 
-   // randomUser = await setUp.createACSPUser();
-
+    // randomUser = await setUp.createACSPUser();
   }
 );
 
@@ -57,4 +56,3 @@ test.afterEach("Delete the ACSP User from DB", async ({ page }) => {
   const tearDown = new globalTearDown(page);
   tearDown.deleteACSPUser(randomUser);
 });
-

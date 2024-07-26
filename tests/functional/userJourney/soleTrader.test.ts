@@ -52,7 +52,7 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   paymentContext = new payment(page);
   const setUp = new globalSetUp(page);
 
- // randomUser = await setUp.createACSPUser();
+  // randomUser = await setUp.createACSPUser();
   const unhashedPassword = getEnvVar("CHS_PASSWORD");
 
   await setUp.ACSPUserLogin(randomUser, unhashedPassword);

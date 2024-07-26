@@ -10,7 +10,7 @@ export class globalTearDown {
   }
 
   async deleteACSPUser(userName: string) {
-   /* await deleteUserByEmailAddress(userName);
+    /* await deleteUserByEmailAddress(userName);
     console.debug("Deleted random user " + userName);
 
     await disconnectFromMongoDB();*/
