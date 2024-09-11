@@ -194,14 +194,12 @@ test("Verify unincorporated entity can register as an ACSP, @smoke @unincorporat
   await assertionsContext.checkPageTitle(pageTitle.applicationSubmit);
 });
 
-test("Verify corporate bodies can register as an ACSP, @smoke @unincorporated", async () => {
-  await typeOfbusinessContext.selectTypeOfBusiness(testConfig.other);
-  await userActionsContext.clickContinue();
-  await assertionsContext.checkPageTitle(pageTitle.otherTypeOfBusiness);
-  await otherTypeOfbusinessContext.selectTypeOfBusiness(
-    testConfig.corporateBody
+test("Verify Limited Partnership can register as an ACSP, @smoke @unincorporated", async () => {
+  await typeOfbusinessContext.selectTypeOfBusiness(
+    testConfig.limitedPartnership
   );
   await userActionsContext.clickContinue();
+
   await assertionsContext.checkPageTitle(pageTitle.whichNameRegisteredWithAML);
   await amlNameRegisteredPageContext.selectAMLName(testConfig.bothRadio);
   await userActionsContext.clickContinue();
@@ -216,7 +214,7 @@ test("Verify corporate bodies can register as an ACSP, @smoke @unincorporated", 
   await businessNamePageContext.enterBusinessName(userInput.businessName);
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.unincorporatedRole);
-  await selectRoleContext.selectRole(testConfig.member);
+  await selectRoleContext.selectRole(testConfig.memberGoverningBody);
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.whichSector);
   await whichSectorcontext.selectSector(testConfig.legalProfessionals);

@@ -16,6 +16,7 @@ import { checkAnswers } from "../../../pages/common/checkAnswers";
 import { payment } from "../../../pages/common/payment";
 import { globalTearDown } from "../../../setUp/globalTearDown";
 import { getEnvVar } from "taf-playwright-common/dist/src/utils/env/environment-var.js";
+import { OtherTypeOfBusinessPage } from "../../../pages/common/otherTypeOfBusinessPage";
 
 let typeOfbusinessContext;
 let userActionsContext;
@@ -29,6 +30,7 @@ let amlScreensContext;
 let checkAnswersContext;
 let paymentContext;
 let randomUser;
+let otherTypeOfbusinessContext;
 
 test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   typeOfbusinessContext = new typeOfBusinessPage(page);
@@ -42,6 +44,7 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   amlScreensContext = new amlScreens(page);
   checkAnswersContext = new checkAnswers(page);
   paymentContext = new payment(page);
+  otherTypeOfbusinessContext = new OtherTypeOfBusinessPage(page);
 
   const setUp = new globalSetUp(page);
 
@@ -145,13 +148,19 @@ test("Verify Limited company can register as an ACSP @smoke @limited", async ({
   await assertionsContext.checkPageTitle(pageTitle.applicationSubmit);
 });
 
-test("Verify Limited Partnership can register as an ACSP @smoke @limited", async ({
+test("Verify Corporate Body can register as an ACSP @smoke @limited", async ({
   page,
 }) => {
-  await limitedJourneyContext.limitedJourneyCommonScreens(
-    testConfig.limitedPartnership,
-    userInput.companyNumber
+  await typeOfbusinessContext.selectTypeOfBusiness(testConfig.other);
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.otherTypeOfBusiness);
+  await otherTypeOfbusinessContext.selectTypeOfBusiness(
+    testConfig.corporateBody
   );
+  await limitedJourneyContext.enterCompanyNumber(userInput.companyNumber);
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.limitedIsThisYourCompany);
+  await userActionsContext.clickConfirmAndContinue();
   await limitedJourneyContext.enterCompanyAuthNumber(userInput.companyAuthCode);
   await userActionsContext.clickAuthenticate();
   await whatIsYourRoleContext.selectRole(testConfig.generalPartner);
