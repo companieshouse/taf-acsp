@@ -9,6 +9,7 @@ import { userInput } from "../../../../testdata/userInput";
 import { limitedJourney } from "../../../../pages/common/limitedJourney";
 import { globalTearDown } from "../../../../setUp/globalTearDown";
 import { getEnvVar } from "taf-playwright-common/dist/src/utils/env/environment-var.js";
+import { OtherTypeOfBusinessPage } from "../../../../pages/common/otherTypeOfBusinessPage";
 
 let userActionsContext;
 let assertionsContext;
@@ -17,6 +18,7 @@ let companyNumberPageContext;
 let companyNotActivePageContext;
 let limitedJourneyContext;
 let randomUser;
+let otherTypeOfbusinessContext;
 
 test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   const setUp = new globalSetUp(page);
@@ -24,7 +26,9 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   userActionsContext = new userActions(page);
   assertionsContext = new Assertions(page);
   limitedJourneyContext = new limitedJourney(page);
- // randomUser = await setUp.createACSPUser();
+  otherTypeOfbusinessContext = new OtherTypeOfBusinessPage(page);
+
+  // randomUser = await setUp.createACSPUser();
   const unhashedPassword = getEnvVar("CHS_PASSWORD");
 
   await setUp.ACSPUserLogin(randomUser, unhashedPassword);
@@ -48,13 +52,21 @@ test("Verify only active companies can register as ACSPs for Limited Company, @s
   );
 });
 
-test("Verify only active companies can register as ACSPs for Limited Partnership, @smoke @limited @StopScreen", async ({
+test("Verify only active companies can register as ACSPs for Corporate Body, @smoke @limited @StopScreen", async ({
   page,
 }) => {
-  await limitedJourneyContext.limitedJourneyCommonScreens(
-    testConfig.limitedPartnership,
+  await typeOfbusinessContext.selectTypeOfBusiness(testConfig.other);
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.otherTypeOfBusiness);
+  await otherTypeOfbusinessContext.selectTypeOfBusiness(
+    testConfig.corporateBody
+  );
+  await userActionsContext.clickContinue();
+
+  await limitedJourneyContext.enterCompanyNumber(
     userInput.inactiveCompanyNumber
   );
+  await userActionsContext.clickContinue();
 
   await assertionsContext.checkPageTitle(pageTitle.limitedCompanyInactive);
   await assertionsContext.checkElementNotVisible(
