@@ -1,4 +1,4 @@
-import { test } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 import { globalSetUp } from "../../../setUp/globalSetup";
 import { typeOfBusinessPage } from "../../../pages/common/typeOfBusinessPage";
 import { testConfig } from "../../../config/testConfig";
@@ -61,7 +61,9 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   await setUp.ACSPUserLogin(randomUser, unhashedPassword);
 });
 
-test("Verify partnership can register as an ACSP, @smoke @unincorporated", async () => {
+test("Verify partnership can register as an ACSP, @smoke @unincorporated", async ({
+  page,
+}) => {
   await typeOfbusinessContext.selectTypeOfBusiness(testConfig.partnership);
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.whichNameRegisteredWithAML);
@@ -96,6 +98,9 @@ test("Verify partnership can register as an ACSP, @smoke @unincorporated", async
   await addressContext.whatIsTheaddress("same");
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceEmailAddress);
+  await expect(
+    page.locator("//*[@id='main-page-content']/form/div/fieldset/div/div[1]/label")
+  ).toContainText(randomUser);
   await correspondenceEmailAddressContext.selectCorrespondenceEmailAddress();
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);
@@ -130,7 +135,9 @@ test("Verify partnership can register as an ACSP, @smoke @unincorporated", async
   await assertionsContext.checkPageTitle(pageTitle.applicationSubmit);
 });
 
-test("Verify unincorporated entity can register as an ACSP, @smoke @unincorporated", async () => {
+test("Verify unincorporated entity can register as an ACSP, @smoke @unincorporated", async ({
+  page,
+}) => {
   await typeOfbusinessContext.selectTypeOfBusiness(testConfig.other);
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.otherTypeOfBusiness);
@@ -170,6 +177,9 @@ test("Verify unincorporated entity can register as an ACSP, @smoke @unincorporat
   await addressContext.whatIsTheaddress("same");
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceEmailAddress);
+  await expect(
+    page.locator("//*[@id='main-page-content']/form/div/fieldset/div/div[1]/label")
+  ).toContainText(randomUser);
   await correspondenceEmailAddressContext.selectCorrespondenceEmailAddress();
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);
@@ -203,7 +213,9 @@ test("Verify unincorporated entity can register as an ACSP, @smoke @unincorporat
   await assertionsContext.checkPageTitle(pageTitle.applicationSubmit);
 });
 
-test("Verify Limited Partnership can register as an ACSP, @smoke @unincorporated", async () => {
+test("Verify Limited Partnership can register as an ACSP, @smoke @unincorporated", async ({
+  page,
+}) => {
   await typeOfbusinessContext.selectTypeOfBusiness(
     testConfig.limitedPartnership,
   );
@@ -241,6 +253,9 @@ test("Verify Limited Partnership can register as an ACSP, @smoke @unincorporated
   await addressContext.whatIsTheaddress("same");
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceEmailAddress);
+  await expect(
+    page.locator("//*[@id='main-page-content']/form/div/fieldset/div/div[1]/label")
+  ).toContainText(randomUser);
   await correspondenceEmailAddressContext.selectCorrespondenceEmailAddress();
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);

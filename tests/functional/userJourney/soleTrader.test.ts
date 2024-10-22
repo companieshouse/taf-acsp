@@ -137,6 +137,9 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
   await userActionsContext.clickConfirmAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceEmailAddress);
   await assertionsContext.checkIfNameDisplayedAboveh1(userInput.firstName);
+  await expect(
+    page.locator("//*[@id='main-page-content']/form/div/fieldset/div/div[1]/label")
+  ).toContainText(randomUser);
   await correspondenceEmailAddressContext.enterDiffCorrespondenceEmailAddress(
     userInput.diffCorrespondenceEmailAddress,
   );

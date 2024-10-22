@@ -118,6 +118,9 @@ test("Verify Limited company can register as an ACSP @smoke @limited", async ({
 
   await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceEmailAddress);
+  await expect(
+    page.locator("//*[@id='main-page-content']/form/div/fieldset/div/div[1]/label")
+  ).toContainText(randomUser);
   await correspondenceEmailAddressContext.selectCorrespondenceEmailAddress();
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);
@@ -203,6 +206,9 @@ test("Verify Corporate Body can register as an ACSP @smoke @limited", async ({
 
   await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceEmailAddress);
+  await expect(
+    page.locator("//*[@id='main-page-content']/form/div/fieldset/div/div[1]/label")
+  ).toContainText(randomUser);
   await correspondenceEmailAddressContext.selectCorrespondenceEmailAddress();
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);
@@ -279,6 +285,9 @@ test("Verify Limited Liability Partnership can register as an ACSP @smoke @limit
   ).toBeVisible();
   await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceEmailAddress);
+  await expect(
+    page.locator("//*[@id='main-page-content']/form/div/fieldset/div/div[1]/label")
+  ).toContainText(randomUser);
   await correspondenceEmailAddressContext.selectCorrespondenceEmailAddress();
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);
