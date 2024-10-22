@@ -16,13 +16,13 @@ export class whichSector {
     this.page = page;
     this.otherSector = page.getByLabel("Other");
     this.auditors = page.getByLabel(
-      "Auditors, insolvency practitioners, external accountants and tax advisers"
+      "Auditors, insolvency practitioners, external accountants and tax advisers",
     );
     this.legalProfessionals = page.getByLabel(
-      "Independent legal professionals"
+      "Independent legal professionals",
     );
     this.companyServiceProviders = page.getByLabel(
-      "Trust or company service providers"
+      "Trust or company service providers",
     );
     this.creditInstitutions = page.getByLabel("Credit institutions");
     this.estateAgents = page.getByLabel("Estate agents");

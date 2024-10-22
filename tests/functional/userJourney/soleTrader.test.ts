@@ -79,25 +79,25 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
   await namePageContext.enterName(
     userInput.firstName,
     userInput.middleName,
-    userInput.lastName
+    userInput.lastName,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.dobTitle);
-  
+
   await assertionsContext.checkElementvisible(dobPageContext.dobDay);
   await dobPageContext.enterDOB(userInput.day, userInput.month, userInput.year);
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.soleTraderNationality);
   await nationalityPageContext.enterFirstNationality(
-    userInput.firstNationality
+    userInput.firstNationality,
   );
 
   await nationalityPageContext.enterSecondNationality(
-    userInput.secondNationality
+    userInput.secondNationality,
   );
 
   await nationalityPageContext.enterThirdNationality(
-    userInput.thirdNationality
+    userInput.thirdNationality,
   );
 
   await userActionsContext.clickContinue();
@@ -108,7 +108,7 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
   await assertionsContext.checkPageTitle(pageTitle.soleTraderbusinessName);
 
   await businessNamePageContext.enterDifferentBusinessNameforSoleTrader(
-    userInput.soleTraderBusinessName
+    userInput.soleTraderBusinessName,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.whichSector);
@@ -118,7 +118,7 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
   await assertionsContext.checkPageTitle(pageTitle.whichSectorOther);
   await whichSectorcontext.selectOtherSector(testConfig.casinos);
   await expect(
-    page.locator("//*[@id='main-page-content']/form/div[2]/a")
+    page.locator("//*[@id='main-page-content']/form/div[2]/a"),
   ).toBeVisible();
 
   await userActionsContext.clickSaveAndContinue();
@@ -132,31 +132,33 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.confirmAddress);
   await assertionsContext.checkIfNameDisplayedAboveh1(userInput.firstName);
-  
+
   await addressContext.confirmAddressEntered();
   await userActionsContext.clickConfirmAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceEmailAddress);
   await assertionsContext.checkIfNameDisplayedAboveh1(userInput.firstName);
-  await correspondenceEmailAddressContext.enterDiffCorrespondenceEmailAddress(userInput.diffCorrespondenceEmailAddress);
+  await correspondenceEmailAddressContext.enterDiffCorrespondenceEmailAddress(
+    userInput.diffCorrespondenceEmailAddress,
+  );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);
   await assertionsContext.checkIfNameDisplayedAboveh1(userInput.firstName);
 
   await amlScreensContext.selectAMLBodiesRegistered(
     userInput.amlBody1,
-    userInput.amlBody2
+    userInput.amlBody2,
   );
   await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlNumber);
   await amlScreensContext.enterAMLMembNumber(
     userInput.amlMembId1,
-    userInput.amlMembId2
+    userInput.amlMembId2,
   );
-  await userActionsContext.clickSaveAndContinue(); 
+  await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.checkAMLDetails);
   await assertionsContext.checkIfNameDisplayedAboveh1(userInput.firstName);
   await amlScreensContext.checkAMLDetails();
-  await userActionsContext.clickConfirmAndContinue(); 
+  await userActionsContext.clickConfirmAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.yourResponsibilities);
   await assertionsContext.checkIfNameDisplayedAboveh1(userInput.firstName);
   await userActionsContext.clickAcceptandContinue();

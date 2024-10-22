@@ -71,7 +71,7 @@ test("Verify partnership can register as an ACSP, @smoke @unincorporated", async
   await namePageContext.enterName(
     userInput.firstName,
     userInput.middleName,
-    userInput.lastName
+    userInput.lastName,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.unincorporatedBusinessName);
@@ -84,7 +84,7 @@ test("Verify partnership can register as an ACSP, @smoke @unincorporated", async
   await whichSectorcontext.selectSector(testConfig.legalProfessionals);
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(
-    pageTitle.unincorporatedBusinessAddressSearch
+    pageTitle.unincorporatedBusinessAddressSearch,
   );
   await addressContext.addressLookUp(userInput.postcode);
   await addressContext.selectAddressFromList();
@@ -101,13 +101,13 @@ test("Verify partnership can register as an ACSP, @smoke @unincorporated", async
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);
   await amlScreensContext.selectAMLBodiesRegistered(
     userInput.amlBody1,
-    userInput.amlBody2
+    userInput.amlBody2,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlNumber);
   await amlScreensContext.enterAMLMembNumber(
     userInput.amlMembId1,
-    userInput.amlMembId2
+    userInput.amlMembId2,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.checkAMLDetails);
@@ -135,7 +135,7 @@ test("Verify unincorporated entity can register as an ACSP, @smoke @unincorporat
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.otherTypeOfBusiness);
   await otherTypeOfbusinessContext.selectTypeOfBusiness(
-    testConfig.unincorporatedEntity
+    testConfig.unincorporatedEntity,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.whichNameRegisteredWithAML);
@@ -145,7 +145,7 @@ test("Verify unincorporated entity can register as an ACSP, @smoke @unincorporat
   await namePageContext.enterName(
     userInput.firstName,
     userInput.middleName,
-    userInput.lastName
+    userInput.lastName,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.unincorporatedBusinessName);
@@ -158,7 +158,7 @@ test("Verify unincorporated entity can register as an ACSP, @smoke @unincorporat
   await whichSectorcontext.selectSector(testConfig.legalProfessionals);
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(
-    pageTitle.unincorporatedBusinessAddressSearch
+    pageTitle.unincorporatedBusinessAddressSearch,
   );
   await addressContext.addressLookUp(userInput.postcode);
   await addressContext.selectAddressFromList();
@@ -175,13 +175,13 @@ test("Verify unincorporated entity can register as an ACSP, @smoke @unincorporat
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);
   await amlScreensContext.selectAMLBodiesRegistered(
     userInput.amlBody1,
-    userInput.amlBody2
+    userInput.amlBody2,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlNumber);
   await amlScreensContext.enterAMLMembNumber(
     userInput.amlMembId1,
-    userInput.amlMembId2
+    userInput.amlMembId2,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.checkAMLDetails);
@@ -205,7 +205,7 @@ test("Verify unincorporated entity can register as an ACSP, @smoke @unincorporat
 
 test("Verify Limited Partnership can register as an ACSP, @smoke @unincorporated", async () => {
   await typeOfbusinessContext.selectTypeOfBusiness(
-    testConfig.limitedPartnership
+    testConfig.limitedPartnership,
   );
   await userActionsContext.clickContinue();
 
@@ -216,7 +216,7 @@ test("Verify Limited Partnership can register as an ACSP, @smoke @unincorporated
   await namePageContext.enterName(
     userInput.firstName,
     userInput.middleName,
-    userInput.lastName
+    userInput.lastName,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.unincorporatedBusinessName);
@@ -229,7 +229,7 @@ test("Verify Limited Partnership can register as an ACSP, @smoke @unincorporated
   await whichSectorcontext.selectSector(testConfig.legalProfessionals);
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(
-    pageTitle.unincorporatedBusinessAddressSearch
+    pageTitle.unincorporatedBusinessAddressSearch,
   );
   await addressContext.addressLookUp(userInput.postcode);
   await addressContext.selectAddressFromList();
@@ -246,13 +246,13 @@ test("Verify Limited Partnership can register as an ACSP, @smoke @unincorporated
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);
   await amlScreensContext.selectAMLBodiesRegistered(
     userInput.amlBody1,
-    userInput.amlBody2
+    userInput.amlBody2,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlNumber);
   await amlScreensContext.enterAMLMembNumber(
     userInput.amlMembId1,
-    userInput.amlMembId2
+    userInput.amlMembId2,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.checkAMLDetails);

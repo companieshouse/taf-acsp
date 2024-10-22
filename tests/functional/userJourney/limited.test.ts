@@ -64,16 +64,16 @@ test("Verify error shown when company id not found for Limited journey @smoke @l
   await userActionsContext.clickContinue();
 
   await limitedJourneyContext.enterCompanyNumber(
-    userInput.invalidCompanyNumber
+    userInput.invalidCompanyNumber,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkErrorHeadingPresent();
 
   await assertionsContext.checkElementvisible(
-    page.getByRole("link", { name: "Enter a valid company number" })
+    page.getByRole("link", { name: "Enter a valid company number" }),
   );
   await assertionsContext.checkElementvisible(
-    page.getByText("Error: Enter a valid company")
+    page.getByText("Error: Enter a valid company"),
   );
 });
 
@@ -84,7 +84,7 @@ test("Verify Limited company can register as an ACSP @smoke @limited", async ({
 
   await limitedJourneyContext.limitedJourneyCommonScreens(
     testConfig.limitedCompany,
-    userInput.companyNumber
+    userInput.companyNumber,
   );
   await limitedJourneyContext.enterCompanyAuthNumber(userInput.companyAuthCode);
   await userActionsContext.clickAuthenticate();
@@ -113,7 +113,7 @@ test("Verify Limited company can register as an ACSP @smoke @limited", async ({
   await assertionsContext.checkPageTitle(pageTitle.whichSectorOther);
   await whichSectorcontext.selectOtherSector(testConfig.casinos);
   await expect(
-    page.locator("//*[@id='main-page-content']/form/div[2]/a")
+    page.locator("//*[@id='main-page-content']/form/div[2]/a"),
   ).toBeVisible();
 
   await userActionsContext.clickSaveAndContinue();
@@ -124,13 +124,13 @@ test("Verify Limited company can register as an ACSP @smoke @limited", async ({
 
   await amlScreensContext.selectAMLBodiesRegistered(
     userInput.amlBody1,
-    userInput.amlBody2
+    userInput.amlBody2,
   );
   await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlNumber);
   await amlScreensContext.enterAMLMembNumber(
     userInput.amlMembId1,
-    userInput.amlMembId2
+    userInput.amlMembId2,
   );
   await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.checkAMLDetails);
@@ -161,7 +161,7 @@ test("Verify Corporate Body can register as an ACSP @smoke @limited", async ({
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.otherTypeOfBusiness);
   await otherTypeOfbusinessContext.selectTypeOfBusiness(
-    testConfig.corporateBody
+    testConfig.corporateBody,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.limitedCompanyNumber);
@@ -175,7 +175,7 @@ test("Verify Corporate Body can register as an ACSP @smoke @limited", async ({
   await userActionsContext.clickContinue();
 
   await amlNameRegisteredPageContext.selectAMLName(
-    testConfig.nameOfBusinessRadio
+    testConfig.nameOfBusinessRadio,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceAddress);
@@ -198,7 +198,7 @@ test("Verify Corporate Body can register as an ACSP @smoke @limited", async ({
   await assertionsContext.checkPageTitle(pageTitle.whichSectorOther);
   await whichSectorcontext.selectOtherSector(testConfig.casinos);
   await expect(
-    page.locator("//*[@id='main-page-content']/form/div[2]/a")
+    page.locator("//*[@id='main-page-content']/form/div[2]/a"),
   ).toBeVisible();
 
   await userActionsContext.clickSaveAndContinue();
@@ -209,13 +209,13 @@ test("Verify Corporate Body can register as an ACSP @smoke @limited", async ({
 
   await amlScreensContext.selectAMLBodiesRegistered(
     userInput.amlBody1,
-    userInput.amlBody2
+    userInput.amlBody2,
   );
   await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlNumber);
   await amlScreensContext.enterAMLMembNumber(
     userInput.amlMembId1,
-    userInput.amlMembId2
+    userInput.amlMembId2,
   );
   await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.checkAMLDetails);
@@ -244,7 +244,7 @@ test("Verify Limited Liability Partnership can register as an ACSP @smoke @limit
 }) => {
   await limitedJourneyContext.limitedJourneyCommonScreens(
     testConfig.limitedLiabilityPartnership,
-    userInput.companyNumber
+    userInput.companyNumber,
   );
   await limitedJourneyContext.enterCompanyAuthNumber(userInput.companyAuthCode);
   await userActionsContext.clickAuthenticate();
@@ -252,7 +252,7 @@ test("Verify Limited Liability Partnership can register as an ACSP @smoke @limit
   await userActionsContext.clickContinue();
 
   await amlNameRegisteredPageContext.selectAMLName(
-    testConfig.nameOfBusinessRadio
+    testConfig.nameOfBusinessRadio,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceAddress);
@@ -275,7 +275,7 @@ test("Verify Limited Liability Partnership can register as an ACSP @smoke @limit
   await assertionsContext.checkPageTitle(pageTitle.whichSectorOther);
   await whichSectorcontext.selectOtherSector(testConfig.casinos);
   await expect(
-    page.locator("//*[@id='main-page-content']/form/div[2]/a")
+    page.locator("//*[@id='main-page-content']/form/div[2]/a"),
   ).toBeVisible();
   await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceEmailAddress);
@@ -285,13 +285,13 @@ test("Verify Limited Liability Partnership can register as an ACSP @smoke @limit
 
   await amlScreensContext.selectAMLBodiesRegistered(
     userInput.amlBody1,
-    userInput.amlBody2
+    userInput.amlBody2,
   );
   await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlNumber);
   await amlScreensContext.enterAMLMembNumber(
     userInput.amlMembId1,
-    userInput.amlMembId2
+    userInput.amlMembId2,
   );
   await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.checkAMLDetails);

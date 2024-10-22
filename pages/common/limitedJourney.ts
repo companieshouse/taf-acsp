@@ -34,7 +34,7 @@ export class limitedJourney {
     const userActionsContext = new userActions(this.page);
     userActionsContext.enterUserInput(
       this.companyAuthNumber,
-      companyAuthNumber
+      companyAuthNumber,
     );
   }
 

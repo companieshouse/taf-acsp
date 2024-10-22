@@ -43,7 +43,7 @@ test("Verify only business' AML registered with the business name can register a
 }) => {
   await limitedJourneyContext.limitedJourneyCommonScreens(
     testConfig.limitedCompany,
-    userInput.companyNumber
+    userInput.companyNumber,
   );
 
   await limitedJourneyContext.enterCompanyAuthNumber(userInput.companyAuthCode);
@@ -54,12 +54,12 @@ test("Verify only business' AML registered with the business name can register a
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.businessMustBeAMLRegistered);
   await assertionsContext.checkElementNotVisible(
-    page.getByRole("link", { name: "Back", exact: true })
+    page.getByRole("link", { name: "Back", exact: true }),
   );
   await assertionsContext.checkElementNotVisible(
     page.getByRole("button", {
       name: "continue",
-    })
+    }),
   );
   await page.getByRole("link", { name: "apply as a sole trader." }).click();
   await expect(page.getByLabel(testConfig.soleTrader)).toBeChecked();
@@ -75,7 +75,7 @@ test("Verify only business' AML registered with the business name can register a
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.otherTypeOfBusiness);
   await otherTypeOfbusinessContext.selectTypeOfBusiness(
-    testConfig.corporateBody
+    testConfig.corporateBody,
   );
   await userActionsContext.clickContinue();
 
@@ -89,12 +89,12 @@ test("Verify only business' AML registered with the business name can register a
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.businessMustBeAMLRegistered);
   await assertionsContext.checkElementNotVisible(
-    page.getByRole("link", { name: "Back", exact: true })
+    page.getByRole("link", { name: "Back", exact: true }),
   );
   await assertionsContext.checkElementNotVisible(
     page.getByRole("button", {
       name: "continue",
-    })
+    }),
   );
   await page.getByRole("link", { name: "apply as a sole trader." }).click();
   await expect(page.getByLabel(testConfig.soleTrader)).toBeChecked();
@@ -108,7 +108,7 @@ test("Verify only business' AML registered with the business name can register a
 }) => {
   await limitedJourneyContext.limitedJourneyCommonScreens(
     testConfig.limitedLiabilityPartnership,
-    userInput.companyNumber
+    userInput.companyNumber,
   );
 
   await limitedJourneyContext.enterCompanyAuthNumber(userInput.companyAuthCode);
@@ -119,12 +119,12 @@ test("Verify only business' AML registered with the business name can register a
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.businessMustBeAMLRegistered);
   await assertionsContext.checkElementNotVisible(
-    page.getByRole("link", { name: "Back", exact: true })
+    page.getByRole("link", { name: "Back", exact: true }),
   );
   await assertionsContext.checkElementNotVisible(
     page.getByRole("button", {
       name: "continue",
-    })
+    }),
   );
   await page.getByRole("link", { name: "apply as a sole trader." }).click();
   await expect(page.getByLabel(testConfig.soleTrader)).toBeChecked();

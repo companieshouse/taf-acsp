@@ -10,14 +10,16 @@ export class whereDoYouLivePage {
   readonly northernIreland: Locator;
   readonly countryOrTerritoryOutsideOfTheUK: Locator;
   readonly countryOrTerritoryOutsideOfTheUKInput: Locator;
-  
+
   constructor(page: Page) {
     this.page = page;
     this.england = page.getByLabel("England");
     this.scotland = page.getByLabel("Scotland");
     this.wales = page.getByLabel("Wales");
     this.northernIreland = page.getByLabel("Northern Ireland");
-    this.countryOrTerritoryOutsideOfTheUK = page.getByLabel("Country or territory outside of the UK");
+    this.countryOrTerritoryOutsideOfTheUK = page.getByLabel(
+      "Country or territory outside of the UK",
+    );
     this.countryOrTerritoryOutsideOfTheUKInput = page.locator("#countryInput");
   }
 
@@ -42,11 +44,13 @@ export class whereDoYouLivePage {
     }
   }
 
-  async selectCountryOrTerritoryOutsideOfTheUK(country:string){
+  async selectCountryOrTerritoryOutsideOfTheUK(country: string) {
     const userActionsContext = new userActions(this.page);
     await expect(this.countryOrTerritoryOutsideOfTheUK).toBeVisible();
     await this.countryOrTerritoryOutsideOfTheUK.check();
-    await userActionsContext.selectValue(this.countryOrTerritoryOutsideOfTheUKInput, country);
+    await userActionsContext.selectValue(
+      this.countryOrTerritoryOutsideOfTheUKInput,
+      country,
+    );
   }
-
 }

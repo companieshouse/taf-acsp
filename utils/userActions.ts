@@ -12,8 +12,8 @@ export class userActions {
 
   constructor(page: Page) {
     this.page = page;
-    this.continueButton = page.getByRole("button", { 
-      name: " Continue " 
+    this.continueButton = page.getByRole("button", {
+      name: " Continue ",
     });
     this.saveAndContinueButton = page.getByRole("button", {
       name: "Save and continue",

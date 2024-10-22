@@ -31,7 +31,7 @@ export const pageTitle = {
     "What is the name of the business? - Apply to register as a Companies House authorised agent - GOV.UK",
   whichSectorOther:
     "Which other sector do you work in? - Apply to register as a Companies House authorised agent - GOV.UK",
-    
+
   confirmAddress:
     "Confirm the correspondence address - Apply to register as a Companies House authorised agent - GOV.UK",
   confirmBusinessAddress:
@@ -64,5 +64,5 @@ export const pageTitle = {
   chooseAddress:
     "Choose an address - Apply to register as a Companies House authorised agent - GOV.UK",
   otherTypeOfBusiness:
-    "What other type of business are you registering? - Apply to register as a Companies House authorised agent - GOV.UK"
+    "What other type of business are you registering? - Apply to register as a Companies House authorised agent - GOV.UK",
 };
