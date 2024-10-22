@@ -15,6 +15,11 @@ export const testConfig = {
   generalPartner: "General Partner",
   member: "Member",
   memberGoverningBody: "Member of governing body",
+  england: "England",
+  scotland: "Scotland",
+  wales: "Wales",
+  northernIreland: "Northern Ireland",
+  countryOrTerritoryOutsideOfTheUK: "Country or territory outside of the UK",
   auditors:
     "Auditors, insolvency practitioners, external accountants and tax advisers",
   legalProfessionals: "Independent legal professionals",

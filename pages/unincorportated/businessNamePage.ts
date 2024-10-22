@@ -11,9 +11,8 @@ export class BusinessNamePage {
   constructor(page: Page) {
     this.page = page;
     this.businessName = page.locator("#whatIsTheBusinessName");
-    this.soleTraderDiffBusinessName =page.locator("#whatsTheBusinessNameRadio-2");
-    this.soleTraderBusinessName=page.getByLabel('Enter the business name')
-
+    this.soleTraderDiffBusinessName =page.locator("#a-different-name-radio");
+    this.soleTraderBusinessName=page.getByLabel('Enter the business name');
   }
 
   async enterBusinessName(businessName:string){

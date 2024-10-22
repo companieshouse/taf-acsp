@@ -3,6 +3,7 @@ import { Locator, Page, expect } from "@playwright/test";
 export class userActions {
   readonly page: Page;
   readonly continueButton: Locator;
+  readonly saveAndContinueButton: Locator;
   readonly confirmAndContinueButton: Locator;
   readonly authenticateButton: Locator;
   readonly acceptAndContinue: Locator;
@@ -11,7 +12,12 @@ export class userActions {
 
   constructor(page: Page) {
     this.page = page;
-    this.continueButton = page.getByRole("button", { name: " Continue " });
+    this.continueButton = page.getByRole("button", { 
+      name: " Continue " 
+    });
+    this.saveAndContinueButton = page.getByRole("button", {
+      name: "Save and continue",
+    });
     this.confirmAndContinueButton = page.getByRole("button", {
       name: "Confirm and continue",
     });
@@ -32,6 +38,11 @@ export class userActions {
   async clickContinue() {
     await this.continueButton.scrollIntoViewIfNeeded();
     await this.continueButton.click({ force: true });
+  }
+
+  async clickSaveAndContinue() {
+    await this.saveAndContinueButton.scrollIntoViewIfNeeded();
+    await this.saveAndContinueButton.click({ force: true });
   }
 
   async clickConfirmAndContinue() {

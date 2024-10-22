@@ -31,17 +31,19 @@ export const pageTitle = {
     "What is the name of the business? - Apply to register as a Companies House authorised agent - GOV.UK",
   whichSectorOther:
     "Which other sector do you work in? - Apply to register as a Companies House authorised agent - GOV.UK",
-
+    
   confirmAddress:
     "Confirm the correspondence address - Apply to register as a Companies House authorised agent - GOV.UK",
   confirmBusinessAddress:
     "Confirm the business address - Apply to register as a Companies House authorised agent - GOV.UK",
+  correspondenceEmailAddress:
+    "Correspondence email address - Apply to register as a Companies House authorised agent - GOV.UK",
   amlBodies:
     "Which Anti-Money Laundering (AML) supervisory bodies are you registered with? - Apply to register as a Companies House authorised agent - GOV.UK",
   checkAMLDetails:
-    "Check the AML details - Apply to register as a Companies House authorised agent - GOV.UK",
+    "Check the Anti-Money Laundering (AML) details - Apply to register as a Companies House authorised agent - GOV.UK",
   yourResponsibilities:
-    "Your responsibilities as an authorised agent - Apply to register as a Companies House authorised agent - GOV.UK",
+    "Authorised agent legal responsibilities - Apply to register as a Companies House authorised agent - GOV.UK",
   checkYourAnswers:
     "Check your answers before sending your application - Apply to register as a Companies House authorised agent - GOV.UK",
   amlNumber:

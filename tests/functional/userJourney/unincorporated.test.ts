@@ -18,6 +18,7 @@ import { payment } from "../../../pages/common/payment";
 import { OtherTypeOfBusinessPage } from "../../../pages/common/otherTypeOfBusinessPage";
 import { globalTearDown } from "../../../setUp/globalTearDown";
 import { getEnvVar } from "taf-playwright-common/dist/src/utils/env/environment-var.js";
+import { correspondenceEmailAddress } from "../../../pages/common/correspondenceEmailAddress";
 //import { Env } from "../../../setUp/env";
 
 let typeOfbusinessContext;
@@ -34,6 +35,7 @@ let amlScreensContext;
 let checkAnswersContext;
 let paymentContext;
 let randomUser;
+let correspondenceEmailAddressContext;
 
 test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   typeOfbusinessContext = new typeOfBusinessPage(page);
@@ -49,6 +51,7 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   amlScreensContext = new amlScreens(page);
   checkAnswersContext = new checkAnswers(page);
   paymentContext = new payment(page);
+  correspondenceEmailAddressContext = new correspondenceEmailAddress(page);
 
   const setUp = new globalSetUp(page);
 
@@ -91,6 +94,9 @@ test("Verify partnership can register as an ACSP, @smoke @unincorporated", async
   await userActionsContext.clickConfirmAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceAddress);
   await addressContext.whatIsTheaddress("same");
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.correspondenceEmailAddress);
+  await correspondenceEmailAddressContext.selectCorrespondenceEmailAddress();
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);
   await amlScreensContext.selectAMLBodiesRegistered(
@@ -163,6 +169,9 @@ test("Verify unincorporated entity can register as an ACSP, @smoke @unincorporat
   await assertionsContext.checkPageTitle(pageTitle.correspondenceAddress);
   await addressContext.whatIsTheaddress("same");
   await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.correspondenceEmailAddress);
+  await correspondenceEmailAddressContext.selectCorrespondenceEmailAddress();
+  await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);
   await amlScreensContext.selectAMLBodiesRegistered(
     userInput.amlBody1,
@@ -214,7 +223,7 @@ test("Verify Limited Partnership can register as an ACSP, @smoke @unincorporated
   await businessNamePageContext.enterBusinessName(userInput.businessName);
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.unincorporatedRole);
-  await selectRoleContext.selectRole(testConfig.memberGoverningBody);
+  await selectRoleContext.selectRole(testConfig.generalPartner);
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.whichSector);
   await whichSectorcontext.selectSector(testConfig.legalProfessionals);
@@ -230,6 +239,9 @@ test("Verify Limited Partnership can register as an ACSP, @smoke @unincorporated
   await userActionsContext.clickConfirmAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceAddress);
   await addressContext.whatIsTheaddress("same");
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.correspondenceEmailAddress);
+  await correspondenceEmailAddressContext.selectCorrespondenceEmailAddress();
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);
   await amlScreensContext.selectAMLBodiesRegistered(
