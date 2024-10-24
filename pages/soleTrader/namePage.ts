@@ -16,7 +16,7 @@ export class namePage {
     this.lastName = page.locator("#last-name");
   }
 
-  async enterName(firstName:string,middleName:string,lastName:string){
+  async enterName(firstName: string, middleName: string, lastName: string) {
     const userActionsContext = new userActions(this.page);
     await userActionsContext.enterUserInput(this.firstName, firstName);
     await userActionsContext.enterUserInput(this.middleName, middleName);
@@ -24,7 +24,5 @@ export class namePage {
     await userActionsContext.enterUserInput(this.lastName, lastName);
     await expect(this.firstName).toHaveValue(userInput.firstName);
     await expect(this.lastName).toHaveValue(userInput.lastName);
-
   }
-  
 }

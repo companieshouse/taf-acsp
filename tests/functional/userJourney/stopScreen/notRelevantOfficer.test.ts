@@ -44,7 +44,7 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
 test("Verify only directors of limted companies can register as ACSPs, @smoke @limited @StopScreen", async () => {
   await limitedJourneyContext.limitedJourneyCommonScreens(
     testConfig.limitedCompany,
-    userInput.companyNumber
+    userInput.companyNumber,
   );
   await limitedJourneyContext.enterCompanyAuthNumber(userInput.companyAuthCode);
   await userActionsContext.clickAuthenticate();
@@ -55,10 +55,10 @@ test("Verify only directors of limted companies can register as ACSPs, @smoke @l
     notRelevantOfficerContext.page.getByRole("link", {
       name: "Back",
       exact: true,
-    })
+    }),
   );
   await assertionsContext.checkElementNotVisible(
-    notRelevantOfficerContext.page.getByRole("button", { name: "continue" })
+    notRelevantOfficerContext.page.getByRole("button", { name: "continue" }),
   );
 });
 test("Verify only the sole trader can register as ACSP, @smoke @soleTrader @StopScreen", async () => {
@@ -71,17 +71,17 @@ test("Verify only the sole trader can register as ACSP, @smoke @soleTrader @Stop
     notRelevantOfficerContext.page.getByRole("link", {
       name: "Back",
       exact: true,
-    })
+    }),
   );
   await assertionsContext.checkElementNotVisible(
-    notRelevantOfficerContext.page.getByRole("button", { name: "continue" })
+    notRelevantOfficerContext.page.getByRole("button", { name: "continue" }),
   );
 });
 test("Verify only a member of the partnership can register as ACSP for Unincorporated journey, @smoke @unincorporated @StopScreen", async () => {
   await typeOfbusinessContext.selectTypeOfBusiness(testConfig.partnership);
   await userActionsContext.clickContinue();
   await amlNameRegisteredPageContext.selectAMLName(
-    testConfig.nameOfBusinessRadio
+    testConfig.nameOfBusinessRadio,
   );
   await userActionsContext.clickContinue();
   await businessNamePageContext.enterBusinessName(userInput.businessName);
@@ -93,10 +93,10 @@ test("Verify only a member of the partnership can register as ACSP for Unincorpo
     notRelevantOfficerContext.page.getByRole("link", {
       name: "Back",
       exact: true,
-    })
+    }),
   );
   await assertionsContext.checkElementNotVisible(
-    notRelevantOfficerContext.page.getByRole("button", { name: "continue" })
+    notRelevantOfficerContext.page.getByRole("button", { name: "continue" }),
   );
 });
 

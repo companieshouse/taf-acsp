@@ -21,7 +21,7 @@ test.beforeEach(
     await setUp.ACSPUserLogin(randomUser, unhashedPassword);
 
     await typeOfbusinessContext.selectTypeOfBusiness(testConfig.partnership);
-  }
+  },
 );
 test("Accessibility check for unincorporated name registered with AML screen @accessibility", async ({
   page,
@@ -30,7 +30,7 @@ test("Accessibility check for unincorporated name registered with AML screen @ac
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.unincorporated.nameRegisteredWithAML,
-    testInfo
+    testInfo,
   );
 });
 test("Accessibility check for unincorporated what is your name screen @accessibility", async ({
@@ -40,7 +40,7 @@ test("Accessibility check for unincorporated what is your name screen @accessibi
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.unincorporated.name,
-    testInfo
+    testInfo,
   );
 });
 test("Accessibility check for unincorporated what the business name screen @accessibility", async ({
@@ -50,7 +50,7 @@ test("Accessibility check for unincorporated what the business name screen @acce
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.unincorporated.businessName,
-    testInfo
+    testInfo,
   );
 });
 test("Accessibility check for unincorporated what is your role screen @accessibility", async ({
@@ -60,7 +60,7 @@ test("Accessibility check for unincorporated what is your role screen @accessibi
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.unincorporated.role,
-    testInfo
+    testInfo,
   );
 });
 test("Accessibility check for unincorporated which sector screen @accessibility", async ({
@@ -70,7 +70,7 @@ test("Accessibility check for unincorporated which sector screen @accessibility"
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.unincorporated.whichSector,
-    testInfo
+    testInfo,
   );
 });
 test("Accessibility check for unincorporated which sector other screen @accessibility", async ({
@@ -80,7 +80,7 @@ test("Accessibility check for unincorporated which sector other screen @accessib
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.unincorporated.whichSectorOther,
-    testInfo
+    testInfo,
   );
 });
 test("Accessibility check for unincorporated business address lookup screen @accessibility", async ({
@@ -90,7 +90,7 @@ test("Accessibility check for unincorporated business address lookup screen @acc
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.unincorporated.businessAddressLookup,
-    testInfo
+    testInfo,
   );
 });
 test("Accessibility check for unincorporated business address list screen @accessibility", async ({
@@ -100,7 +100,7 @@ test("Accessibility check for unincorporated business address list screen @acces
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.unincorporated.businessAddressList,
-    testInfo
+    testInfo,
   );
 });
 test("Accessibility check for unincorporated business address manual entry screen @accessibility", async ({
@@ -110,7 +110,7 @@ test("Accessibility check for unincorporated business address manual entry scree
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.unincorporated.businessAddressManual,
-    testInfo
+    testInfo,
   );
 });
 test("Accessibility check for unincorporated business address confirm entry screen @accessibility", async ({
@@ -120,7 +120,7 @@ test("Accessibility check for unincorporated business address confirm entry scre
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.unincorporated.businessAddressConfirm,
-    testInfo
+    testInfo,
   );
 });
 test("Accessibility check for unincorporated what is the correspondence address screen @accessibility", async ({
@@ -130,7 +130,7 @@ test("Accessibility check for unincorporated what is the correspondence address 
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.unincorporated.whatIsTheCorrespondenceAddress,
-    testInfo
+    testInfo,
   );
 });
 test("Accessibility check for unincorporated correspondence address lookup screen @accessibility", async ({
@@ -140,7 +140,7 @@ test("Accessibility check for unincorporated correspondence address lookup scree
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.unincorporated.correspondenceAddressLookup,
-    testInfo
+    testInfo,
   );
 });
 test("Accessibility check for unincorporated correspondence address list screen @accessibility", async ({
@@ -150,7 +150,7 @@ test("Accessibility check for unincorporated correspondence address list screen 
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.unincorporated.correspondenceAddressList,
-    testInfo
+    testInfo,
   );
 });
 test("Accessibility check for unincorporated correspondence address manual entry screen @accessibility", async ({
@@ -160,7 +160,7 @@ test("Accessibility check for unincorporated correspondence address manual entry
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.unincorporated.correspondenceAddressManual,
-    testInfo
+    testInfo,
   );
 });
 test("Accessibility check for unincorporated correspondence address confirm entry screen @accessibility", async ({
@@ -170,7 +170,7 @@ test("Accessibility check for unincorporated correspondence address confirm entr
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.unincorporated.correspondenceAddressConfirm,
-    testInfo
+    testInfo,
   );
 });
 

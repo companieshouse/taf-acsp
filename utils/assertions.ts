@@ -21,13 +21,13 @@ export class Assertions {
 
   async checkErrorHeadingPresent() {
     await this.checkElementvisible(
-      this.page.getByRole("heading", { name: "There is a problem" })
+      this.page.getByRole("heading", { name: "There is a problem" }),
     );
   }
 
   async checkIfNameDisplayedAboveh1(name: string) {
     await expect(
-      this.page.locator("//*[@id='main-page-content']/form/span")
+      this.page.locator("//*[@id='main-page-content']/form/span"),
     ).toContainText(name);
   }
 }

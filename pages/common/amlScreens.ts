@@ -27,16 +27,16 @@ export class amlScreens {
   async checkAMLDetails() {
     await expect(
       this.page.locator(
-        '//*[@id="main-page-content"]/form/table/tbody/tr[1]/td[1]'
-      )
+        '//*[@id="main-page-content"]/form/table/tbody/tr[1]/td[1]',
+      ),
     ).toContainText(userInput.amlMembId1);
     await expect(
       this.page.locator(
-        '//*[@id="main-page-content"]/form/table/tbody/tr[2]/td[1]'
-      )
+        '//*[@id="main-page-content"]/form/table/tbody/tr[2]/td[1]',
+      ),
     ).toContainText(userInput.amlMembId2);
     await expect(this.page.getByRole("link", { name: "Change" })).toHaveCount(
-      2
+      2,
     );
   }
 }

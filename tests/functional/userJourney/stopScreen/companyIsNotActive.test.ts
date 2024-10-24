@@ -39,16 +39,16 @@ test("Verify only active companies can register as ACSPs for Limited Company, @s
 }) => {
   await limitedJourneyContext.limitedJourneyCommonScreens(
     testConfig.limitedCompany,
-    userInput.inactiveCompanyNumber
+    userInput.inactiveCompanyNumber,
   );
 
   await assertionsContext.checkPageTitle(pageTitle.limitedCompanyInactive);
   await assertionsContext.checkElementNotVisible(
-    page.getByRole("link", { name: "Back", exact: true })
+    page.getByRole("link", { name: "Back", exact: true }),
   );
 
   await assertionsContext.checkElementNotVisible(
-    page.getByRole("button", { name: "continue" })
+    page.getByRole("button", { name: "continue" }),
   );
 });
 
@@ -59,22 +59,22 @@ test("Verify only active companies can register as ACSPs for Corporate Body, @sm
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.otherTypeOfBusiness);
   await otherTypeOfbusinessContext.selectTypeOfBusiness(
-    testConfig.corporateBody
+    testConfig.corporateBody,
   );
   await userActionsContext.clickContinue();
 
   await limitedJourneyContext.enterCompanyNumber(
-    userInput.inactiveCompanyNumber
+    userInput.inactiveCompanyNumber,
   );
   await userActionsContext.clickContinue();
 
   await assertionsContext.checkPageTitle(pageTitle.limitedCompanyInactive);
   await assertionsContext.checkElementNotVisible(
-    page.getByRole("link", { name: "Back", exact: true })
+    page.getByRole("link", { name: "Back", exact: true }),
   );
 
   await assertionsContext.checkElementNotVisible(
-    page.getByRole("button", { name: "continue" })
+    page.getByRole("button", { name: "continue" }),
   );
 });
 
@@ -83,16 +83,16 @@ test("Verify only active companies can register as ACSPs for Limited liability p
 }) => {
   await limitedJourneyContext.limitedJourneyCommonScreens(
     testConfig.limitedLiabilityPartnership,
-    userInput.inactiveCompanyNumber
+    userInput.inactiveCompanyNumber,
   );
 
   await assertionsContext.checkPageTitle(pageTitle.limitedCompanyInactive);
   await assertionsContext.checkElementNotVisible(
-    page.getByRole("link", { name: "Back", exact: true })
+    page.getByRole("link", { name: "Back", exact: true }),
   );
 
   await assertionsContext.checkElementNotVisible(
-    page.getByRole("button", { name: "continue" })
+    page.getByRole("button", { name: "continue" }),
   );
 });
 

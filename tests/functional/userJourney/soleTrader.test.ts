@@ -12,6 +12,7 @@ import { typeOfBusinessPage } from "../../../pages/common/typeOfBusinessPage";
 import { whatIsYourRolePage } from "../../../pages/common/whatIsYourRolePage";
 import { Assertions } from "../../../utils/assertions";
 import { nationalityPage } from "../../../pages/soleTrader/nationalityPage";
+import { whereDoYouLivePage } from "../../../pages/soleTrader/whereDoYouLivePage";
 import { BusinessNamePage } from "../../../pages/unincorportated/businessNamePage";
 import { whichSector } from "../../../pages/common/whichSector";
 import { address } from "../../../pages/common/address";
@@ -20,6 +21,7 @@ import { checkAnswers } from "../../../pages/common/checkAnswers";
 import { payment } from "../../../pages/common/payment";
 import { globalTearDown } from "../../../setUp/globalTearDown";
 import { getEnvVar } from "taf-playwright-common/dist/src/utils/env/environment-var.js";
+import { correspondenceEmailAddress } from "../../../pages/common/correspondenceEmailAddress";
 
 let namePageContext;
 let userActionsContext;
@@ -28,9 +30,11 @@ let typeOfbusinessContext;
 let selectRoleContext;
 let assertionsContext;
 let nationalityPageContext;
+let whereDoYouLivePageContext;
 let businessNamePageContext;
 let whichSectorcontext;
 let addressContext;
+let correspondenceEmailAddressContext;
 let amlScreensContext;
 let checkAnswersContext;
 let paymentContext;
@@ -44,9 +48,11 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   selectRoleContext = new whatIsYourRolePage(page);
   assertionsContext = new Assertions(page);
   nationalityPageContext = new nationalityPage(page);
+  whereDoYouLivePageContext = new whereDoYouLivePage(page);
   businessNamePageContext = new BusinessNamePage(page);
   whichSectorcontext = new whichSector(page);
   addressContext = new address(page);
+  correspondenceEmailAddressContext = new correspondenceEmailAddress(page);
   amlScreensContext = new amlScreens(page);
   checkAnswersContext = new checkAnswers(page);
   paymentContext = new payment(page);
@@ -73,7 +79,7 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
   await namePageContext.enterName(
     userInput.firstName,
     userInput.middleName,
-    userInput.lastName
+    userInput.lastName,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.dobTitle);
@@ -83,26 +89,26 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.soleTraderNationality);
   await nationalityPageContext.enterFirstNationality(
-    userInput.firstNationality
+    userInput.firstNationality,
   );
 
   await nationalityPageContext.enterSecondNationality(
-    userInput.secondNationality
+    userInput.secondNationality,
   );
 
   await nationalityPageContext.enterThirdNationality(
-    userInput.thirdNationality
+    userInput.thirdNationality,
   );
 
   await userActionsContext.clickContinue();
 
   await assertionsContext.checkPageTitle(pageTitle.soleTraderWhereDoYouLive);
-  await nationalityPageContext.whereDoYouLive(userInput.country);
+  await whereDoYouLivePageContext.selectWhereDoyouLive(testConfig.england);
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.soleTraderbusinessName);
 
   await businessNamePageContext.enterDifferentBusinessNameforSoleTrader(
-    userInput.soleTraderBusinessName
+    userInput.soleTraderBusinessName,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.whichSector);
@@ -112,10 +118,10 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
   await assertionsContext.checkPageTitle(pageTitle.whichSectorOther);
   await whichSectorcontext.selectOtherSector(testConfig.casinos);
   await expect(
-    page.locator("//*[@id='main-page-content']/form/div[2]/a")
+    page.locator("//*[@id='main-page-content']/form/div[2]/a"),
   ).toBeVisible();
 
-  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceAddress);
   await assertionsContext.checkIfNameDisplayedAboveh1(userInput.firstName);
 
@@ -129,20 +135,29 @@ test("Verify Sole Trader can register as an ACSP, @smoke @soleTrader", async ({
 
   await addressContext.confirmAddressEntered();
   await userActionsContext.clickConfirmAndContinue();
+  await assertionsContext.checkPageTitle(pageTitle.correspondenceEmailAddress);
+  await assertionsContext.checkIfNameDisplayedAboveh1(userInput.firstName);
+  await expect(
+    page.locator("//*[@id='main-page-content']/form/div/fieldset/div/div[1]/label")
+  ).toContainText(randomUser);
+  await correspondenceEmailAddressContext.enterDiffCorrespondenceEmailAddress(
+    userInput.diffCorrespondenceEmailAddress,
+  );
+  await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);
   await assertionsContext.checkIfNameDisplayedAboveh1(userInput.firstName);
 
   await amlScreensContext.selectAMLBodiesRegistered(
     userInput.amlBody1,
-    userInput.amlBody2
+    userInput.amlBody2,
   );
-  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlNumber);
   await amlScreensContext.enterAMLMembNumber(
     userInput.amlMembId1,
-    userInput.amlMembId2
+    userInput.amlMembId2,
   );
-  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.checkAMLDetails);
   await assertionsContext.checkIfNameDisplayedAboveh1(userInput.firstName);
   await amlScreensContext.checkAMLDetails();

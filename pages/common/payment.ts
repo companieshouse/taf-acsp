@@ -36,36 +36,34 @@ export class payment {
 
     await userActionsContext.enterUserInput(
       this.cardNumber,
-      testConfig.cardNumber
+      testConfig.cardNumber,
     );
 
     await userActionsContext.enterUserInput(
       this.expiryMonth,
-      testConfig.expiryMonth
+      testConfig.expiryMonth,
     );
 
     await userActionsContext.enterUserInput(
       this.expiryYear,
-      testConfig.expiryYear
+      testConfig.expiryYear,
     );
 
     await userActionsContext.enterUserInput(
       this.nameOnCard,
-      testConfig.nameOnCard
+      testConfig.nameOnCard,
     );
 
     await userActionsContext.enterUserInput(this.cvc, testConfig.cvc);
 
     await userActionsContext.enterUserInput(
       this.addressline1,
-      testConfig.addressLine1
+      testConfig.addressLine1,
     );
 
     await userActionsContext.enterUserInput(this.city, testConfig.city);
 
     await userActionsContext.enterUserInput(this.postCode, testConfig.postcode);
     this.page.setDefaultTimeout(6000);
-
-
   }
 }

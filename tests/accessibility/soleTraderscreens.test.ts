@@ -24,7 +24,7 @@ test.beforeEach(
 
     await typeOfbusinessContext.selectTypeOfBusiness(testConfig.soleTrader);
     await userActionsContext.clickContinue();
-  }
+  },
 );
 
 test("Accessibility check for Sole-Trader-Name screen @accessibility", async ({
@@ -37,7 +37,7 @@ test("Accessibility check for Sole-Trader-Name screen @accessibility", async ({
 
     process.env.URL + pageURL.soleTrader.name,
 
-    testInfo
+    testInfo,
   );
 });
 
@@ -49,7 +49,7 @@ test("Accessibility check for Sole Trader Date of Birth screen @accessibility", 
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.soleTrader.dateOfBirth,
-    testInfo
+    testInfo,
   );
 });
 
@@ -61,7 +61,7 @@ test("Accessibility check for Sole Trader Nationality screen @accessibility", as
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.soleTrader.nationality,
-    testInfo
+    testInfo,
   );
 });
 
@@ -73,7 +73,7 @@ test("Accessibility check for Sole Trader Where do you Live screen @accessibilit
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.soleTrader.whereDoYouLive,
-    testInfo
+    testInfo,
   );
 });
 
@@ -85,7 +85,7 @@ test("Accessibility check for Sole Trader Correspondence Address Auto-lookup scr
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.soleTrader.addressAutoLookUp,
-    testInfo
+    testInfo,
   );
 });
 
@@ -97,7 +97,7 @@ test("Accessibility check for Sole Trader Correspondence Address Select Address 
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.soleTrader.addressSelect,
-    testInfo
+    testInfo,
   );
 });
 
@@ -109,7 +109,7 @@ test("Accessibility check for Sole Trader Correspondence Address Manual Entry sc
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.soleTrader.addressManualEntry,
-    testInfo
+    testInfo,
   );
 });
 
@@ -121,7 +121,7 @@ test("Accessibility check for Sole Trader Confirm Correspondence Address screen 
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.soleTrader.confirmAddress,
-    testInfo
+    testInfo,
   );
 });
 
@@ -133,7 +133,7 @@ test("Accessibility check for Sole Trader Which sector screen @accessibility", a
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.soleTrader.whichSector,
-    testInfo
+    testInfo,
   );
 });
 
@@ -145,7 +145,7 @@ test("Accessibility check for Sole Trader Which sector-Other screen @accessibili
   await accessibilityContext.checkWcagCompliance(
     page,
     process.env.URL + pageURL.soleTrader.whichSectorOther,
-    testInfo
+    testInfo,
   );
 });
 

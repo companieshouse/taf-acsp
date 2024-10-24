@@ -1,6 +1,4 @@
 export const pageURL = {
-
-
   savedApplication: "/saved-application",
   typeOfBusiness: "/what-business-type",
   soleTrader: {
@@ -21,9 +19,10 @@ export const pageURL = {
     companyInactive: "/limited/company-inactive",
     whatIsYourRole: "/limited/what-is-your-role",
     nameRegisteredWithAML: "/limited/name-registered-with-aml",
-    businessMustBeAMLRegistered: "/limited/your-business-must-be-aml-registered",
+    businessMustBeAMLRegistered:
+      "/limited/your-business-must-be-aml-registered",
     whichSector: "/limited/which-sector",
-    whichSectorOther: "/limited/which-sector-other"
+    whichSectorOther: "/limited/which-sector-other",
   },
   unincorporated: {
     nameRegisteredWithAML: "/unincorporated/name-registered-with-aml",
@@ -36,10 +35,15 @@ export const pageURL = {
     businessAddressList: "/unincorporated/select-your-business-address",
     businessAddressManual: "/unincorporated/business-address-manual-entry",
     businessAddressConfirm: "/unincorporated/confirm-your-business-address",
-    whatIsTheCorrespondenceAddress: "/unincorporated/what-is-the-correspondence-address",
-    correspondenceAddressLookup: "/unincorporated/correspondence-address-lookup",
-    correspondenceAddressList: "/unincorporated/select-your-correspondence-address",
-    correspondenceAddressManual: "/unincorporated/correspondence-address-manual-entry",
-    correspondenceAddressConfirm: "/unincorporated/confirm-your-correspondence-address"
-  }
+    whatIsTheCorrespondenceAddress:
+      "/unincorporated/what-is-the-correspondence-address",
+    correspondenceAddressLookup:
+      "/unincorporated/correspondence-address-lookup",
+    correspondenceAddressList:
+      "/unincorporated/select-your-correspondence-address",
+    correspondenceAddressManual:
+      "/unincorporated/correspondence-address-manual-entry",
+    correspondenceAddressConfirm:
+      "/unincorporated/confirm-your-correspondence-address",
+  },
 };

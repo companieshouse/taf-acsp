@@ -5,13 +5,14 @@ export class OtherTypeOfBusinessPage {
   readonly page: Page;
   readonly unincorporatedEntity: Locator;
   readonly corporateBody: Locator;
-  
 
   constructor(page: Page) {
     this.page = page;
 
     this.unincorporatedEntity = page.getByLabel("Unincorporated entity");
-    this.corporateBody = page.getByLabel("Corporate body (registered with Companies House)");
+    this.corporateBody = page.getByLabel(
+      "Corporate body (registered with Companies House)",
+    );
   }
 
   async selectTypeOfBusiness(type: string) {

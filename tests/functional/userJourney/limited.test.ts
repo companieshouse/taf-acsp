@@ -17,6 +17,7 @@ import { payment } from "../../../pages/common/payment";
 import { globalTearDown } from "../../../setUp/globalTearDown";
 import { getEnvVar } from "taf-playwright-common/dist/src/utils/env/environment-var.js";
 import { OtherTypeOfBusinessPage } from "../../../pages/common/otherTypeOfBusinessPage";
+import { correspondenceEmailAddress } from "../../../pages/common/correspondenceEmailAddress";
 
 let typeOfbusinessContext;
 let userActionsContext;
@@ -31,6 +32,7 @@ let checkAnswersContext;
 let paymentContext;
 let randomUser;
 let otherTypeOfbusinessContext;
+let correspondenceEmailAddressContext;
 
 test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   typeOfbusinessContext = new typeOfBusinessPage(page);
@@ -45,6 +47,7 @@ test.beforeEach("Log in to use ACSP Service", async ({ page }) => {
   checkAnswersContext = new checkAnswers(page);
   paymentContext = new payment(page);
   otherTypeOfbusinessContext = new OtherTypeOfBusinessPage(page);
+  correspondenceEmailAddressContext = new correspondenceEmailAddress(page);
 
   const setUp = new globalSetUp(page);
 
@@ -61,16 +64,16 @@ test("Verify error shown when company id not found for Limited journey @smoke @l
   await userActionsContext.clickContinue();
 
   await limitedJourneyContext.enterCompanyNumber(
-    userInput.invalidCompanyNumber
+    userInput.invalidCompanyNumber,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkErrorHeadingPresent();
 
   await assertionsContext.checkElementvisible(
-    page.getByRole("link", { name: "Enter a valid company number" })
+    page.getByRole("link", { name: "Enter a valid company number" }),
   );
   await assertionsContext.checkElementvisible(
-    page.getByText("Error: Enter a valid company")
+    page.getByText("Error: Enter a valid company"),
   );
 });
 
@@ -81,7 +84,7 @@ test("Verify Limited company can register as an ACSP @smoke @limited", async ({
 
   await limitedJourneyContext.limitedJourneyCommonScreens(
     testConfig.limitedCompany,
-    userInput.companyNumber
+    userInput.companyNumber,
   );
   await limitedJourneyContext.enterCompanyAuthNumber(userInput.companyAuthCode);
   await userActionsContext.clickAuthenticate();
@@ -110,23 +113,29 @@ test("Verify Limited company can register as an ACSP @smoke @limited", async ({
   await assertionsContext.checkPageTitle(pageTitle.whichSectorOther);
   await whichSectorcontext.selectOtherSector(testConfig.casinos);
   await expect(
-    page.locator("//*[@id='main-page-content']/form/div[2]/a")
+    page.locator("//*[@id='main-page-content']/form/div[2]/a"),
   ).toBeVisible();
 
-  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await userActionsContext.clickSaveAndContinue();
+  await assertionsContext.checkPageTitle(pageTitle.correspondenceEmailAddress);
+  await expect(
+    page.locator("//*[@id='main-page-content']/form/div/fieldset/div/div[1]/label")
+  ).toContainText(randomUser);
+  await correspondenceEmailAddressContext.selectCorrespondenceEmailAddress();
+  await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);
 
   await amlScreensContext.selectAMLBodiesRegistered(
     userInput.amlBody1,
-    userInput.amlBody2
+    userInput.amlBody2,
   );
-  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlNumber);
   await amlScreensContext.enterAMLMembNumber(
     userInput.amlMembId1,
-    userInput.amlMembId2
+    userInput.amlMembId2,
   );
-  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.checkAMLDetails);
   await assertionsContext.checkIfNameDisplayedAboveh1(testConfig.companyName);
   await amlScreensContext.checkAMLDetails();
@@ -155,19 +164,21 @@ test("Verify Corporate Body can register as an ACSP @smoke @limited", async ({
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.otherTypeOfBusiness);
   await otherTypeOfbusinessContext.selectTypeOfBusiness(
-    testConfig.corporateBody
+    testConfig.corporateBody,
   );
+  await userActionsContext.clickContinue();
+  await assertionsContext.checkPageTitle(pageTitle.limitedCompanyNumber);
   await limitedJourneyContext.enterCompanyNumber(userInput.companyNumber);
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.limitedIsThisYourCompany);
   await userActionsContext.clickConfirmAndContinue();
   await limitedJourneyContext.enterCompanyAuthNumber(userInput.companyAuthCode);
   await userActionsContext.clickAuthenticate();
-  await whatIsYourRoleContext.selectRole(testConfig.generalPartner);
+  await whatIsYourRoleContext.selectRole(testConfig.member);
   await userActionsContext.clickContinue();
 
   await amlNameRegisteredPageContext.selectAMLName(
-    testConfig.nameOfBusinessRadio
+    testConfig.nameOfBusinessRadio,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceAddress);
@@ -190,23 +201,29 @@ test("Verify Corporate Body can register as an ACSP @smoke @limited", async ({
   await assertionsContext.checkPageTitle(pageTitle.whichSectorOther);
   await whichSectorcontext.selectOtherSector(testConfig.casinos);
   await expect(
-    page.locator("//*[@id='main-page-content']/form/div[2]/a")
+    page.locator("//*[@id='main-page-content']/form/div[2]/a"),
   ).toBeVisible();
 
-  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await userActionsContext.clickSaveAndContinue();
+  await assertionsContext.checkPageTitle(pageTitle.correspondenceEmailAddress);
+  await expect(
+    page.locator("//*[@id='main-page-content']/form/div/fieldset/div/div[1]/label")
+  ).toContainText(randomUser);
+  await correspondenceEmailAddressContext.selectCorrespondenceEmailAddress();
+  await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);
 
   await amlScreensContext.selectAMLBodiesRegistered(
     userInput.amlBody1,
-    userInput.amlBody2
+    userInput.amlBody2,
   );
-  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlNumber);
   await amlScreensContext.enterAMLMembNumber(
     userInput.amlMembId1,
-    userInput.amlMembId2
+    userInput.amlMembId2,
   );
-  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.checkAMLDetails);
   await assertionsContext.checkIfNameDisplayedAboveh1(testConfig.companyName);
   await amlScreensContext.checkAMLDetails();
@@ -233,7 +250,7 @@ test("Verify Limited Liability Partnership can register as an ACSP @smoke @limit
 }) => {
   await limitedJourneyContext.limitedJourneyCommonScreens(
     testConfig.limitedLiabilityPartnership,
-    userInput.companyNumber
+    userInput.companyNumber,
   );
   await limitedJourneyContext.enterCompanyAuthNumber(userInput.companyAuthCode);
   await userActionsContext.clickAuthenticate();
@@ -241,7 +258,7 @@ test("Verify Limited Liability Partnership can register as an ACSP @smoke @limit
   await userActionsContext.clickContinue();
 
   await amlNameRegisteredPageContext.selectAMLName(
-    testConfig.nameOfBusinessRadio
+    testConfig.nameOfBusinessRadio,
   );
   await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.correspondenceAddress);
@@ -264,23 +281,28 @@ test("Verify Limited Liability Partnership can register as an ACSP @smoke @limit
   await assertionsContext.checkPageTitle(pageTitle.whichSectorOther);
   await whichSectorcontext.selectOtherSector(testConfig.casinos);
   await expect(
-    page.locator("//*[@id='main-page-content']/form/div[2]/a")
+    page.locator("//*[@id='main-page-content']/form/div[2]/a"),
   ).toBeVisible();
-
-  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await userActionsContext.clickSaveAndContinue();
+  await assertionsContext.checkPageTitle(pageTitle.correspondenceEmailAddress);
+  await expect(
+    page.locator("//*[@id='main-page-content']/form/div/fieldset/div/div[1]/label")
+  ).toContainText(randomUser);
+  await correspondenceEmailAddressContext.selectCorrespondenceEmailAddress();
+  await userActionsContext.clickContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlBodies);
 
   await amlScreensContext.selectAMLBodiesRegistered(
     userInput.amlBody1,
-    userInput.amlBody2
+    userInput.amlBody2,
   );
-  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.amlNumber);
   await amlScreensContext.enterAMLMembNumber(
     userInput.amlMembId1,
-    userInput.amlMembId2
+    userInput.amlMembId2,
   );
-  await page.getByRole("button", { name: "  Save and continue " }).click();
+  await userActionsContext.clickSaveAndContinue();
   await assertionsContext.checkPageTitle(pageTitle.checkAMLDetails);
   await assertionsContext.checkIfNameDisplayedAboveh1(testConfig.companyName);
   await amlScreensContext.checkAMLDetails();

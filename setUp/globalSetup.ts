@@ -132,7 +132,7 @@ export class globalSetUp {
         vaultRoleId,
         vaultSecretId,
         vaultUrl,
-        vaultGetAppRoleTokenUrl
+        vaultGetAppRoleTokenUrl,
       );
 
       console.log("Env specific response " + envSpecificVaultResponse);
@@ -142,7 +142,7 @@ export class globalSetUp {
     } catch (error) {
       console.error(
         "Error loading environment specific details from Vault: ",
-        error
+        error,
       );
     }
 
@@ -166,18 +166,18 @@ export class globalSetUp {
         vaultRoleId,
         vaultSecretId,
         vaultUrl,
-        vaultGetAppRoleTokenUrl
+        vaultGetAppRoleTokenUrl,
       );
 
       // Extract the User permissions and add them as environment variables
       writeVaultDataToEnvVars(
         await permissionsResponse,
-        userPermissionsVaultPath
+        userPermissionsVaultPath,
       );
     } catch (error) {
       console.error(
         "Error loading environment specific details from Vault: ",
-        error
+        error,
       );
     }
   }

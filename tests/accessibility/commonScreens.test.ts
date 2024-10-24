@@ -16,7 +16,7 @@ test.beforeEach(
     const typeOfbusinessContext = new typeOfBusinessPage(page);
 
     // randomUser = await setUp.createACSPUser();
-  }
+  },
 );
 
 test("Accessibility check for Start page @accessibility", async ({
@@ -29,7 +29,7 @@ test("Accessibility check for Start page @accessibility", async ({
 
     startPageUrl,
 
-    testInfo
+    testInfo,
   );
 });
 
@@ -48,7 +48,7 @@ test("Accessibility check for Type of business screen @accessibility", async ({
 
     page.url(),
 
-    testInfo
+    testInfo,
   );
 });
 

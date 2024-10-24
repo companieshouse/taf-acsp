@@ -21,7 +21,7 @@ export class whatIsYourRolePage {
     this.notRelevantRole = page.getByLabel("I am someone else");
     this.memberGoverningBody = page.getByLabel(
       "I am a member of the governing body",
-      { exact: false }
+      { exact: false },
     );
   }
 
